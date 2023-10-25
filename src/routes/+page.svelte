@@ -1,9 +1,17 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { SessionService } from '../app/service/SessionService';
 	import LoginPage from '../app/view/login/LoginPage.svelte';
 	import MainPage from '../app/view/main/MainPage.svelte';
 	import ToastList from '../app/view/toast/ToastList.svelte';
+	import { ThemeService } from '../app/service/ThemeService';
 
 	let userHash: string | null = null;
+
+	onMount(() => {
+		SessionService.subscribePrivateKey((v) => (userHash = v));
+		ThemeService.init();
+	});
 </script>
 
 <main>
