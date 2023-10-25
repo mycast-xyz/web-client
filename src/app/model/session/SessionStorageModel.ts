@@ -1,7 +1,9 @@
 import { browser } from '$app/environment';
 
 export class SessionStorageModel {
-	#storage: Storage | null = browser ? sessionStorage : null;
+	get #storage(): Storage | null {
+		return browser ? sessionStorage : null;
+	}
 
 	set privateKey(privateKey: string) {
 		this.#storage?.setItem('privateKey', privateKey);

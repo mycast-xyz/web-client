@@ -1,127 +1,126 @@
 <script lang="ts">
-  import { onDestroy, onMount } from 'svelte';
-  import { OptionService } from '../../../service/OptionService';
-  import { MobileUtils } from '../../../util/mobile/MobileUtils';
-  import type FlvJs from './flv';
-  import VideoInfoHeader from './video/VideoInfoHeader.svelte';
-  import VideoInterface from './video/VideoInterface.svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import { OptionService } from '../../../service/OptionService';
+	import { MobileUtils } from '../../../util/mobile/MobileUtils';
+	import type FlvJs from './flv';
+	import VideoInfoHeader from './video/VideoInfoHeader.svelte';
+	import VideoInterface from './video/VideoInterface.svelte';
 
-  export let icon: string = '';
-  export let url: string;
-  export let title: string;
+	export let icon: string = '';
+	export let url: string;
+	export let title: string;
 
-  let paused: boolean;
-  let muted: boolean;
-  let flvPlayer: FlvJs.FlvPlayer | null;
-  let videoElement: HTMLMediaElement;
-  let interfaceShow = false;
-  let volume: number = 100;
-  $: videoVolume = MobileUtils.isMobile() ? 1 : volume / 100;
+	let paused: boolean;
+	let muted: boolean;
+	let flvPlayer: FlvJs.FlvPlayer | null;
+	let videoElement: HTMLMediaElement;
+	let interfaceShow = false;
+	let volume: number = 100;
+	$: videoVolume = MobileUtils.isMobile() ? 1 : volume / 100;
 
-  const mountPlayer = (element: HTMLMediaElement, url: string): any | null => {
-    // @ts-ignore
-    const flvJs = flvjs;
+	const mountPlayer = (element: HTMLMediaElement, url: string): any | null => {
+		// @ts-ignore
+		const flvJs = flvjs;
 
-    if (flvJs.isSupported()) {
-      const player: FlvJs.Player = flvJs.createPlayer({
-        enableWorker: false,
-        lazyLoadMaxDuration: 3 * 60,
-        type: 'flv',
-        isLive: true,
-        autoCleanupSourceBuffer: true,
-        url,
-      });
-      player.attachMediaElement(element);
-      player.load();
-      return player;
-    }
-  };
+		if (flvJs.isSupported()) {
+			const player: FlvJs.Player = flvJs.createPlayer({
+				enableWorker: false,
+				lazyLoadMaxDuration: 3 * 60,
+				type: 'flv',
+				isLive: true,
+				autoCleanupSourceBuffer: true,
+				url
+			});
+			player.attachMediaElement(element);
+			player.load();
+			return player;
+		}
+	};
 
-  onMount(() => {
-    OptionService.volume.subscribe((it) => (volume = it));
-    flvPlayer = mountPlayer(videoElement, url);
-    flvPlayer.play();
-  });
+	onMount(() => {
+		OptionService.volume.subscribe((it) => (volume = it));
+		flvPlayer = mountPlayer(videoElement, url);
+		flvPlayer?.play();
+	});
 
-  onDestroy(() => {
-    flvPlayer?.destroy();
-    flvPlayer = null;
-  });
+	onDestroy(() => {
+		flvPlayer?.destroy();
+		flvPlayer = null;
+	});
 
-  const videoBlur = () => {
-    console.log('blur');
-  };
+	const videoBlur = () => {
+		console.log('blur');
+	};
 
-  const onMouseWheel = (e: WheelEvent) => {
-    const delta = Math.sign(e.deltaY) * 5;
-    volume = clamp(volume - delta, 0, 100);
-  };
+	const onMouseWheel = (e: WheelEvent) => {
+		const delta = Math.sign(e.deltaY) * 5;
+		volume = clamp(volume - delta, 0, 100);
+	};
 
-  const clamp = (num: number, min: number, max: number) =>
-    Math.min(Math.max(num, min), max);
+	const clamp = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max);
 
-  const toggleMute = () => {
-    muted = !muted;
-  };
+	const toggleMute = () => {
+		muted = !muted;
+	};
 
-  const requestFullScreen = () => {
-    videoElement.requestFullscreen();
-  };
+	const requestFullScreen = () => {
+		videoElement.requestFullscreen();
+	};
 
-  const togglePause = () => {
-    if (paused) {
-      videoElement.play();
-    } else {
-      videoElement.pause();
-    }
-  };
+	const togglePause = () => {
+		if (paused) {
+			videoElement.play();
+		} else {
+			videoElement.pause();
+		}
+	};
 
-  function onVolumeChange() {
-    const volume = Math.round(videoElement.volume * 100);
-    OptionService.setVolume(volume);
-  }
+	function onVolumeChange() {
+		const volume = Math.round(videoElement.volume * 100);
+		OptionService.setVolume(volume);
+	}
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
-  class="root"
-  on:wheel={(e) => onMouseWheel(e)}
-  on:mouseover={(_) => (interfaceShow = true)}
-  on:mouseout={(_) => (interfaceShow = false)}
-  on:blur={videoBlur}
+	class="root"
+	on:wheel={(e) => onMouseWheel(e)}
+	on:mouseover={(_) => (interfaceShow = true)}
+	on:mouseout={(_) => (interfaceShow = false)}
+	on:blur={videoBlur}
 >
-  <!-- svelte-ignore a11y-media-has-caption -->
-  <video
-    bind:this={videoElement}
-    bind:paused
-    bind:muted
-    bind:volume={videoVolume}
-    on:volumechange={onVolumeChange}
-  />
+	<!-- svelte-ignore a11y-media-has-caption -->
+	<video
+		bind:this={videoElement}
+		bind:paused
+		bind:muted
+		bind:volume={videoVolume}
+		on:volumechange={onVolumeChange}
+	/>
 
-  {#if interfaceShow}
-    <VideoInfoHeader {icon} {title} />
-    <VideoInterface
-      bind:volume
-      {muted}
-      {paused}
-      onPlayPauseClick={togglePause}
-      onFullscreenClick={requestFullScreen}
-      onMuteClick={toggleMute}
-    />
-  {/if}
+	{#if interfaceShow}
+		<VideoInfoHeader {icon} {title} />
+		<VideoInterface
+			bind:volume
+			{muted}
+			{paused}
+			onPlayPauseClick={togglePause}
+			onFullscreenClick={requestFullScreen}
+			onMuteClick={toggleMute}
+		/>
+	{/if}
 </div>
 
 <style lang="scss">
-  .root {
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    position: relative;
+	.root {
+		width: 100%;
+		height: 100%;
+		background-color: #000000;
+		position: relative;
 
-    video {
-      width: 100%;
-      height: 100%;
-    }
-  }
+		video {
+			width: 100%;
+			height: 100%;
+		}
+	}
 </style>
