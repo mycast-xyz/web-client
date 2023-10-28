@@ -42,11 +42,13 @@
     name="북마크 설정"
     icon="fas fa-bookmark"
   />
-  <DefaultMenuItem
-    menuClick={() => openModal('chat-widget')}
-    name="채팅위젯 설정"
-    icon="fas fa-comment"
-  />
+  {#if false}
+    <DefaultMenuItem
+      menuClick={() => openModal('chat-widget')}
+      name="채팅위젯 설정"
+      icon="fas fa-comment"
+    />
+  {/if}
   <DefaultMenuItem name="테마" icon="fas fa-adjust">
     <SettingSwitch slot="extra" checked={!darkMode} on:valuechange={onThemeValueChange} />
   </DefaultMenuItem>
