@@ -1,13 +1,14 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { get } from 'svelte/store';
-  import { SessionService } from '../../service/SessionService';
   import { ModifyStreamCommand } from '../../model/stream/ModifyStreamCommand';
-  import { WindowService } from '../../service/WindowService';
   import { ProfileService } from '../../service/ProfileService';
+  import { SessionService } from '../../service/SessionService';
+  import { WindowService } from '../../service/WindowService';
+  import InlineSvg from '../../view-framework/InlineSvg.svelte';
   import SettingModal from './SettingModal.svelte';
   import ExternalStreamSettingForm from './stream/ExternalStreamSettingForm.svelte';
   import LocalStreamSettingForm from './stream/LocalStreamSettingForm.svelte';
-  import InlineSvg from '../../view-framework/InlineSvg.svelte';
 
   const platforms = [
     {
@@ -36,10 +37,12 @@
   let afreecaId = get(ProfileService.afreecaId);
   let twitchId = get(ProfileService.twitchId);
 
-  ProfileService.platform.subscribe((v) => (currentPlatformId = v));
-  ProfileService.localId.subscribe((v) => (localId = v));
-  ProfileService.afreecaId.subscribe((v) => (afreecaId = v));
-  ProfileService.twitchId.subscribe((v) => (twitchId = v));
+  onMount(() => {
+    ProfileService.platform.subscribe((v) => (currentPlatformId = v));
+    ProfileService.localId.subscribe((v) => (localId = v));
+    ProfileService.afreecaId.subscribe((v) => (afreecaId = v));
+    ProfileService.twitchId.subscribe((v) => (twitchId = v));
+  });
 
   function onSubmitClick() {
     const privateKey = SessionService.getPrivateKey();

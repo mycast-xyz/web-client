@@ -24,13 +24,13 @@
   let currentContent: Content | null = null;
   let chatConnected = false;
 
-  ChatNetworkService.isConnected.subscribe((it) => (chatConnected = it));
-
   onMount(() => {
     ChatNetworkService.init(privateKey);
     CheckerNetworkService.init(privateKey);
     WindowService.sideBarShow.subscribe((it) => (sideBarVisible = it));
     WindowService.content.subscribe((it) => (currentContent = it));
+    ChatNetworkService.isConnected.subscribe((it) => (chatConnected = it));
+    ProfileService.loadStreamProfile(privateKey);
 
     ChatNetworkService.applyMyStatusEvent.subscribe((it) => {
       if (it) {
