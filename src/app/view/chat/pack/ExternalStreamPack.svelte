@@ -13,7 +13,6 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="stream-pack" on:click={onClick} on:contextmenu|preventDefault={onContextMenu} {style}>
   <img class="icon" src={icon} alt={name} />
-  <div class="logo" />
   <div class="name">
     {name} <span>({id})</span>
   </div>
@@ -40,15 +39,7 @@
     height: 40px;
     border-radius: 25px;
   }
-  .logo {
-    position: absolute;
-    background: url('/../assets/image/stream/afreeca.png') center no-repeat;
-    background-size: 100%;
-    top: 15px;
-    left: 50px;
-    width: 20px;
-    height: 20px;
-  }
+
   .name {
     position: absolute;
     top: 15px;
