@@ -13,6 +13,8 @@
   OptionService.enableDataSave.subscribe((it) => (isDataSaveMode = it));
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 {#if isDataSaveMode}
   <div on:click={(_) => dispatch('click')}>
     (대충 {title} / {subtitle})

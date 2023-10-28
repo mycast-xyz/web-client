@@ -26,6 +26,8 @@
         return 'fab fa-youtube';
       case 'link':
         return 'fas fa-link';
+      default:
+        return 'fas fa-link';
     }
   }
 </script>
@@ -36,21 +38,4 @@
   nickname={clip.data.title}
   buttons={[{ icon: 'fas fa-arrow-circle-right', callback: onNavigateClick }]}
   on:onentryclick={onEntryClick}
->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <!-- <i
-    class="fas fa-arrow-circle-right"
-    on:click|stopPropagation={onNavigateClick}
-  /> -->
-</ChatInterfaceMenuEntry>
-
-<style lang="scss">
-  i {
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    float: right;
-  }
-</style>
+/>

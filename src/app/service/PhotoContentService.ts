@@ -8,7 +8,7 @@ class PhotoContentManager {
     return this.#currentPhoto;
   }
 
-  setCurrentPhoto(photo: Photo) {
+  setCurrentPhoto(photo: Photo | null) {
     this.#currentPhoto.set(photo);
   }
 }

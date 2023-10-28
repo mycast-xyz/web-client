@@ -9,6 +9,8 @@
   $: style = backgroundColor ? `background: ${backgroundColor}` : null;
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="stream-pack" on:click={onClick} on:contextmenu|preventDefault={onContextMenu} {style}>
   <img class="icon" src={icon} alt={name} />
   <div class="logo" />

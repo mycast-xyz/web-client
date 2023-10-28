@@ -56,6 +56,8 @@
     menuClick={() => window.open('/chat', '_blank', 'width=300,height=720')}
   />
   <DefaultMenuItem name="후원리스트" icon="fas fa-clipboard-list" />
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div class="logout" on:click={logout}>
     <h4>로그아웃</h4>
   </div>

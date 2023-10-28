@@ -1,11 +1,11 @@
-import { writable, type Readable } from 'svelte/store';
+import { writable, type Readable, type Writable } from 'svelte/store';
 import type { Photo } from '../../model/photo/Photo';
 import { VegaPhotoLoader } from '../../model/photo/loader/VegaPhotoLoader';
 
 class PhotoServiceInit {
   readonly #CHUNK_SIZE = 100;
   readonly #loader = new VegaPhotoLoader();
-  readonly #photos = writable([]);
+  readonly #photos: Writable<Photo[]> = writable([]);
   #query = '';
   #nextStart = 0;
   #loading = false;

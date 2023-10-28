@@ -41,6 +41,7 @@
   class="popup-window"
   style="transform:translate({left}px, {top}px); width: {width}px; height: {height}px;"
 >
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="header" on:mousedown={() => (moveMode = true)}>
     <i class="fas fa-{icon}" />
     <div class="title">{title}</div>
@@ -52,13 +53,16 @@
     <slot />
   </div>
 
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="reszie-edge" on:mousedown={() => (resizeMode = true)} />
 
   {#if moveMode}
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="movebox" on:mousemove={onDrag} on:mouseup={() => (moveMode = false)} />
   {/if}
 
   {#if resizeMode}
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="resizebox" on:mousemove={onResize} on:mouseup={() => (resizeMode = false)} />
   {/if}
 </div>

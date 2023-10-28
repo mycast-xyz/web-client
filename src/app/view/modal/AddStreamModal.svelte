@@ -1,5 +1,6 @@
 <script lang="ts">
   import { RegisterStreamCommand } from '../../model/stream/RegisterStreamCommand';
+  import type { StagedStream } from '../../model/stream/StageStream';
   import { StageStreamCommand } from '../../model/stream/StageStreamCommand';
   import { ToastService } from '../../service/ToastService';
   import { WindowService } from '../../service/WindowService';
@@ -23,9 +24,9 @@
     }
   ];
   let currentPlatform: Platform;
-  let stagedStream = null;
-  let searching = false;
-  let adding = false;
+  let stagedStream: StagedStream | null = null;
+  let searching: boolean = false;
+  let adding: boolean = false;
   let searchKeyword = '';
 
   function onPlatformClick(platform: Platform) {
@@ -53,7 +54,7 @@
       return;
     }
 
-    this.adding = true;
+    adding = true;
     const command = new RegisterStreamCommand(stagedStream.platform, stagedStream.keyId);
     try {
       const result = await command.execute();
@@ -63,7 +64,7 @@
         ToastService.toastText('방송추가를 실패했습니다.');
       }
     } finally {
-      this.adding = false;
+      adding = false;
       WindowService.closeModal();
     }
   }
@@ -87,6 +88,7 @@
       <div class="live-corp-list">
         {#each platforms as platform}
           <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
           <div class="live-corp" on:click={(_) => onPlatformClick(platform)}>
             <div class="live-corp-img">
               <div class="checks">

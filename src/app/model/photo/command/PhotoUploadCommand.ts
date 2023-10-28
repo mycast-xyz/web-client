@@ -5,7 +5,7 @@ export class PhotoUploadCommand {
   async execute(file: File): Promise<PhotoDto | null> {
     if (!file || !this.#isValidFile(file)) {
       console.error('invalid files');
-      return;
+      return null;
     }
 
     const base64 = await this.#readData(file);

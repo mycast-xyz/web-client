@@ -12,6 +12,8 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="chat-user-entry" on:click={onEntryClick}>
   <div class="user-icon">
     <img src={icon} alt={nickname} />

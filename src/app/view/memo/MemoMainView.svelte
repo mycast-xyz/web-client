@@ -1,8 +1,9 @@
 <script lang="ts">
+  import type { Memo } from '../../model/memo/Memo';
   import { WindowService } from '../../service/WindowService';
   import MemoEntry from './MemoEntry.svelte';
 
-  export let memos = [];
+  export let memos: Memo[] = [];
 
   function onUploadClick() {
     WindowService.openModal('upload-memo');

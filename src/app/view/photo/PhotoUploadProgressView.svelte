@@ -2,18 +2,18 @@
   export let file: File | null = null;
 
   $: base64Promise = readData(file);
-  $: fileSize = parseSize(file);
-  $: fileType = parseType(file);
+  $: fileSize = `${file ? parseSize(file) : '-'} KB`;
+  $: fileType = file ? parseType(file) : 'PNG';
 
   function parseSize(file: File): string {
-    return file ? `${Math.round((file.size / 1024) * 10) / 10} KB` : '- KB';
+    return `${Math.round((file.size / 1024) * 10) / 10} KB`;
   }
 
   function parseType(file: File): string {
-    return file ? file.type.split('/')[1].toUpperCase() : 'PNG';
+    return file.type.split('/')[1].toUpperCase();
   }
 
-  async function readData(file: File): Promise<string | null> {
+  async function readData(file: File | null): Promise<string | null> {
     return new Promise((resolve) => {
       const fileReader: FileReader = new FileReader();
       fileReader.onload = (_) => {
@@ -22,7 +22,7 @@
           resolve(base64);
         }
       };
-      fileReader.readAsDataURL(file);
+      file && fileReader.readAsDataURL(file);
     });
   }
 </script>

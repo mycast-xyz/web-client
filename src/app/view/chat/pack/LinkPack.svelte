@@ -46,8 +46,9 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 {#if isDataSave}
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div on:click={openWindow}>
     <strong>
       {#if title}
@@ -58,7 +59,6 @@
     </strong>
   </div>
 {:else}
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
     class="root"
     class:thumbnail-attched={thumbnail}

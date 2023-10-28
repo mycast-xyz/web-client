@@ -4,10 +4,10 @@
   import IframeContentView from './IframeContentView.svelte';
 
   export let src: string | null = null;
-  $: link = src ? getLink(src) : null;
+  $: link = getLink(src);
 
-  const getLink = (src: string | null) => {
-    return LinkUtils.addQuery(src, 'parent', location.hostname);
+  const getLink = (src: string | null): string => {
+    return LinkUtils.addQuery(src ?? '', 'parent', location.hostname);
   };
 </script>
 

@@ -173,7 +173,10 @@
         <div class="toggle-title">
           <p>봇 숨기기</p>
         </div>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="toggle-switch">
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
           <label
             for="enableTimestamp"
             class="switch"

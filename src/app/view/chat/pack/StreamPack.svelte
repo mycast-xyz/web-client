@@ -73,6 +73,8 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 {#if isDataSave}
   <div>(대충 {name} 방송)</div>
 {:else}

@@ -62,8 +62,10 @@
         <button type="submit" on:click={requestLogin} class="login-sub-btn">LOGIN</button>
       </div>
       <hr />
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div class="add-btn">
         <!-- svelte-ignore a11y-missing-attribute -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
         <a on:click={(_) => (modal = 'join')}>
           <p>회원가입</p>
         </a>

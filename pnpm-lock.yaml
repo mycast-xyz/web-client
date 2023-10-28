@@ -20,6 +20,9 @@ devDependencies:
   '@types/md5':
     specifier: ^2.3.4
     version: 2.3.4
+  '@types/socket.io-client':
+    specifier: ^1.4.36
+    version: 1.4.36
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.0.0
     version: 6.9.0(@typescript-eslint/parser@6.9.0)(eslint@8.52.0)(typescript@5.2.2)
@@ -54,7 +57,7 @@ devDependencies:
     specifier: ^1.69.4
     version: 1.69.4
   socket.io-client:
-    specifier: '2'
+    specifier: ^2.5.0
     version: 2.5.0
   svelte:
     specifier: ^4.0.5
@@ -543,6 +546,10 @@ packages:
 
   /@types/semver@7.5.4:
     resolution: {integrity: sha512-MMzuxN3GdFwskAnb6fz0orFvhfqi752yjaXylr0Rp4oDg5H0Zn1IuyRhDVvYOwAXoJirx2xuS16I3WjxnAIHiQ==}
+    dev: true
+
+  /@types/socket.io-client@1.4.36:
+    resolution: {integrity: sha512-ZJWjtFBeBy1kRSYpVbeGYTElf6BqPQUkXDlHHD4k/42byCN5Rh027f4yARHCink9sKAkbtGZXEAmR0ZCnc2/Ag==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.9.0(@typescript-eslint/parser@6.9.0)(eslint@8.52.0)(typescript@5.2.2):

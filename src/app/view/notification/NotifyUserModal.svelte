@@ -16,7 +16,7 @@
 
   const notifyUser = () => {
     const privateKey = SessionService.getPrivateKey();
-    SocketService.notifyUser?.execute(privateKey, hash);
+    hash && SocketService.notifyUser?.execute(privateKey, hash);
     ToastService.toastText(`${name}님에게 호출했어요 !`);
   };
 

@@ -14,13 +14,14 @@
   import ImagePopupLayer from './popup/ImagePopupLayer.svelte';
   import SideBar from './side/SideBar.svelte';
   import TopBar from './top/TopBar.svelte';
+  import type { Content } from '../../model/window/Content';
 
   export let privateKey: string;
 
   let mainMode = 'chat';
 
   let sideBarVisible = false;
-  let currentContent = null;
+  let currentContent: Content | null = null;
   let chatConnected = false;
 
   ChatNetworkService.isConnected.subscribe((it) => (chatConnected = it));

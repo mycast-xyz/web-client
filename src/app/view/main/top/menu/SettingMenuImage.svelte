@@ -5,7 +5,6 @@
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
-
 <div>
   <InlineSvg src={imageSrc} />
 </div>

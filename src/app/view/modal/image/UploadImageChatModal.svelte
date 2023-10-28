@@ -6,7 +6,7 @@
   import { WindowService } from '../../../service/WindowService';
 
   let root: HTMLElement;
-  let currentImage: string;
+  let currentImage: string | null;
 
   ChatClipboardService.currentImage.subscribe((it) => (currentImage = it));
 
@@ -28,10 +28,14 @@
 
   function sendImage() {
     const privateKey = SessionService.getPrivateKey();
-    SocketService.chat.execute(privateKey, 'image', currentImage);
+    if (currentImage) {
+      SocketService.chat?.execute(privateKey, 'image', currentImage);
+    }
   }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div class="container" bind:this={root} on:keydown={onKeyDown} tabindex="0">
   <div class="image-mod">
     <div class="image-wrapper">

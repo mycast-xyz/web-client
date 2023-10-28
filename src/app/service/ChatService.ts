@@ -22,7 +22,7 @@ class ChatServiceInit {
     this.#scrollDownEvent.set({ force });
   }
 
-  setActive(chatMessageHash: string) {
+  setActive(chatMessageHash: string | null) {
     this.#activeChatMessage.set(chatMessageHash);
   }
 

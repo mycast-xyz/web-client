@@ -4,7 +4,7 @@
 
   let currentImage: string = '';
 
-  WindowService.currentImage.subscribe((v) => (currentImage = v));
+  WindowService.currentImage.subscribe((v) => (currentImage = v ?? ''));
 </script>
 
 {#if currentImage}

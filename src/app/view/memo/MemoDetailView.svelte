@@ -24,6 +24,8 @@
 </script>
 
 <div class="memo-content">
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="bg" on:click|self={onClearClick} />
   <div class="memo-box">
     <div class="title">
@@ -38,6 +40,8 @@
         <p class="text">{body}</p>
         {#if link}
           <!-- svelte-ignore a11y-missing-attribute -->
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
           <a class="link" on:click={onLinkClick}>
             <p>{link}</p>
           </a>

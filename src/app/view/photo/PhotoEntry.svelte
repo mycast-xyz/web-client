@@ -34,6 +34,8 @@
 
 <div class="ph-img">
   <!-- svelte-ignore a11y-missing-attribute -->
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <img class:blurEffect={adult} src={thumbnail} on:click={onClick} />
   <div class="ph-info">
     <div class="bg" />
@@ -44,10 +46,14 @@
     <div class="ph-btn-group">
       <!-- svelte-ignore a11y-missing-attribute -->
       <a class="ph-btn warning">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <i class="material-icons" on:click={onFilterClick}>warning</i>
       </a>
       <!-- svelte-ignore a11y-missing-attribute -->
       <a class="ph-btn link">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <i class="material-icons" on:click={onLinkClick}>link</i>
       </a>
     </div>

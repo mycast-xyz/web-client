@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, SvelteComponent } from 'svelte';
+  import { SvelteComponent, onMount, type ComponentType } from 'svelte';
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { ChatService } from '../../../service/ChatService';
@@ -10,11 +10,6 @@
   import AfreecaPack from '../pack/AfreecaPack.svelte';
   import AnimationPack from '../pack/AnimationPack.svelte';
   import AzurlaneShipPack from '../pack/AzurlaneShipPack.svelte';
-  import BookPack from '../pack/book/BookPack.svelte';
-  import GeneralPurposeCardPack from '../pack/gpc/GeneralPurposeCardPack.svelte';
-  import GeneralPurposeCarouselPack from '../pack/gpc/GeneralPurposeCarouselPack.svelte';
-  import ImagePack from '../pack/image/ImagePack.svelte';
-  import MobileImagePack from '../pack/image/MobileImagePack.svelte';
   import LinkPack from '../pack/LinkPack.svelte';
   import LolChampionPack from '../pack/LolChampionPack.svelte';
   import LolUserPack from '../pack/LolUserPack.svelte';
@@ -24,8 +19,13 @@
   import TextPack from '../pack/TextPack.svelte';
   import TwitchChannelPack from '../pack/TwitchChannelPack.svelte';
   import TwitchClipPack from '../pack/TwitchClipPack.svelte';
-  import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import YoutubePack from '../pack/YoutubePack.svelte';
+  import BookPack from '../pack/book/BookPack.svelte';
+  import GeneralPurposeCardPack from '../pack/gpc/GeneralPurposeCardPack.svelte';
+  import GeneralPurposeCarouselPack from '../pack/gpc/GeneralPurposeCarouselPack.svelte';
+  import ImagePack from '../pack/image/ImagePack.svelte';
+  import MobileImagePack from '../pack/image/MobileImagePack.svelte';
+  import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import ReactionList from './reaction/ChatReactionListView.svelte';
 
   export let message: ChatMessage;
@@ -125,11 +125,13 @@
 
   type Pack = {
     type: string;
-    component: typeof SvelteComponent;
-    mobileComponent?: typeof SvelteComponent;
+    component: ComponentType;
+    mobileComponent?: ComponentType;
   };
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="container"
   class:hover={menuActive}

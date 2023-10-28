@@ -50,7 +50,7 @@ export class WebSocketModel implements SocketModel {
   }
 
   disconnect(): void {
-    this.#socket.close();
+    this.#socket?.close();
     this.#socket = null;
   }
 }

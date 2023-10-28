@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   import { onMount, createEventDispatcher, tick } from 'svelte';
   const dispatch = createEventDispatcher();
   export let src;

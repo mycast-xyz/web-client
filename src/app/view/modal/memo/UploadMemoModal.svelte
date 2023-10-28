@@ -25,6 +25,8 @@
 </script>
 
 <div class="memo-upload">
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="bg" on:click|self={close} />
   <div class="memo-box">
     <div class="title">

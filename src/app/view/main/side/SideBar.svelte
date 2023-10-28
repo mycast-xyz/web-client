@@ -32,27 +32,33 @@
 </script>
 
 <div class="side-bar">
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <ul>
     {#if chatEnabled}
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <li class="main" on:click={(_) => dispatch('chatclick')}>
         <i class="far fa-comments" />
         <span>채팅</span>
       </li>
     {/if}
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <li class="main" on:click={(_) => dispatch('memoclick')}>
       <i class="fas fa-book" />
       <span>메모</span>
     </li>
-    {#if true}
+    {#if false}
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <li class="main" on:click={(_) => dispatch('donationclick')}>
         <i class="fas fa-money-bill-wave" />
         <span>도네이션</span>
       </li>
     {/if}
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <li class="main" on:click={(_) => dispatch('photoclick')}>
       <i class="fas fa-images" />
       <span>이미지 갤러리</span>
     </li>
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <li class="main" on:click={onAddStreamClick}>
       <i class="fas fa-broadcast-tower" />
       <span>방송추가</span>

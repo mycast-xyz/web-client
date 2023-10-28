@@ -35,6 +35,8 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 {#if isDataSaveMode}
   <div on:click={onClick}>(대충 트위치 클립)</div>
 {:else}

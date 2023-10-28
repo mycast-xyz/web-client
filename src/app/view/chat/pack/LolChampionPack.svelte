@@ -24,12 +24,14 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-missing-attribute -->
 {#if isDataSaveMode}
   <div>(대충 챔 {name} 정보)</div>
 {:else}
   <div class="lol-champion-info" on:click={onClick}>
     <div class="bg">
-      <!-- svelte-ignore a11y-missing-attribute -->
       <img src={background} />
       <div class="img-overlay" />
     </div>

@@ -21,6 +21,8 @@
   <div class="mm-info">
     <p>{regDate}</p>
   </div>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <pre class="mm-txt" on:click={onClick}>{body}</pre>
   <div class="mm-user">
     <p>{author} 작성</p>
@@ -31,6 +33,8 @@
       <i class="material-icons">warning</i>
     </a>
     <!-- svelte-ignore a11y-missing-attribute -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <a class="mm-btn link" on:click={shareMemo}>
       <i class="material-icons">link</i>
     </a>

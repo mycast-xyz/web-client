@@ -44,8 +44,12 @@
 </script>
 
 {#if isDataSaveMode}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div on:click={onClick}>(대충 트위치 비디오)</div>
 {:else}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="twitch-clip-pack" on:click={onClick} on:contextmenu|preventDefault={onContextMenu}>
     <img class="thumbnail" src={thumbnail} alt="{title} 썸네일" />
     <div class="logo description-added" />

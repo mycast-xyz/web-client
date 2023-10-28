@@ -43,6 +43,7 @@
   <div class="divided" style="left: {sideLeft}; right: {sideRight}; width: {sideWidth}px;">
     <slot name="side" />
   </div>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class="divider"
     class:active={isMoveMode}

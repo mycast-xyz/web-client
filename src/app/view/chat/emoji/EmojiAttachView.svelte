@@ -41,6 +41,8 @@
       </div>
       <div class="def-emoji-list">
         {#each recentEmojies as emoji}
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
             on:click={(_) => onEmojiClick(emoji)}
             on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}>{emoji}</span
@@ -50,7 +52,10 @@
       <hr />
     {/if}
     <div class="def-emoji-list">
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
       {#each emojies as emoji}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <span
           on:click={(_) => onEmojiClick(emoji)}
           on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}>{emoji}</span

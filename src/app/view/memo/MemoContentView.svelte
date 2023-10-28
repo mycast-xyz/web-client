@@ -7,8 +7,8 @@
   import MemoMainView from './MemoMainView.svelte';
 
   let uploadMode = false;
-  let memos = [];
-  let currentMemo: Memo = null;
+  let memos: Memo[] = [];
+  let currentMemo: Memo | null = null;
 
   onMount(() => {
     MemoService.memos.subscribe((it) => (memos = it));

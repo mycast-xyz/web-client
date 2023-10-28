@@ -23,6 +23,8 @@
 </script>
 
 <ChatSenderEntry {hash} {icon} {nickname} on:onentryclick={onEntryClick}>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <i class="fas {muteClass}" on:click|stopPropagation={onMuteClick} />
   <i class="fas fa-question active" />
 </ChatSenderEntry>

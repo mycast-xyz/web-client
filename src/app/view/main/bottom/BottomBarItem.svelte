@@ -14,6 +14,8 @@
 
 <div class="root">
   <!-- svelte-ignore a11y-missing-attribute -->
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <img class="icon" src={icon} on:click={() => dispatch('iconclick')} />
 
   <div class="detail" class:right-align={rightAlign}>

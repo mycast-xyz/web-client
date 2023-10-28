@@ -109,6 +109,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="chat-interface" on:click={(_) => ChatService.setActive(null)}>
   <div class="input-sticker">
     <div class="sticker-section">

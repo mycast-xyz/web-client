@@ -7,7 +7,7 @@
   import MobileMemoEntry from './MobileMemoEntry.svelte';
 
   let memos: Memo[] = [];
-  let currentMemo: Memo = null;
+  let currentMemo: Memo | null = null;
 
   onMount(async () => {
     MemoService.memos.subscribe((it) => (memos = it));

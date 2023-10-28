@@ -24,6 +24,8 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="memo-entry" on:click={onClick}>
   <div class="left-side">
     <img src={memo.userIcon} alt="{memo.userName} 아이콘" />

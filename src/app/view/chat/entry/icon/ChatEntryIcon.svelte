@@ -24,6 +24,7 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="icon" on:contextmenu|preventDefault={sendIcon}>
   <img src={internalSrc} alt="프로필" />
 </div>

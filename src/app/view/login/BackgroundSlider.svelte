@@ -49,6 +49,7 @@
   onDestroy(() => stopPlay());
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   class="main"
   on:mouseover={(_) => stopPlay()}

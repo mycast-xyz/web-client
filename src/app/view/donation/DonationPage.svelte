@@ -18,7 +18,7 @@
   const onDonationBtnClick = (e: MouseEvent) => {
     const target = e.target as HTMLButtonElement;
     const donationViewBtn = target.closest('button');
-    switch (donationViewBtn.value) {
+    switch (donationViewBtn?.value) {
       case 'dashboard':
         donationPage.View = 'dashboard';
         donationPage.Title = '도네이션 대시보드';

@@ -15,7 +15,7 @@ export class SocketIoCheckerSocketModel implements CheckerSocketModel {
       console.log('connected');
     });
     this.#socket.on('refresh_streams', (raw: any) => {
-      this.#onRefreshStream(raw);
+      this.#onRefreshStream?.(raw);
     });
     this.#socket.on(KEY_NEW_STREAM, (raw: NewStreamNotificationParam) => {
       PushListService.push({

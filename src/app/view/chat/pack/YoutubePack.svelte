@@ -73,6 +73,8 @@
   OptionService.enableDataSave.subscribe((it) => (isDataSave = it));
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 {#if isError}
   <div>잘못된 Youtube</div>
 {:else if isDataSave}

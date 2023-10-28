@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte/internal';
+  import { onMount } from 'svelte';
   import { PhotoTagCommand } from '../../model/photo/command/PhotoTagCommand';
   import type { Photo } from '../../model/photo/Photo';
   import { PhotoContentService } from '../../service/PhotoContentService';
@@ -86,7 +86,10 @@
   });
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div bind:this={container} class="photo-view" on:keydown={onKeyPress} tabindex="0">
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <span class="mob-clear" on:click={onCloseClick}>
     <i class="fas fa-times" />
   </span>
@@ -97,6 +100,7 @@
   <div class="photo-info">
     <div class="title">
       <h3>정보</h3>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
       <span class="pc-clear" on:click={onCloseClick}>
         <i class="fas fa-times" />
       </span>
@@ -110,10 +114,12 @@
       {#if editTagMode}
         <div class="tag-input-box">
           <input type="text" class="tag-input" bind:value={tagValue} on:keydown={onTagKeyDown} />
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
           <span class="material-icons" on:click={onTagSubmit}>send</span>
         </div>
       {:else}
         <!-- svelte-ignore a11y-missing-attribute -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
         <a class="add-tag" on:click={(_) => (editTagMode = true)}>
           <span class="material-icons">add_comment</span>
         </a>
@@ -153,12 +159,14 @@
     </div>
     <div class="p-info-box">
       <p class="lab">세부도구</p>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="in-txt tool attention-limit" class:active={adult} on:click={onAdultClick}>
         <span class="material-icons">verified_user</span>
         <div class="in-txt-list">
           <p class="ma-title see-txt">후방주의 이미지</p>
         </div>
       </div>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="in-txt tool" on:click={onShareClick}>
         <span class="material-icons">launch</span>
         <div class="in-txt-list">

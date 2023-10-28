@@ -50,6 +50,7 @@
     input[type='range'] {
       margin-left: 10px;
       -webkit-appearance: none;
+      appearance: none;
       padding: 0.1em;
       width: 100%;
       height: 4px;
@@ -65,6 +66,7 @@
 
     input[type='range']::-webkit-slider-thumb {
       -webkit-appearance: none;
+      appearance: none;
       width: 16px;
       height: 16px;
       background: #ff4081;
@@ -74,6 +76,7 @@
     }
     input[type='range']::-moz-range-thumb {
       -webkit-appearance: none;
+      appearance: none;
       width: 16px;
       height: 16px;
       background: #ff4081;

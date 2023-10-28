@@ -57,10 +57,15 @@
       return;
     }
     const photo = await PhotoUploadService.uploadByFile(imageFile);
+    if (!photo) {
+      console.error('null photo', imageFile);
+      return;
+    }
     PhotoService.addPhoto(photo);
   }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   bind:this={scroller}
   class="container"

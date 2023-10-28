@@ -9,6 +9,8 @@
   $: size = streams.length;
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <h3 on:click={(_) => (selected = !selected)}>
   {title} <small>({size})</small>
 </h3>

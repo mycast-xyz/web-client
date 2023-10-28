@@ -16,6 +16,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="entry" on:click={onEntryClick}>
   {#if icon}
     <div class="icon">

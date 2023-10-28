@@ -49,9 +49,6 @@
         padding: 6px 0px;
       }
     }
-    .input {
-      //flex-grow: 1;
-    }
     .button {
       width: calc(100% + 30px);
       height: auto;
@@ -63,17 +60,6 @@
       padding: 20px 15px;
       background-color: var(--primary-activeground-color);
       color: var(--primary-activeground-font-color);
-    }
-  }
-
-  // 모바일 처리
-  @media (min-width: 320px) and (max-width: 500px) {
-    .profile-form {
-      .stream-sub {
-        position: fixed;
-        bottom: 0px;
-        width: 100%;
-      }
     }
   }
 </style>

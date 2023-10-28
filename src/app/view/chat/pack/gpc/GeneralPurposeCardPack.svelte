@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import { WindowService } from '../../../../service/WindowService';
   import { MobileUtils } from '../../../../util/mobile/MobileUtils';
   import { PopupContentService } from '../../../popup/PopupContentService';
   import GeneralPurposeCard from './GeneralPurposeCard.svelte';
 
-  export let body;
+  export let body: string;
   $: json = JSON.parse(body);
   $: icon = json.icon;
   $: title = json.title;
