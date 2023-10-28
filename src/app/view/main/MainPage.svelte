@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { MobileUtils } from '../../util/mobile/MobileUtils';
-	import DesktopMainPage from './DesktopMainPage.svelte';
-	import MobileMainPage from './MobileMainPage.svelte';
+  import { MobileUtils } from '../../util/mobile/MobileUtils';
+  import DesktopMainPage from './DesktopMainPage.svelte';
+  import MobileMainPage from './MobileMainPage.svelte';
 
-	export let privateKey: string;
+  export let privateKey: string;
 </script>
 
 {#if MobileUtils.isMobile()}
-	<MobileMainPage {privateKey} />
+  <MobileMainPage {privateKey} />
 {:else}
-	<DesktopMainPage {privateKey} />
+  <DesktopMainPage {privateKey} />
 {/if}

@@ -36,10 +36,7 @@
     </button>
   </div>
   <div class="part right">
-    <button
-      class="alert-btn"
-      on:click={(_) => (isPushListShow = !isPushListShow)}
-    >
+    <button class="alert-btn" on:click={(_) => (isPushListShow = !isPushListShow)}>
       <i class="fas fa-bell" />
       {#if pushCount > 0}
         <div class="push">{pushCount}</div>

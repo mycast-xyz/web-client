@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import type { ContentHistory } from "../../../model/history/ContentHistory";
-  import { ContentHistoryService } from "../../../service/ContentHistoryService";
-  import { OptionService } from "../../../service/OptionService";
-  import { WindowService } from "../../../service/WindowService";
-  import BottomBarItem from "./BottomBarItem.svelte";
+  import { onMount } from 'svelte';
+  import type { ContentHistory } from '../../../model/history/ContentHistory';
+  import { ContentHistoryService } from '../../../service/ContentHistoryService';
+  import { OptionService } from '../../../service/OptionService';
+  import { WindowService } from '../../../service/WindowService';
+  import BottomBarItem from './BottomBarItem.svelte';
 
   export let history: ContentHistory;
 
@@ -20,7 +20,7 @@
   });
 
   function onIconClick() {
-    WindowService.openContent({ type: "iframe", src: link });
+    WindowService.openContent({ type: 'iframe', src: link });
   }
 
   function onExitClick() {
@@ -36,7 +36,7 @@
         alt="thumbnail"
         src={thumbnail}
         style="display: inline"
-        on:error={() => (thumbnail = "")}
+        on:error={() => (thumbnail = '')}
       />
     {/if}
     <div class="bridge">

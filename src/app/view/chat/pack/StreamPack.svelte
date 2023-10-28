@@ -27,8 +27,8 @@
           src: {
             url: keyId,
             icon,
-            title: json.name,
-          },
+            title: json.name
+          }
         };
       case 'totoro':
         return {
@@ -36,38 +36,38 @@
           src: {
             url: keyId,
             icon,
-            title: json.name,
-          },
+            title: json.name
+          }
         };
       case 'kakaotv':
         return {
           type: 'iframe',
-          src: link,
+          src: link
         };
       case 'twitch':
         return {
           type: 'twitch-stream',
-          src: link,
+          src: link
         };
       case 'afreeca':
         return {
           type: 'iframe',
-          src: link,
+          src: link
         };
       case 'youtube':
         return {
           type: 'iframe',
-          src: link,
+          src: link
         };
       case 'lck':
         return {
           type: 'hls',
-          src: link,
+          src: link
         };
       default:
         return {
           type: 'iframe',
-          src: link,
+          src: link
         };
     }
   }

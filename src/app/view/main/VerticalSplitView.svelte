@@ -40,10 +40,7 @@
   >
     <slot name="main" />
   </div>
-  <div
-    class="divided"
-    style="left: {sideLeft}; right: {sideRight}; width: {sideWidth}px;"
-  >
+  <div class="divided" style="left: {sideLeft}; right: {sideRight}; width: {sideWidth}px;">
     <slot name="side" />
   </div>
   <div

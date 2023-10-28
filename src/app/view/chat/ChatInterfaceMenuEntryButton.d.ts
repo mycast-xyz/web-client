@@ -1,4 +1,4 @@
 export type ChatInterfaceMenuEntryButton = {
-  icon: string,
-  callback: () => void,
-}
+  icon: string;
+  callback: () => void;
+};

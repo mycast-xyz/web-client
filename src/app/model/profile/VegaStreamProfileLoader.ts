@@ -16,7 +16,7 @@ export class VegaStreamProfileLoader {
       backgroundImage: data.backgroundImage,
       localId: data.localHash,
       platform: data.platform,
-      twitchId: data.twitchId,
+      twitchId: data.twitchId
     };
   }
 

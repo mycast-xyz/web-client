@@ -18,9 +18,9 @@
         PopupContentService.addContent({
           src: {
             link: prop.link,
-            title: prop.title,
+            title: prop.title
           },
-          type: 'iframe',
+          type: 'iframe'
         });
         break;
       case 'new-window':
@@ -29,7 +29,7 @@
       case 'content-viewer':
         WindowService.openContent({
           type: 'iframe',
-          src: prop.link,
+          src: prop.link
         });
         break;
     }

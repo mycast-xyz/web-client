@@ -7,7 +7,7 @@
   let chatSet: ChatSet = {
     Qset: 'def',
     styleTitleSize: 20,
-    styleTextSize: 12,
+    styleTextSize: 12
   };
 </script>
 
@@ -63,11 +63,7 @@
                 </span>
               </label>
               <label class="thumbnail">
-                <input
-                  type="radio"
-                  value="material"
-                  bind:group={chatSet.Qset}
-                />
+                <input type="radio" value="material" bind:group={chatSet.Qset} />
                 <span class="radio-box">
                   <span class="img">
                     <!-- svelte-ignore a11y-missing-attribute -->
@@ -267,8 +263,8 @@
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
 
-            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-              0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+              0px 1px 3px 0px rgb(0 0 0 / 12%);
           }
         }
       }
@@ -305,8 +301,8 @@
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
 
-            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-              0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+              0px 1px 3px 0px rgb(0 0 0 / 12%);
 
             // .supporting-text {
             //   width: 100%;

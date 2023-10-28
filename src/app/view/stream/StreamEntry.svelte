@@ -16,7 +16,7 @@
     viewer: 0,
     url: '',
     description: '',
-    thumbnail: '',
+    thumbnail: ''
   };
   let factory = new ContentFactory();
   let rightAlign = false;

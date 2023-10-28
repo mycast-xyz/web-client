@@ -7,7 +7,7 @@
   let osuMapSet: osuMapSet = {
     donationUse: false,
     CoinUse: false,
-    osumapTotalList: 100,
+    osumapTotalList: 100
   };
 </script>
 
@@ -116,8 +116,8 @@
           border-bottom-left-radius: 5px;
           border-bottom-right-radius: 5px;
 
-          box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-            0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+          box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+            0px 1px 3px 0px rgb(0 0 0 / 12%);
 
           // .supporting-text {
           //   width: 100%;

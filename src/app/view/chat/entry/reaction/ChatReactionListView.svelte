@@ -13,7 +13,7 @@
       if (!found) {
         merged.push({
           users: [entry.user],
-          value: entry.value,
+          value: entry.value
         });
       } else {
         found.users.push(entry.user);

@@ -11,7 +11,7 @@
   };
   let donationPage: DonationPage = {
     View: 'dashboard',
-    Title: '도네이션 대시보드',
+    Title: '도네이션 대시보드'
   };
   let donationSelected = 'dashboard';
 

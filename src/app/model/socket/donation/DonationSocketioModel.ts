@@ -2,7 +2,6 @@ import io from 'socket.io-client';
 import type { DonationSocketModel } from './DonationSocketModel';
 
 export class DonationSocketioModel implements DonationSocketModel {
-
   #socket: SocketIOClient.Socket;
 
   constructor(host: string, privateKey: string) {
@@ -12,8 +11,7 @@ export class DonationSocketioModel implements DonationSocketModel {
     });
   }
 
-  static #createSocket(
-    host: string, privateKey: string): SocketIOClient.Socket {
+  static #createSocket(host: string, privateKey: string): SocketIOClient.Socket {
     return io.connect(`http://${host}?type=channel&key=${privateKey}`);
   }
 }

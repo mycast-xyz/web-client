@@ -1,10 +1,7 @@
 import io from 'socket.io-client';
 import { HashGenerator } from '../../../util/hash/HashGenerator';
 import { PushListService } from '../../../view/main/push/PushListService';
-import type {
-  CheckerSocketModel,
-  OnRefreshStreams,
-} from './CheckerSocketModel';
+import type { CheckerSocketModel, OnRefreshStreams } from './CheckerSocketModel';
 
 const KEY_NEW_STREAM = 'new_stream_notification';
 
@@ -29,7 +26,7 @@ export class SocketIoCheckerSocketModel implements CheckerSocketModel {
         mute: true,
         channel: 'local-stream',
         read: false,
-        timestamp: new Date().getTime(),
+        timestamp: new Date().getTime()
       });
     });
   }
@@ -38,10 +35,7 @@ export class SocketIoCheckerSocketModel implements CheckerSocketModel {
     this.#onRefreshStream = callback;
   }
 
-  static #createSocket(
-    host: string,
-    privateKey: string
-  ): SocketIOClient.Socket {
+  static #createSocket(host: string, privateKey: string): SocketIOClient.Socket {
     return io.connect(`https://${host}?key=${privateKey}`);
   }
 }

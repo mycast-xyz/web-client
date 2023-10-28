@@ -45,8 +45,7 @@
     volume = clamp(volume - delta, 0, 100);
   };
 
-  const clamp = (num: number, min: number, max: number) =>
-    Math.min(Math.max(num, min), max);
+  const clamp = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max);
 
   const toggleMute = () => {
     muted = !muted;

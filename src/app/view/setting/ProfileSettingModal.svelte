@@ -23,7 +23,7 @@
     SocketService.modifyProfile?.execute(privateKey, {
       icon,
       nickname,
-      statusMessage,
+      statusMessage
     });
   };
 </script>
@@ -35,21 +35,9 @@
       <h2>{nickname} 정보 수정</h2>
     </div>
     <div class="profile-form">
-      <TextSettingInput
-        title="닉네임"
-        name="profile-nickname"
-        bind:value={nickname}
-      />
-      <TextSettingInput
-        title="상태 메시지"
-        name="profile-memo"
-        bind:value={statusMessage}
-      />
-      <TextSettingInput
-        title="사용자 이미지"
-        name="profile-image"
-        bind:value={icon}
-      />
+      <TextSettingInput title="닉네임" name="profile-nickname" bind:value={nickname} />
+      <TextSettingInput title="상태 메시지" name="profile-memo" bind:value={statusMessage} />
+      <TextSettingInput title="사용자 이미지" name="profile-image" bind:value={icon} />
       <button class="stream-sub" on:click={onSubmitClick}>
         <h2>프로필 저장</h2>
       </button>

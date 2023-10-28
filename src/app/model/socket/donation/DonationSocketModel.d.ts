@@ -1,3 +1,1 @@
-export interface DonationSocketModel {
-
-}
+export interface DonationSocketModel {}

@@ -104,8 +104,7 @@
 
   // 스크롤
   .cu-entry {
-    scrollbar-color: var(--primary-activeground-color)
-      var(--primary-background-color);
+    scrollbar-color: var(--primary-activeground-color) var(--primary-background-color);
     scrollbar-width: thin;
     &::-webkit-scrollbar {
       border-color: var(--primary-background-color);

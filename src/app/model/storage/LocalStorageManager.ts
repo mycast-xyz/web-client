@@ -6,107 +6,107 @@ const DEFAULT_CHAT_VIEW_OFFSET = 300;
 const DEFAULT_VOLUME = 50;
 
 export class LocalStorageManager {
-	#KEY_TIMESTAMP = 'vega.timestamp';
-	#KEY_ENABLE_BOT = 'vega.enable_bot';
-	#KEY_ENABLE_CHECKER_BAR = 'vega.enable_checker_bar';
-	#KEY_ENABLE_CHECKER_RIGHT_ALIGN = 'vega.enable_checker_right_align';
-	#KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
-	#KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
-	#KEY_BOOKMARKS = 'vega.bookmarks';
-	#KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
-	#KEY_VOLUME = 'vega.volume';
-	#KEY_THEME_DARK_MODE = 'vega.theme_dark_mode';
-	#KEY_MUTE_BOT_SETTINGS = 'vega.mute_bot_settings';
+  #KEY_TIMESTAMP = 'vega.timestamp';
+  #KEY_ENABLE_BOT = 'vega.enable_bot';
+  #KEY_ENABLE_CHECKER_BAR = 'vega.enable_checker_bar';
+  #KEY_ENABLE_CHECKER_RIGHT_ALIGN = 'vega.enable_checker_right_align';
+  #KEY_ENABLE_DATASAVE = 'vega.enable_datasave';
+  #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
+  #KEY_BOOKMARKS = 'vega.bookmarks';
+  #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
+  #KEY_VOLUME = 'vega.volume';
+  #KEY_THEME_DARK_MODE = 'vega.theme_dark_mode';
+  #KEY_MUTE_BOT_SETTINGS = 'vega.mute_bot_settings';
 
-	#storage: Storage | null = browser ? localStorage : null;
+  #storage: Storage | null = browser ? localStorage : null;
 
-	get timestamp(): boolean {
-		return this.#storage?.getItem(this.#KEY_TIMESTAMP) === TRUE;
-	}
+  get timestamp(): boolean {
+    return this.#storage?.getItem(this.#KEY_TIMESTAMP) === TRUE;
+  }
 
-	set timestamp(value: boolean) {
-		this.#storage?.setItem(this.#KEY_TIMESTAMP, value ? TRUE : FALSE);
-	}
+  set timestamp(value: boolean) {
+    this.#storage?.setItem(this.#KEY_TIMESTAMP, value ? TRUE : FALSE);
+  }
 
-	get enableBot(): boolean {
-		return this.#storage?.getItem(this.#KEY_ENABLE_BOT) !== FALSE;
-	}
+  get enableBot(): boolean {
+    return this.#storage?.getItem(this.#KEY_ENABLE_BOT) !== FALSE;
+  }
 
-	set enableBot(value: boolean) {
-		this.#storage?.setItem(this.#KEY_ENABLE_BOT, value ? TRUE : FALSE);
-	}
+  set enableBot(value: boolean) {
+    this.#storage?.setItem(this.#KEY_ENABLE_BOT, value ? TRUE : FALSE);
+  }
 
-	get enableCheckerBar(): boolean {
-		return this.#storage?.getItem(this.#KEY_ENABLE_CHECKER_BAR) !== FALSE;
-	}
+  get enableCheckerBar(): boolean {
+    return this.#storage?.getItem(this.#KEY_ENABLE_CHECKER_BAR) !== FALSE;
+  }
 
-	set enableCheckerBar(value: boolean) {
-		this.#storage?.setItem(this.#KEY_ENABLE_CHECKER_BAR, value ? TRUE : FALSE);
-	}
+  set enableCheckerBar(value: boolean) {
+    this.#storage?.setItem(this.#KEY_ENABLE_CHECKER_BAR, value ? TRUE : FALSE);
+  }
 
-	get enableCheckerRightAlign(): boolean {
-		return this.#storage?.getItem(this.#KEY_ENABLE_CHECKER_RIGHT_ALIGN) === TRUE;
-	}
+  get enableCheckerRightAlign(): boolean {
+    return this.#storage?.getItem(this.#KEY_ENABLE_CHECKER_RIGHT_ALIGN) === TRUE;
+  }
 
-	set enableCheckerRightAlign(value: boolean) {
-		this.#storage?.setItem(this.#KEY_ENABLE_CHECKER_RIGHT_ALIGN, value ? TRUE : FALSE);
-	}
+  set enableCheckerRightAlign(value: boolean) {
+    this.#storage?.setItem(this.#KEY_ENABLE_CHECKER_RIGHT_ALIGN, value ? TRUE : FALSE);
+  }
 
-	get enableDataSave(): boolean {
-		return this.#storage?.getItem(this.#KEY_ENABLE_DATASAVE) === TRUE;
-	}
+  get enableDataSave(): boolean {
+    return this.#storage?.getItem(this.#KEY_ENABLE_DATASAVE) === TRUE;
+  }
 
-	set enableDataSave(value: boolean) {
-		this.#storage?.setItem(this.#KEY_ENABLE_DATASAVE, value ? TRUE : FALSE);
-	}
+  set enableDataSave(value: boolean) {
+    this.#storage?.setItem(this.#KEY_ENABLE_DATASAVE, value ? TRUE : FALSE);
+  }
 
-	get favoriteStreams(): string {
-		return this.#storage?.getItem(this.#KEY_FAVORITE_STREAMS) || '[]';
-	}
+  get favoriteStreams(): string {
+    return this.#storage?.getItem(this.#KEY_FAVORITE_STREAMS) || '[]';
+  }
 
-	set favoriteStreams(value: string) {
-		this.#storage?.setItem(this.#KEY_FAVORITE_STREAMS, value ? value : '[]');
-	}
+  set favoriteStreams(value: string) {
+    this.#storage?.setItem(this.#KEY_FAVORITE_STREAMS, value ? value : '[]');
+  }
 
-	get bookmarks(): string {
-		return this.#storage?.getItem(this.#KEY_BOOKMARKS) || '[]';
-	}
+  get bookmarks(): string {
+    return this.#storage?.getItem(this.#KEY_BOOKMARKS) || '[]';
+  }
 
-	set bookmarks(value: string) {
-		this.#storage?.setItem(this.#KEY_BOOKMARKS, value ? value : '[]');
-	}
+  set bookmarks(value: string) {
+    this.#storage?.setItem(this.#KEY_BOOKMARKS, value ? value : '[]');
+  }
 
-	get chatViewOffset(): number {
-		const raw = this.#storage?.getItem(this.#KEY_CHAT_VIEW_OFFSET);
-		return raw ? parseInt(raw) : DEFAULT_CHAT_VIEW_OFFSET;
-	}
+  get chatViewOffset(): number {
+    const raw = this.#storage?.getItem(this.#KEY_CHAT_VIEW_OFFSET);
+    return raw ? parseInt(raw) : DEFAULT_CHAT_VIEW_OFFSET;
+  }
 
-	set chatViewOffset(value: number) {
-		this.#storage?.setItem(this.#KEY_CHAT_VIEW_OFFSET, value.toString());
-	}
+  set chatViewOffset(value: number) {
+    this.#storage?.setItem(this.#KEY_CHAT_VIEW_OFFSET, value.toString());
+  }
 
-	get volume(): number {
-		const raw = this.#storage?.getItem(this.#KEY_VOLUME);
-		return raw ? parseInt(raw) : DEFAULT_VOLUME;
-	}
+  get volume(): number {
+    const raw = this.#storage?.getItem(this.#KEY_VOLUME);
+    return raw ? parseInt(raw) : DEFAULT_VOLUME;
+  }
 
-	set volume(value: number) {
-		this.#storage?.setItem(this.#KEY_VOLUME, value.toString());
-	}
+  set volume(value: number) {
+    this.#storage?.setItem(this.#KEY_VOLUME, value.toString());
+  }
 
-	get isDarkMode(): boolean {
-		return this.#storage?.getItem(this.#KEY_THEME_DARK_MODE) !== FALSE;
-	}
+  get isDarkMode(): boolean {
+    return this.#storage?.getItem(this.#KEY_THEME_DARK_MODE) !== FALSE;
+  }
 
-	set isDarkMode(value: boolean) {
-		this.#storage?.setItem(this.#KEY_THEME_DARK_MODE, value ? TRUE : FALSE);
-	}
+  set isDarkMode(value: boolean) {
+    this.#storage?.setItem(this.#KEY_THEME_DARK_MODE, value ? TRUE : FALSE);
+  }
 
-	get muteBotSettings(): string {
-		return this.#storage?.getItem(this.#KEY_MUTE_BOT_SETTINGS) || '[]';
-	}
+  get muteBotSettings(): string {
+    return this.#storage?.getItem(this.#KEY_MUTE_BOT_SETTINGS) || '[]';
+  }
 
-	set muteBotSettings(value: string) {
-		this.#storage?.setItem(this.#KEY_MUTE_BOT_SETTINGS, value ? value : '[]');
-	}
+  set muteBotSettings(value: string) {
+    this.#storage?.setItem(this.#KEY_MUTE_BOT_SETTINGS, value ? value : '[]');
+  }
 }

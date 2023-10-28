@@ -17,9 +17,7 @@
   function onMuteClick() {
     const next = !mute;
     ChatBotService.setMuteBot(hash, next);
-    ToastService.toastText(
-      `'${nickname}'의 채팅을 ${next ? '껐어요' : '켰어요'}.`
-    );
+    ToastService.toastText(`'${nickname}'의 채팅을 ${next ? '껐어요' : '켰어요'}.`);
     mute = !mute;
   }
 </script>

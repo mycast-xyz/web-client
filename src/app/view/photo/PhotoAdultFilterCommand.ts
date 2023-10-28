@@ -8,10 +8,7 @@ export class PhotoAdultFilterCommand {
     const url = `${host}/photo/${photoHash}/adult`;
 
     try {
-      const { data } = await axios.post<Result>(
-        url,
-        this.#createParam(privKey, adult)
-      );
+      const { data } = await axios.post<Result>(url, this.#createParam(privKey, adult));
       return data && data.result === true;
     } catch (e) {
       console.error('unknown error', e);

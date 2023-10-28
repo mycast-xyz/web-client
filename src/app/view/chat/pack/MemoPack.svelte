@@ -13,9 +13,4 @@
   }
 </script>
 
-<GeneralPurposeCard
-  {icon}
-  title={nickname}
-  subtitle={content}
-  orientation="horizontal"
-/>
+<GeneralPurposeCard {icon} title={nickname} subtitle={content} orientation="horizontal" />

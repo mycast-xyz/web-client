@@ -55,19 +55,11 @@
   <div class="reszie-edge" on:mousedown={() => (resizeMode = true)} />
 
   {#if moveMode}
-    <div
-      class="movebox"
-      on:mousemove={onDrag}
-      on:mouseup={() => (moveMode = false)}
-    />
+    <div class="movebox" on:mousemove={onDrag} on:mouseup={() => (moveMode = false)} />
   {/if}
 
   {#if resizeMode}
-    <div
-      class="resizebox"
-      on:mousemove={onResize}
-      on:mouseup={() => (resizeMode = false)}
-    />
+    <div class="resizebox" on:mousemove={onResize} on:mouseup={() => (resizeMode = false)} />
   {/if}
 </div>
 
@@ -75,8 +67,8 @@
 
 <style lang="scss">
   @mixin shadow() {
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   }
 
   $bg_color: '#000000';

@@ -22,10 +22,7 @@
           try {
             // Setup a parser to convert the response to text/xml in order for it to be manipulated and changed
             const parser = new DOMParser();
-            const result = parser.parseFromString(
-              request.responseText,
-              'text/xml'
-            );
+            const result = parser.parseFromString(request.responseText, 'text/xml');
             let svgEl = result.querySelector('svg');
             if (svgEl) {
               // Apply transformation

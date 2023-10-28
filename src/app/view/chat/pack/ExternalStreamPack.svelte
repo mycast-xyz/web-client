@@ -9,12 +9,7 @@
   $: style = backgroundColor ? `background: ${backgroundColor}` : null;
 </script>
 
-<div
-  class="stream-pack"
-  on:click={onClick}
-  on:contextmenu|preventDefault={onContextMenu}
-  {style}
->
+<div class="stream-pack" on:click={onClick} on:contextmenu|preventDefault={onContextMenu} {style}>
   <img class="icon" src={icon} alt={name} />
   <div class="logo" />
   <div class="name">

@@ -60,11 +60,7 @@
   </ul>
   <div>
     <hr />
-    <SideBarStreamList
-      title="마이캐스트"
-      streams={locals}
-      supportFavorite={false}
-    />
+    <SideBarStreamList title="마이캐스트" streams={locals} supportFavorite={false} />
     <hr />
     <SideBarStreamList title="LCK" streams={lcks} />
     <hr />
@@ -114,8 +110,7 @@
   .side-bar {
     background-color: var(--primary-background-color);
     color: var(--primary-foreground-color);
-    scrollbar-color: var(--primary-activeground-color)
-      var(--primary-background-color);
+    scrollbar-color: var(--primary-activeground-color) var(--primary-background-color);
     scrollbar-width: thin;
     &::-webkit-scrollbar {
       border-color: #2a2f38;

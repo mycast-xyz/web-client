@@ -6,10 +6,7 @@
 </script>
 
 <section class="layer" style="z-index: {zIndex}">
-  <div
-    class="background"
-    on:click|self={(_) => dispatch('onbackgroundclick')}
-  />
+  <div class="background" on:click|self={(_) => dispatch('onbackgroundclick')} />
   <slot />
 </section>
 

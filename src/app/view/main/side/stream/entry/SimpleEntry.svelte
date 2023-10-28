@@ -23,17 +23,11 @@
     <i class="fas fa-link" />
   </button>
   {#if supportFavorite}
-    <button
-      class="icon"
-      on:click|stopPropagation={() => dispatch('favoriteclick')}
-    >
+    <button class="icon" on:click|stopPropagation={() => dispatch('favoriteclick')}>
       <i class="fas fa-star" class:activated={isFavorite} />
     </button>
   {/if}
-  <button
-    class="icon"
-    on:click|stopPropagation={() => dispatch('newwindowclick')}
-  >
+  <button class="icon" on:click|stopPropagation={() => dispatch('newwindowclick')}>
     <i class="fas fa-external-link-alt" />
   </button>
 </div>

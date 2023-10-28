@@ -7,16 +7,16 @@ export class ContentFactory {
       case 'lck':
         return {
           type: 'hls',
-          src: stream.url,
-        }
+          src: stream.url
+        };
       case 'local':
         return {
           type: 'local-stream',
           src: {
             icon: stream.icon,
             url: stream.keyid,
-            title: stream.title,
-          },
+            title: stream.title
+          }
         };
       case 'totoro':
         return {
@@ -24,33 +24,33 @@ export class ContentFactory {
           src: {
             icon: stream.icon,
             url: stream.keyid,
-            title: stream.title,
-          },
+            title: stream.title
+          }
         };
       case 'kakaotv':
         return {
           type: 'iframe',
-          src: stream.url,
+          src: stream.url
         };
       case 'twitch':
         return {
           type: 'twitch-stream',
-          src: stream.url,
+          src: stream.url
         };
       case 'afreeca':
         return {
           type: 'iframe',
-          src: stream.url,
+          src: stream.url
         };
       case 'youtube':
         return {
           type: 'iframe',
-          src: stream.url,
+          src: stream.url
         };
       default:
         return {
           type: 'iframe',
-          src: stream.url,
+          src: stream.url
         };
     }
   }

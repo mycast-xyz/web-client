@@ -11,12 +11,6 @@
 
 <ChatSenderList title="채팅 접속자" length={users.length}>
   {#each users as { hash, icon, nickname, computer, mobile }}
-    <ChatUserEntry
-      {hash}
-      {icon}
-      {nickname}
-      isComputer={computer}
-      isMobile={mobile}
-    />
+    <ChatUserEntry {hash} {icon} {nickname} isComputer={computer} isMobile={mobile} />
   {/each}
 </ChatSenderList>

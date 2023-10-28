@@ -32,11 +32,7 @@
   }
 </script>
 
-<Modal
-  title="회원 가입"
-  icon="fas fa-tools"
-  on:oncloseclick={() => dispatch('oncloseclick')}
->
+<Modal title="회원 가입" icon="fas fa-tools" on:oncloseclick={() => dispatch('oncloseclick')}>
   <div slot="body" class="modal-body">
     <ModalTextInput title="아이디" bind:value={id} name="아이디" />
     <ModalTextInput title="닉네임" bind:value={nickname} name="닉네임" />
@@ -56,9 +52,7 @@
     />
   </div>
   <div slot="footer">
-    <button class="footer-button" on:click={onClick} disabled={!isValid}>
-      JOIN
-    </button>
+    <button class="footer-button" on:click={onClick} disabled={!isValid}> JOIN </button>
   </div>
 </Modal>
 

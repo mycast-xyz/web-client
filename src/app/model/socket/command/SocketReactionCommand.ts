@@ -10,7 +10,7 @@ export class SocketReactionCommand {
   execute(privateKey: string, chatHash: string, reaction: string): void {
     this.#socket.send({
       commandType: 'reaction',
-      resource: { userKey: privateKey, chatHash, reaction },
+      resource: { userKey: privateKey, chatHash, reaction }
     });
   }
 }

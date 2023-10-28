@@ -18,7 +18,7 @@ export class VegaMemoLoader {
         hash: dto.idx.toString(),
         regDate: new Date(dto.regDate),
         userIcon: dto.userIcon,
-        userName: dto.userNickname,
+        userName: dto.userNickname
       };
     });
   }

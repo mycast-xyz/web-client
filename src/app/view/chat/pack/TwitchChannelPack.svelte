@@ -23,7 +23,7 @@
   function onClick() {
     WindowService.openContent({
       type: 'twitch-stream',
-      src: link,
+      src: link
     });
   }
 
@@ -35,12 +35,5 @@
 {#if isError}
   <strong>잘못된 트위치 채널</strong>
 {:else}
-  <ExternalStreamPack
-    {icon}
-    {name}
-    {id}
-    {onClick}
-    {onContextMenu}
-    backgroundColor="#6441a4"
-  />
+  <ExternalStreamPack {icon} {name} {id} {onClick} {onContextMenu} backgroundColor="#6441a4" />
 {/if}

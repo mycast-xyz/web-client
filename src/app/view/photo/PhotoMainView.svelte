@@ -93,12 +93,7 @@
   {/each}
 </div>
 <form enctype="multipart/form-data">
-  <input
-    type="file"
-    accept="image/*"
-    on:change={onUploadFileStaged}
-    bind:this={uploadInput}
-  />
+  <input type="file" accept="image/*" on:change={onUploadFileStaged} bind:this={uploadInput} />
 </form>
 {#if uploading}
   <PhotoUploadProgressView file={uploadingFile} />
@@ -173,8 +168,7 @@
   // 컬러 스크롤링 컬러셋
   .container {
     background-color: var(--primary-background-color);
-    scrollbar-color: var(--primary-activeground-color)
-      var(--primary-background-color);
+    scrollbar-color: var(--primary-activeground-color) var(--primary-background-color);
     scrollbar-width: thin;
     &::-webkit-scrollbar {
       border-color: var(--primary-background-color);

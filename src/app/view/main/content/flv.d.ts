@@ -176,11 +176,7 @@ declare namespace FlvJs {
     readonly needStashBuffer: boolean;
     onContentLengthKnown: (contentLength: number) => void;
     onURLRedirect: (redirectedURL: string) => void;
-    onDataArrival: (
-      chunk: ArrayBuffer,
-      byteStart: number,
-      receivedLength?: number
-    ) => void;
+    onDataArrival: (chunk: ArrayBuffer, byteStart: number, receivedLength?: number) => void;
     onError: (errorType: LoaderErrors, errorInfo: LoaderErrorMessage) => void;
     onComplete: (rangeFrom: number, rangeTo: number) => void;
     open(dataSource: MediaSegment, range: Range): void;
@@ -279,8 +275,7 @@ declare namespace FlvJs {
     totalSegmentCount: number;
   }
 
-  interface FlvPlayerStatisticsInfo
-    extends Partial<FlvPlayerReportStatisticsInfo> {
+  interface FlvPlayerStatisticsInfo extends Partial<FlvPlayerReportStatisticsInfo> {
     playerType: 'FlvPlayer';
     decodedFrames?: number;
     droppedFrames?: number;
@@ -365,10 +360,7 @@ declare namespace FlvJs {
 }
 
 export declare var flvjs: {
-  createPlayer(
-    mediaDataSource: FlvJs.MediaDataSource,
-    config?: FlvJs.Config
-  ): FlvJs.Player;
+  createPlayer(mediaDataSource: FlvJs.MediaDataSource, config?: FlvJs.Config): FlvJs.Player;
   isSupported(): boolean;
   getFeatureList(): FlvJs.FeatureList;
 

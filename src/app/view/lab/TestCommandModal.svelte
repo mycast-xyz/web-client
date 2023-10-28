@@ -27,11 +27,7 @@
   }
 </script>
 
-<Modal
-  title="테스트 커맨드"
-  icon="fas fa-flask"
-  on:oncloseclick={() => WindowService.closeModal()}
->
+<Modal title="테스트 커맨드" icon="fas fa-flask" on:oncloseclick={() => WindowService.closeModal()}>
   <div slot="body">
     <ModalTextInput
       title="Command"

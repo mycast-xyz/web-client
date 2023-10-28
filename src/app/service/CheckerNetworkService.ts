@@ -1,7 +1,4 @@
-import type {
-  CheckerSocketModel,
-  RefreshStream,
-} from '../model/socket/checker/CheckerSocketModel';
+import type { CheckerSocketModel, RefreshStream } from '../model/socket/checker/CheckerSocketModel';
 import { SocketIoCheckerSocketModel } from '../model/socket/checker/SocketIoCheckerSocketModel';
 import { StreamService } from './StreamService';
 

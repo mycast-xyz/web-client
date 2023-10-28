@@ -23,7 +23,7 @@
     './assets/image/login/bg/17.png',
     './assets/image/login/bg/18.png',
     './assets/image/login/bg/19.png',
-    './assets/image/login/bg/20.png',
+    './assets/image/login/bg/20.png'
   ];
 
   let index = 0;

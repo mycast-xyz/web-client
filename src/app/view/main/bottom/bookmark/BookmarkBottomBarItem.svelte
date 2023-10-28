@@ -9,7 +9,7 @@
   function onIconClick() {
     PopupContentService.addContent({
       src: { link, title },
-      type: 'iframe',
+      type: 'iframe'
     });
   }
 </script>

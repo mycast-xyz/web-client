@@ -26,10 +26,7 @@
       <div class="alt">Hidden</div>
     </div>
     {#if menuMode}
-      <div
-        class="menu-wrapper"
-        on:click|stopPropagation={(_) => (menuMode = false)}
-      >
+      <div class="menu-wrapper" on:click|stopPropagation={(_) => (menuMode = false)}>
         <div class="menu-list">
           <div>
             {#if hidden}

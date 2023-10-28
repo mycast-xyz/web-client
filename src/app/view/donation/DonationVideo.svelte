@@ -13,7 +13,7 @@
     ttsTextCount: 100,
     noticeLayout: 'center',
     titleTemplate: '{name}님이 영상후원을 해주셧습니다.',
-    fontSize: 20,
+    fontSize: 20
   };
 </script>
 
@@ -66,11 +66,7 @@
           <h3 class="thumbnail-title">알림 레이아웃</h3>
           <div class="thumbnail-btn">
             <label class="thumbnail">
-              <input
-                type="radio"
-                value="bottom"
-                bind:group={videoSet.noticeLayout}
-              />
+              <input type="radio" value="bottom" bind:group={videoSet.noticeLayout} />
               <span class="radio-box">
                 <span class="icon">
                   <i class="fas fa-image" />
@@ -79,11 +75,7 @@
               </span>
             </label>
             <label class="thumbnail">
-              <input
-                type="radio"
-                value="center"
-                bind:group={videoSet.noticeLayout}
-              />
+              <input type="radio" value="center" bind:group={videoSet.noticeLayout} />
               <span class="radio-box nLayout-center">
                 <span class="icon">
                   <i class="fas fa-image" />
@@ -92,11 +84,7 @@
               </span>
             </label>
             <label class="thumbnail">
-              <input
-                type="radio"
-                value="noimg"
-                bind:group={videoSet.noticeLayout}
-              />
+              <input type="radio" value="noimg" bind:group={videoSet.noticeLayout} />
               <span class="radio-box nLayout-noimg">
                 <h3>text</h3>
               </span>
@@ -191,8 +179,8 @@
           border-bottom-left-radius: 5px;
           border-bottom-right-radius: 5px;
 
-          box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-            0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+          box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+            0px 1px 3px 0px rgb(0 0 0 / 12%);
 
           // .supporting-text {
           //   width: 100%;

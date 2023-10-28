@@ -79,8 +79,8 @@
         <div class="supporting-text">
           <p>※해당 스트림키는 남에게 보여주시면 안됩니다.</p>
           <p>
-            ※사용방법 : "http://mycast.xyz/streamer/스트림키"주소 뒤에
-            스트림키를 붙여 OBS 브라우저 URL에 추가
+            ※사용방법 : "http://mycast.xyz/streamer/스트림키"주소 뒤에 스트림키를 붙여 OBS 브라우저
+            URL에 추가
           </p>
           <p>※화면크기 : 1280 * 720 // 필히 준수해주시길 바랍니다.</p>
         </div>
@@ -108,8 +108,8 @@
         <div class="supporting-text">
           <p>※해당 스트림키는 남에게 보여주시면 안됩니다.</p>
           <p>
-            ※사용방법 : "http://mycast.xyz/Chatting/스트림키"주소 뒤에
-            스트림키를 붙여 OBS 브라우저 URL에 추가
+            ※사용방법 : "http://mycast.xyz/Chatting/스트림키"주소 뒤에 스트림키를 붙여 OBS 브라우저
+            URL에 추가
           </p>
           <p>※화면크기 : 720 * 1280 // 필히 준수해주시길 바랍니다.</p>
         </div>
@@ -172,8 +172,8 @@
         <div class="supporting-text">
           <p>※해당 스트림키는 남에게 보여주시면 안됩니다.</p>
           <p>
-            ※사용방법 : "http://mycast.xyz/streamer/스트림키"주소 뒤에
-            스트림키를 붙여 OBS 브라우저 URL에 추가
+            ※사용방법 : "http://mycast.xyz/streamer/스트림키"주소 뒤에 스트림키를 붙여 OBS 브라우저
+            URL에 추가
           </p>
           <p>※화면크기 : 1280 * 720 // 필히 준수해주시길 바랍니다.</p>
         </div>
@@ -313,8 +313,8 @@
             background-color: var(--primary-hoverground-color);
             border: 0px;
             border-radius: 2px;
-            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-              0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+              0px 1px 3px 0px rgb(0 0 0 / 12%);
 
             transition: background-color 0.15s ease-in-out;
             &:hover {
@@ -428,8 +428,8 @@
             background-color: #ff4081;
             border: 0px;
             border-radius: 40px;
-            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-              0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+            box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+              0px 1px 3px 0px rgb(0 0 0 / 12%);
 
             &.icon-btn {
               width: 40px;

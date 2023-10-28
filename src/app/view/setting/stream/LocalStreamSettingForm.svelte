@@ -11,9 +11,4 @@
   value={streamLink}
   name="stream-fms-url"
 />
-<TextSettingInput
-  title="스트림 키"
-  subtitle="STREAM KEY"
-  value={streamKey}
-  name="stream-key"
-/>
+<TextSettingInput title="스트림 키" subtitle="STREAM KEY" value={streamKey} name="stream-key" />

@@ -9,18 +9,18 @@
     {
       id: 'twitch',
       name: '트위치',
-      icon: 'twitch',
+      icon: 'twitch'
     },
     {
       id: 'afreeca',
       name: '아프리카',
-      icon: 'afreecatv',
+      icon: 'afreecatv'
     },
     {
       id: 'youtube',
       name: '유튜브',
-      icon: 'youtube',
-    },
+      icon: 'youtube'
+    }
   ];
   let currentPlatform: Platform;
   let stagedStream = null;
@@ -54,10 +54,7 @@
     }
 
     this.adding = true;
-    const command = new RegisterStreamCommand(
-      stagedStream.platform,
-      stagedStream.keyId
-    );
+    const command = new RegisterStreamCommand(stagedStream.platform, stagedStream.keyId);
     try {
       const result = await command.execute();
       if (result) {
@@ -112,19 +109,10 @@
         <label>
           <p>방송ID검색</p>
         </label>
-        <input
-          id="name"
-          maxlength="60"
-          type="text"
-          bind:value={searchKeyword}
-        />
+        <input id="name" maxlength="60" type="text" bind:value={searchKeyword} />
         <p class="error-up">닉네임을 입력하세요.</p>
       </div>
-      <button
-        class="live-stream-btn"
-        disabled={searching}
-        on:click={onSearchClick}
-      >
+      <button class="live-stream-btn" disabled={searching} on:click={onSearchClick}>
         {searching ? '검색 중' : '검색'}
       </button>
     </div>
@@ -143,11 +131,7 @@
           </div>
         </div>
       </div>
-      <button
-        class="live-stream-add-btn"
-        disabled={adding}
-        on:click={onAddClick}
-      >
+      <button class="live-stream-add-btn" disabled={adding} on:click={onAddClick}>
         스트리머 추가
       </button>
     </div>

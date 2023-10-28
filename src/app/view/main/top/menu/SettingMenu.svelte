@@ -33,18 +33,10 @@
 
 <div class="setting-list">
   <UserSettingMenuItem />
-  <DefaultMenuItem
-    menuClick={() => openModal('stream')}
-    name="방송 설정"
-    icon="fas fa-podcast"
-  >
+  <DefaultMenuItem menuClick={() => openModal('stream')} name="방송 설정" icon="fas fa-podcast">
     <SettingMenuPlatformIcon slot="extra" {platformId} />
   </DefaultMenuItem>
-  <DefaultMenuItem
-    menuClick={() => openModal('site')}
-    name="사이트 설정"
-    icon="fas fa-tools"
-  />
+  <DefaultMenuItem menuClick={() => openModal('site')} name="사이트 설정" icon="fas fa-tools" />
   <DefaultMenuItem
     menuClick={() => openModal('bookmark')}
     name="북마크 설정"
@@ -56,11 +48,7 @@
     icon="fas fa-comment"
   />
   <DefaultMenuItem name="테마" icon="fas fa-adjust">
-    <SettingSwitch
-      slot="extra"
-      checked={!darkMode}
-      on:valuechange={onThemeValueChange}
-    />
+    <SettingSwitch slot="extra" checked={!darkMode} on:valuechange={onThemeValueChange} />
   </DefaultMenuItem>
   <DefaultMenuItem
     name="모바일 모드"

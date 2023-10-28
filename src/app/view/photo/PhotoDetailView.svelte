@@ -86,12 +86,7 @@
   });
 </script>
 
-<div
-  bind:this={container}
-  class="photo-view"
-  on:keydown={onKeyPress}
-  tabindex="0"
->
+<div bind:this={container} class="photo-view" on:keydown={onKeyPress} tabindex="0">
   <span class="mob-clear" on:click={onCloseClick}>
     <i class="fas fa-times" />
   </span>
@@ -114,12 +109,7 @@
       <p class="lab">태그</p>
       {#if editTagMode}
         <div class="tag-input-box">
-          <input
-            type="text"
-            class="tag-input"
-            bind:value={tagValue}
-            on:keydown={onTagKeyDown}
-          />
+          <input type="text" class="tag-input" bind:value={tagValue} on:keydown={onTagKeyDown} />
           <span class="material-icons" on:click={onTagSubmit}>send</span>
         </div>
       {:else}
@@ -163,11 +153,7 @@
     </div>
     <div class="p-info-box">
       <p class="lab">세부도구</p>
-      <div
-        class="in-txt tool attention-limit"
-        class:active={adult}
-        on:click={onAdultClick}
-      >
+      <div class="in-txt tool attention-limit" class:active={adult} on:click={onAdultClick}>
         <span class="material-icons">verified_user</span>
         <div class="in-txt-list">
           <p class="ma-title see-txt">후방주의 이미지</p>
@@ -419,8 +405,7 @@
         bottom: 0;
         margin: auto;
 
-        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-          0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
           0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
         overflow: hidden;
@@ -443,8 +428,7 @@
         height: 26px;
         padding: 12px 11px;
 
-        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-          0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
           0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
         display: inline;
@@ -510,8 +494,7 @@
           bottom: 0;
           margin: auto;
 
-          box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-            0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+          box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
             0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
           overflow: hidden;

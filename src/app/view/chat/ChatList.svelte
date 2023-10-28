@@ -52,11 +52,7 @@
     scrollDown(event.force);
   }
 
-  function isMute(
-    group: ChatGroup,
-    bots: ChatBotProfile[],
-    settings: BotMuteSetting[]
-  ) {
+  function isMute(group: ChatGroup, bots: ChatBotProfile[], settings: BotMuteSetting[]) {
     if (!enableBot && group.senderType === 'BOT') {
       return true;
     }
@@ -68,11 +64,7 @@
     return false;
   }
 
-  function isMuteBot(
-    group: ChatGroup,
-    bots: ChatBotProfile[],
-    settings: BotMuteSetting[]
-  ) {
+  function isMuteBot(group: ChatGroup, bots: ChatBotProfile[], settings: BotMuteSetting[]) {
     if (group.senderType !== 'BOT') {
       return false;
     }
@@ -136,8 +128,7 @@
   // 컬러 스크롤링 컬러셋
   .chat-list {
     background-color: var(--primary-background-color);
-    scrollbar-color: var(--primary-activeground-color)
-      var(--primary-background-color);
+    scrollbar-color: var(--primary-activeground-color) var(--primary-background-color);
     scrollbar-width: thin;
     &::-webkit-scrollbar {
       border-color: var(--primary-background-color);

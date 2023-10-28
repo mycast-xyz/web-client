@@ -4,8 +4,7 @@
   let searchQuery: string;
   let timer = -1;
 
-  const dispatch =
-    createEventDispatcher<{ onsearch: string; onuploadclick: void }>();
+  const dispatch = createEventDispatcher<{ onsearch: string; onuploadclick: void }>();
 
   function onKeyDown() {
     clearTimeout(timer);

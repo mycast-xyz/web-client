@@ -22,22 +22,15 @@
       type: 'iframe',
       src: {
         link,
-        title: `LOL 유저 정보: ${name}`,
-      },
+        title: `LOL 유저 정보: ${name}`
+      }
     });
   }
 
-  function getTierText(tierObj: {
-    tier: string;
-    division: string;
-    point: number;
-  }): string {
+  function getTierText(tierObj: { tier: string; division: string; point: number }): string {
     const tier = tierObj.tier;
     const division =
-      tier === 'CHALLENGER' ||
-      tier === 'GRANDMASTER' ||
-      tier === 'MASTER' ||
-      tier === 'UNRANK'
+      tier === 'CHALLENGER' || tier === 'GRANDMASTER' || tier === 'MASTER' || tier === 'UNRANK'
         ? ''
         : tierObj.division;
 

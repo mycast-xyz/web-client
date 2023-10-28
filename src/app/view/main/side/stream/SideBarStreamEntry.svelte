@@ -19,7 +19,7 @@
     viewer: 0,
     url: '',
     description: '',
-    thumbnail: '',
+    thumbnail: ''
   };
   export let supportFavorite = true;
   const factory = new ContentFactory();

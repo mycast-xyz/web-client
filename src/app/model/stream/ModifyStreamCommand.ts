@@ -14,7 +14,7 @@ export class ModifyStreamCommand {
         platform,
         backgroundImage,
         afreecaId,
-        twitchId,
+        twitchId
       };
       const { data } = await axios.put<PutStreamDto>(url, form);
       return data.result;

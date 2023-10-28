@@ -14,9 +14,9 @@
     PopupContentService.addContent({
       src: {
         link,
-        title,
+        title
       },
-      type: 'iframe',
+      type: 'iframe'
     });
   }
 
@@ -29,10 +29,4 @@
   };
 </script>
 
-<GeneralPurposeCard
-  {icon}
-  {title}
-  {subtitle}
-  orientation="horizontal"
-  on:click={onClick}
-/>
+<GeneralPurposeCard {icon} {title} {subtitle} orientation="horizontal" on:click={onClick} />

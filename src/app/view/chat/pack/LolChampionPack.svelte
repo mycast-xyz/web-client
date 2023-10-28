@@ -19,7 +19,7 @@
   function onClick() {
     PopupContentService.addContent({
       type: 'iframe',
-      src: { title: `${name} 정보`, link },
+      src: { title: `${name} 정보`, link }
     });
   }
 </script>

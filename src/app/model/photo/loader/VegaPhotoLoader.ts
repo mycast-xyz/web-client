@@ -21,7 +21,7 @@ export class VegaPhotoLoader {
           tags,
           url: dto.url,
           viewer: 0,
-          width: dto.width,
+          width: dto.width
         };
       });
     } catch {

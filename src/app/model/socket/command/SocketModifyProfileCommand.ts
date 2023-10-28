@@ -15,8 +15,8 @@ export class ModifyProfileCommand {
       commandType: 'modify-profile',
       resource: {
         privateKey,
-        userInfo,
-      },
+        userInfo
+      }
     });
   }
 }

@@ -1,4 +1,4 @@
 export type BotMuteSetting = {
-    hash: string;
-    mute: boolean;
-}
+  hash: string;
+  mute: boolean;
+};

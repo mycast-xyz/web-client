@@ -14,16 +14,12 @@ export class ChatAdapter {
   toChat(socketChat: SocketCurrentChat): Chat {
     return {
       sender: this.#createChatSender(socketChat),
-      message: this.#createChatMessage(socketChat),
+      message: this.#createChatMessage(socketChat)
     };
   }
 
   #createChatSender(socketChat: SocketCurrentChat): ChatSender {
-    const senderType = socketChat.isMobile
-      ? 'MOBILE'
-      : socketChat.level === 100
-      ? 'BOT'
-      : 'PC';
+    const senderType = socketChat.isMobile ? 'MOBILE' : socketChat.level === 100 ? 'BOT' : 'PC';
     return new ChatSender(socketChat.icon, socketChat.nickname, senderType);
   }
 
@@ -33,7 +29,7 @@ export class ChatAdapter {
       hash: socketChat.hash,
       timestamp: socketChat.timestamp,
       body: socketChat.msg.response,
-      reactions: socketChat.reactions,
+      reactions: socketChat.reactions
     };
   }
 

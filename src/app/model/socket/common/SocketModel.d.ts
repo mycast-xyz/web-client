@@ -94,11 +94,7 @@ type SocketMyStatus = {
   statusMessage: string;
 };
 
-type SocketLinkUpdateCommand = BaseSocketCommand<
-  'link-update',
-  null,
-  SocketLinkUpdateResponse
->;
+type SocketLinkUpdateCommand = BaseSocketCommand<'link-update', null, SocketLinkUpdateResponse>;
 
 type SocketLinkUpdateResponse = {
   chatHash: string;
@@ -106,23 +102,15 @@ type SocketLinkUpdateResponse = {
   title: string;
 };
 
-type SocketUpdateClipsCommand = BaseSocketCommand<
-  'drawer-update',
-  null,
-  SocketCurrentLinkClip[]
->
+type SocketUpdateClipsCommand = BaseSocketCommand<'drawer-update', null, SocketCurrentLinkClip[]>;
 
 type SocketCurrentLinkClip = {
-  data: { link: string, title: string },
+  data: { link: string; title: string };
   hash: string;
-  type: 'link'
-}
+  type: 'link';
+};
 
-type SocketApplyMyStatusCommand = BaseSocketCommand<
-  'applyMyStatus',
-  null,
-  SocketMyStatus
->;
+type SocketApplyMyStatusCommand = BaseSocketCommand<'applyMyStatus', null, SocketMyStatus>;
 
 type SocketCurrentChat = {
   hash: string;
@@ -172,13 +160,9 @@ type SocketCurrentBot = {
   icon: string;
   nickname: string;
   defaultMute: boolean;
-}
+};
 
-type SocketCurrentBotsCommand = BaseSocketCommand<
-  'applyCurrentBotList',
-  null,
-  SocketCurrentBot[]
->;
+type SocketCurrentBotsCommand = BaseSocketCommand<'applyCurrentBotList', null, SocketCurrentBot[]>;
 
 type SocketNotificationFromResponse = {
   from: { icon: string; nickname: string };
@@ -212,8 +196,4 @@ type SocketReactionResponse = {
   }[];
 };
 
-type SocketReactionCommand = BaseSocketCommand<
-  'reaction',
-  null,
-  SocketReactionResponse
->;
+type SocketReactionCommand = BaseSocketCommand<'reaction', null, SocketReactionResponse>;

@@ -10,7 +10,7 @@ export class NotifyUserCommand {
   execute(privateKey: string, userHash: string): void {
     this.#socket.send({
       commandType: 'notify-user',
-      resource: { from: privateKey, to: userHash },
+      resource: { from: privateKey, to: userHash }
     });
   }
 }

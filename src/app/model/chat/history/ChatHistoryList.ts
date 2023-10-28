@@ -11,9 +11,7 @@ export class ChatHistoryManager {
 
   addHistory(chat: string): void {
     this.#chatHistories.unshift(chat);
-    this.#chatHistories = this.#chatHistories.filter(
-      (_, i) => i < ChatHistoryManager.#CAPACITY
-    );
+    this.#chatHistories = this.#chatHistories.filter((_, i) => i < ChatHistoryManager.#CAPACITY);
   }
 
   getPrev(): string {

@@ -29,8 +29,7 @@
     }
   };
 
-  const openContent = () =>
-    WindowService.openContent({ type: 'iframe', src: link });
+  const openContent = () => WindowService.openContent({ type: 'iframe', src: link });
 
   function onCopyClick() {
     copyLink();
@@ -114,8 +113,7 @@
       background: var(--primary-hoverground-color);
       opacity: 0.75;
       border: 1px solid var(--primary-borderground-color);
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     }
 
     .info-header {

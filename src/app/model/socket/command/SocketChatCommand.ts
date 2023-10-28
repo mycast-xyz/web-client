@@ -10,7 +10,7 @@ export class SocketChatCommand {
   execute(privateKey: string, type: string, msg: string): void {
     this.#socket.send({
       commandType: 'chat',
-      resource: { userKey: privateKey, type, msg },
+      resource: { userKey: privateKey, type, msg }
     });
   }
 }

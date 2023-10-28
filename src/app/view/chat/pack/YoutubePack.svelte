@@ -43,8 +43,8 @@
         type: 'iframe',
         src: {
           link,
-          title: 'YoutubePack',
-        },
+          title: 'YoutubePack'
+        }
       });
     }
   }
@@ -56,7 +56,7 @@
       thumbnail,
       description,
       title,
-      link,
+      link
     });
   }
 
@@ -80,11 +80,7 @@
     <strong>[Youtube: {title}]</strong>
   </div>
 {:else}
-  <div
-    class="youtube-pack"
-    on:click={onClick}
-    on:contextmenu|preventDefault={onContextMenu}
-  >
+  <div class="youtube-pack" on:click={onClick} on:contextmenu|preventDefault={onContextMenu}>
     <img class="thumbnail" src={thumbnail} alt="유튜브 썸네일" />
     <div class="logo description-added" />
     <div class="title description-added">{title}</div>

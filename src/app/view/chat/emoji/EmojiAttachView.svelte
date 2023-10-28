@@ -43,8 +43,7 @@
         {#each recentEmojies as emoji}
           <span
             on:click={(_) => onEmojiClick(emoji)}
-            on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}
-            >{emoji}</span
+            on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}>{emoji}</span
           >
         {/each}
       </div>
@@ -54,8 +53,7 @@
       {#each emojies as emoji}
         <span
           on:click={(_) => onEmojiClick(emoji)}
-          on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}
-          >{emoji}</span
+          on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}>{emoji}</span
         >
       {/each}
     </div>
@@ -158,8 +156,7 @@
       background-color: var(--primary-hoverground-color);
     }
     .emoji-list {
-      scrollbar-color: var(--primary-activeground-color)
-        var(--primary-background-color);
+      scrollbar-color: var(--primary-activeground-color) var(--primary-background-color);
       scrollbar-width: thin;
       &::-webkit-scrollbar {
         border-color: var(--primary-background-color);

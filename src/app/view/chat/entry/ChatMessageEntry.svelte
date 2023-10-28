@@ -39,7 +39,7 @@
     {
       type: 'image',
       component: ImagePack,
-      mobileComponent: MobileImagePack,
+      mobileComponent: MobileImagePack
     },
     { type: 'link', component: LinkPack },
     { type: 'memo', component: MemoPack },
@@ -53,12 +53,12 @@
     { type: 'twitch-clip', component: TwitchClipPack },
     { type: 'twitch-video', component: TwitchVideoPack },
     { type: 'lol', component: LolUserPack },
-    { type: 'champion', component: LolChampionPack },
+    { type: 'champion', component: LolChampionPack }
   ];
 
   const reactionMenus = [
     { icon: 'thumbs-up', value: 'thumb-up' },
-    { icon: 'thumbs-down', value: 'thumb-down' },
+    { icon: 'thumbs-down', value: 'thumb-down' }
   ];
 
   $: pack = getComponent(message.type);
@@ -91,9 +91,7 @@
   };
 
   onMount(() => {
-    ChatService.activeChatMessage.subscribe(
-      (it) => (menuActive = it === message.hash)
-    );
+    ChatService.activeChatMessage.subscribe((it) => (menuActive = it === message.hash));
     OptionService.timestamp.subscribe((it) => (enableTimestamp = it));
   });
 

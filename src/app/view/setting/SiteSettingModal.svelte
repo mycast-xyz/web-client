@@ -14,9 +14,7 @@
   OptionService.enableBot.subscribe((v) => (enableBot = v));
   OptionService.enableCheckerBar.subscribe((v) => (enableCheckerBot = v));
   OptionService.enableDataSave.subscribe((v) => (enableDataSave = v));
-  OptionService.enableCheckerRightAlign.subscribe(
-    (it) => (enableCheckerRightAlign = it)
-  );
+  OptionService.enableCheckerRightAlign.subscribe((it) => (enableCheckerRightAlign = it));
 </script>
 
 <SettingModal title="사이트 설정" icon="fas fa-tools">
@@ -39,8 +37,7 @@
     <PreferenceView
       title="체커바 우측 정렬"
       enable={enableCheckerRightAlign}
-      onClick={() =>
-        OptionService.setEnableCheckerRightAlign(!enableCheckerRightAlign)}
+      onClick={() => OptionService.setEnableCheckerRightAlign(!enableCheckerRightAlign)}
     />
     <PreferenceView
       title="데이터세이브"

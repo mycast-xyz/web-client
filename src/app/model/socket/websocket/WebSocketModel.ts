@@ -2,7 +2,7 @@ import type {
   SocketModel,
   SocketRequest,
   SocketCommand,
-  SocketCallback,
+  SocketCallback
 } from '../common/SocketModel';
 
 export class WebSocketModel implements SocketModel {

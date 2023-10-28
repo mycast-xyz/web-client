@@ -26,11 +26,7 @@
 <div class="bottom-bar" class:right-align={rightAlign}>
   <StreamList />
   {#each bookmarks as bookmark}
-    <BookmarkItem
-      title={bookmark.title}
-      icon={bookmark.icon}
-      link={bookmark.link}
-    />
+    <BookmarkItem title={bookmark.title} icon={bookmark.icon} link={bookmark.link} />
   {/each}
   {#each histories as history}
     <ContentHistoryItem {history} />

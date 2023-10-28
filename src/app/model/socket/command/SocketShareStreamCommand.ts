@@ -20,7 +20,7 @@ export class SocketShareStreamCommand {
       description: this.#stream.description,
       thumbnail: this.#stream.thumbnail,
       link: this.#stream.url,
-      viewer: this.#stream.viewer,
+      viewer: this.#stream.viewer
     });
     const param = new URLSearchParams({ user: privateKey, msg });
     Axios.post(url, param.toString());

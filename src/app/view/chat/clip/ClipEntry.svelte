@@ -15,7 +15,7 @@
       case 'youtube':
         WindowService.openContent({
           type: 'iframe',
-          src: `https://www.youtube.com/embed/${clip.data.id}?autoplay=1`,
+          src: `https://www.youtube.com/embed/${clip.data.id}?autoplay=1`
         });
     }
   }

@@ -16,8 +16,8 @@ export class SocketLoginCommand {
       commandType: 'user-login',
       resource: {
         channel: 'chat',
-        privateKey: privateKey,
-      },
+        privateKey: privateKey
+      }
     });
   }
 }

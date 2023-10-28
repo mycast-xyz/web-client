@@ -72,11 +72,7 @@
 </script>
 
 <div class="main-section">
-  <VerticalSplitView
-    minSideSize={300}
-    offset={chatViewOffset}
-    on:offsetchange={onOffsetChanged}
-  >
+  <VerticalSplitView minSideSize={300} offset={chatViewOffset} on:offsetchange={onOffsetChanged}>
     <div slot="side" class="chat-section">
       {#if chatConnected}
         <ChatPage />
@@ -89,11 +85,7 @@
         </div>
       {/if}
     </div>
-    <div
-      slot="main"
-      class="content-section"
-      class:checker-attached={isCheckerBarEnable}
-    >
+    <div slot="main" class="content-section" class:checker-attached={isCheckerBarEnable}>
       <div class="content"><ContentView /></div>
       <div class="bottom-bar"><BottomBar /></div>
     </div>

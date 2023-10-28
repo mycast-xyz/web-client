@@ -20,7 +20,7 @@
     } else {
       PopupContentService.addContent({
         type: 'iframe',
-        src: { title: 'Twitch Video', link },
+        src: { title: 'Twitch Video', link }
       });
     }
   }
@@ -28,7 +28,7 @@
   function onContextMenu() {
     WindowService.openContent({
       type: 'iframe',
-      src: link,
+      src: link
     });
   }
 
@@ -46,11 +46,7 @@
 {#if isDataSaveMode}
   <div on:click={onClick}>(대충 트위치 비디오)</div>
 {:else}
-  <div
-    class="twitch-clip-pack"
-    on:click={onClick}
-    on:contextmenu|preventDefault={onContextMenu}
-  >
+  <div class="twitch-clip-pack" on:click={onClick} on:contextmenu|preventDefault={onContextMenu}>
     <img class="thumbnail" src={thumbnail} alt="{title} 썸네일" />
     <div class="logo description-added" />
     <div class="tw-str-info">

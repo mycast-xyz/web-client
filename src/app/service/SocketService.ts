@@ -5,11 +5,11 @@ import type { NotifyUserCommand } from '../model/socket/command/SocketNotifyUser
 import type { SocketReactionCommand } from '../model/socket/command/SocketReactionCommand';
 
 class SocketServiceInit {
-	login: SocketLoginCommand | null = null;
-	chat: SocketChatCommand | null = null;
-	notifyUser: NotifyUserCommand | null = null;
-	modifyProfile: ModifyProfileCommand | null = null;
-	reaction: SocketReactionCommand | null = null;
+  login: SocketLoginCommand | null = null;
+  chat: SocketChatCommand | null = null;
+  notifyUser: NotifyUserCommand | null = null;
+  modifyProfile: ModifyProfileCommand | null = null;
+  reaction: SocketReactionCommand | null = null;
 }
 
 export const SocketService = new SocketServiceInit();

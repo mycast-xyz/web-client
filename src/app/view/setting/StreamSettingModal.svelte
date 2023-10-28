@@ -13,23 +13,23 @@
     {
       id: 'local',
       icon: 'mycast',
-      title: '로컬서버',
+      title: '로컬서버'
     },
     {
       id: 'totoro',
       icon: 'totoro',
-      title: '이웃서버',
+      title: '이웃서버'
     },
     {
       id: 'twitch',
       icon: 'twitch',
-      title: '트위치',
+      title: '트위치'
     },
     {
       id: 'afreeca',
       icon: 'afreecatv',
-      title: '아프리카TV',
-    },
+      title: '아프리카TV'
+    }
   ];
   let currentPlatformId = 'local';
   let localId = get(ProfileService.localId);
@@ -43,13 +43,7 @@
 
   function onSubmitClick() {
     const privateKey = SessionService.getPrivateKey();
-    new ModifyStreamCommand().execute(
-      privateKey,
-      currentPlatformId,
-      '',
-      afreecaId,
-      twitchId
-    );
+    new ModifyStreamCommand().execute(privateKey, currentPlatformId, '', afreecaId, twitchId);
     ProfileService.afreecaId.set(afreecaId);
     ProfileService.twitchId.set(twitchId);
     ProfileService.platform.set(currentPlatformId);
@@ -78,15 +72,9 @@
 
     <div class="stream-form">
       {#if currentPlatformId === 'local'}
-        <LocalStreamSettingForm
-          streamLink="rtmp://mycast.xyz/live"
-          streamKey={localId}
-        />
+        <LocalStreamSettingForm streamLink="rtmp://mycast.xyz/live" streamKey={localId} />
       {:else if currentPlatformId === 'totoro'}
-        <LocalStreamSettingForm
-          streamLink="rtmp://totoro.mycast.xyz/live"
-          streamKey={localId}
-        />
+        <LocalStreamSettingForm streamLink="rtmp://totoro.mycast.xyz/live" streamKey={localId} />
       {:else if currentPlatformId === 'afreeca'}
         <ExternalStreamSettingForm bind:streamKey={afreecaId} />
       {:else if currentPlatformId === 'twitch'}

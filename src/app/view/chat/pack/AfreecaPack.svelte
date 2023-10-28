@@ -13,7 +13,7 @@
   function onClick() {
     WindowService.openContent({
       type: 'iframe',
-      src: link,
+      src: link
     });
   }
 
@@ -32,11 +32,4 @@
   };
 </script>
 
-<ExternalStreamPack
-  {name}
-  {id}
-  {icon}
-  {onClick}
-  {onContextMenu}
-  backgroundColor="#0545b1"
-/>
+<ExternalStreamPack {name} {id} {icon} {onClick} {onContextMenu} backgroundColor="#0545b1" />

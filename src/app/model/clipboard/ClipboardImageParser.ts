@@ -12,10 +12,7 @@ export class ClipboardImageParser {
     return file;
   }
 
-  parseImageUrl(
-    rawData: DataTransfer | null,
-    callback: (result: string | null) => void
-  ) {
+  parseImageUrl(rawData: DataTransfer | null, callback: (result: string | null) => void) {
     if (!rawData || !rawData.items || !rawData.items[0]) {
       console.warn('no data', rawData);
       callback(null);

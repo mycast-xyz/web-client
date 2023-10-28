@@ -27,7 +27,7 @@
         link: '',
         thumbnail: '',
         title: '',
-        translator: '',
+        translator: ''
       };
     }
   }
@@ -35,7 +35,7 @@
   function onClick() {
     PopupContentService.addContent({
       type: 'iframe',
-      src: { title: 'BookPack', link },
+      src: { title: 'BookPack', link }
     });
   }
 
@@ -58,11 +58,5 @@
 {#if isError}
   <strong>잘못된 책</strong>
 {:else}
-  <GeneralPurposeCardPack
-    {icon}
-    {title}
-    {subtitle}
-    orientation="horizontal"
-    on:click={onClick}
-  />
+  <GeneralPurposeCardPack {icon} {title} {subtitle} orientation="horizontal" on:click={onClick} />
 {/if}

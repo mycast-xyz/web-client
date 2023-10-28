@@ -22,9 +22,9 @@
           PopupContentService.addContent({
             src: {
               link,
-              title,
+              title
             },
-            type: 'iframe',
+            type: 'iframe'
           });
         }
         break;
@@ -34,17 +34,11 @@
       case 'content-viewer':
         WindowService.openContent({
           type: 'iframe',
-          src: link,
+          src: link
         });
         break;
     }
   }
 </script>
 
-<GeneralPurposeCard
-  {icon}
-  {title}
-  {subtitle}
-  {orientation}
-  on:click={onClick}
-/>
+<GeneralPurposeCard {icon} {title} {subtitle} {orientation} on:click={onClick} />

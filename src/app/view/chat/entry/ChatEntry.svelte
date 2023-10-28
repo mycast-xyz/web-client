@@ -9,7 +9,7 @@
     icon: '',
     nickname: 'untitled',
     senderType: 'PC',
-    messages: [],
+    messages: []
   };
   export let messages: ChatMessage[] = [];
 </script>
