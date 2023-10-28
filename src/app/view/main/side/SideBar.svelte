@@ -68,8 +68,6 @@
     <hr />
     <SideBarStreamList title="마이캐스트" streams={locals} supportFavorite={false} />
     <hr />
-    <SideBarStreamList title="LCK" streams={lcks} />
-    <hr />
     <SideBarStreamList title="즐겨찾기" streams={favorites} />
     <hr />
     <SideBarStreamList title="트위치" streams={twitches} />
