@@ -115,13 +115,13 @@
         <div class="tag-input-box">
           <input type="text" class="tag-input" bind:value={tagValue} on:keydown={onTagKeyDown} />
           <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <span class="material-icons" on:click={onTagSubmit}>send</span>
+          <i class="fas fa-paper-plane" on:click={onTagSubmit} />
         </div>
       {:else}
         <!-- svelte-ignore a11y-missing-attribute -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <a class="add-tag" on:click={(_) => (editTagMode = true)}>
-          <span class="material-icons">add_comment</span>
+          <i class="fas fa-paper-plane" />
         </a>
         <div class="tag-list">
           {#each photo.tags as tag}
@@ -135,40 +135,32 @@
     <div class="p-info-box">
       <p class="lab">세부정보</p>
       <div class="in-txt">
-        <span class="material-icons">calendar_today</span>
+        <i class="fas fa-calendar" />
         <div class="in-txt-list">
           <p class="ma-title">{dateText}</p>
           <p class="sub-text">{timeText}</p>
         </div>
       </div>
       <div class="in-txt">
-        <span class="material-icons">image</span>
+        <i class="fas fa-image" />
         <div class="in-txt-list">
           <p class="ma-title">{mimeType}</p>
           <p class="sub-text">{photo.mimeType}</p>
         </div>
       </div>
-      <!--
-      <div class="in-txt">
-        <span class="material-icons">visibility</span>
-        <div class="in-txt-list">
-          <p class="ma-title see-txt">{viewer}명</p>
-        </div>
-      </div>
-      -->
     </div>
     <div class="p-info-box">
       <p class="lab">세부도구</p>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="in-txt tool attention-limit" class:active={adult} on:click={onAdultClick}>
-        <span class="material-icons">verified_user</span>
+        <i class="fas fa-user-check" />
         <div class="in-txt-list">
           <p class="ma-title see-txt">후방주의 이미지</p>
         </div>
       </div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="in-txt tool" on:click={onShareClick}>
-        <span class="material-icons">launch</span>
+        <i class="fas fa-external-link-alt" />
         <div class="in-txt-list">
           <p class="ma-title see-txt">채팅으로 보내기</p>
         </div>
@@ -340,7 +332,7 @@
         .in-txt {
           width: 100%;
           height: 40px;
-
+          line-height: 40px;
           margin-top: 20px;
 
           &.tool {
@@ -356,13 +348,15 @@
             }
           }
 
-          span {
-            width: auto;
+          i {
+            width: 30px;
             height: auto;
 
-            font-size: 36px;
+            font-size: 25px;
+            line-height: 40px;
             color: var(--primary-foreground-color);
             float: left;
+            text-align: center;
           }
 
           .in-txt-list {

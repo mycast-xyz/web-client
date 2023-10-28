@@ -30,13 +30,13 @@
   <div class="mm-btn-group">
     <!-- svelte-ignore a11y-missing-attribute -->
     <a class="mm-btn warning">
-      <i class="material-icons">warning</i>
+      <i class="fas fa-exclamation-circle" />
     </a>
     <!-- svelte-ignore a11y-missing-attribute -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <a class="mm-btn link" on:click={shareMemo}>
-      <i class="material-icons">link</i>
+      <i class="fas fa-link" />
     </a>
   </div>
 </div>
@@ -132,6 +132,11 @@
         padding: 0px 5px;
         text-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
           0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+        i {
+          font-size: 15px;
+          line-height: 20px;
+          color: var(--primary-foreground-color);
+        }
       }
     }
   }

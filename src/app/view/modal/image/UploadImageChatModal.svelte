@@ -49,7 +49,7 @@
       <img src={currentImage} alt="첨부된 이미지" />
 
       <button on:click={onSubmitClick}>
-        <i class="material-icons">save_alt</i> 보내기
+        <i class="fas fa-paper-plane" /> 보내기
       </button>
     </div>
   </div>

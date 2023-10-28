@@ -55,11 +55,11 @@
   {#if false}
     <!-- svelte-ignore a11y-missing-attribute -->
     <a class="left-btn btn">
-      <i class="material-icons">navigate_before</i>
+      <i class="fas fa-arrow-left" />
     </a>
     <!-- svelte-ignore a11y-missing-attribute -->
     <a class="right-btn btn">
-      <i class="material-icons">navigate_next</i>
+      <i class="fas fa-arrow-right" />
     </a>
   {/if}
 </div>

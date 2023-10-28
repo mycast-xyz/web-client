@@ -32,41 +32,34 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-missing-attribute -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="ph-img">
-  <!-- svelte-ignore a11y-missing-attribute -->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <img class:blurEffect={adult} src={thumbnail} on:click={onClick} />
   <div class="ph-info">
     <div class="bg" />
     <div class="img-wh">
-      <i class="material-icons">crop_original</i>
+      <i class="fas fa-crop-alt" />
       <p>{originalWidth}x{originalHeight}</p>
     </div>
     <div class="ph-btn-group">
-      <!-- svelte-ignore a11y-missing-attribute -->
       <a class="ph-btn warning">
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <i class="material-icons" on:click={onFilterClick}>warning</i>
+        <i class="fas fa-exclamation-triangle" on:click={onFilterClick} />
       </a>
-      <!-- svelte-ignore a11y-missing-attribute -->
       <a class="ph-btn link">
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <i class="material-icons" on:click={onLinkClick}>link</i>
+        <i class="fas fa-external-link-alt" on:click={onLinkClick} />
       </a>
     </div>
   </div>
   {#if adult}
     <div class="img-chk attention-limit">
-      <!-- svelte-ignore a11y-missing-attribute -->
       <img class="logo" src="/assets/image/photo/img_19_limit.png" />
     </div>
   {/if}
   {#if animated}
     <div class="img-chk gif-chk">
-      <!-- svelte-ignore a11y-missing-attribute -->
       <img class="logo" src="/assets/image/photo/img_gif.png" />
     </div>
   {/if}
