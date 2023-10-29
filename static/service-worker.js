@@ -8,8 +8,9 @@ self.addEventListener('install', e => {
       // but you can add more such as style.css as your app grows
       return cache.addAll([
         './',
-        './index.html',
-        './manifest.webmanifest'
+        '%sveltekit.assets%/index.html',
+        '%sveltekit.assets%/manifest.webmanifest',
+        '%sveltekit.assets%/global.css'
       ]);
     })
   );
