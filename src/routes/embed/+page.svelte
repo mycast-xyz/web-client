@@ -10,11 +10,7 @@
   let id: string = '';
   let platform: string = 'local';
 
-  let src: LocalStreamSource = {
-    icon: '',
-    url: id,
-    title: ''
-  };
+  $: src = createSource('', id, '');
 
   onMount(() => {
     let urlParams = $page.url.searchParams;
@@ -22,6 +18,10 @@
     id = urlParams.get('id') ?? '';
     platform = urlParams.get('p') ?? 'local';
   });
+
+  function createSource(icon: string, url: string, title: string): LocalStreamSource {
+    return { icon, url, title };
+  }
 </script>
 
 {#if hasId}
@@ -29,7 +29,6 @@
     <LocalStreamContentView {src} />
   {:else if platform === 'totoro'}
     <TotoroStreamContentView {src} />
-    totoro
   {:else}
     <p>error</p>
   {/if}
