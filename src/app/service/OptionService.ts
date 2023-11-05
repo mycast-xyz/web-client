@@ -8,6 +8,7 @@ class OptionServiceInit {
   readonly #enableCheckerRightAlign = writable(false);
   readonly #enableDataSave = writable(false);
   readonly #chatViewOffset = writable<number>(300);
+  readonly #chatViewSide = writable<'left' | 'right'>('left');
   readonly #volume = writable(50);
 
   #localStorage = new LocalStorageManager();
@@ -19,6 +20,7 @@ class OptionServiceInit {
     this.#enableCheckerRightAlign.set(this.#localStorage.enableCheckerRightAlign);
     this.#enableDataSave.set(this.#localStorage.enableDataSave);
     this.#chatViewOffset.set(this.#localStorage.chatViewOffset);
+    this.#chatViewSide.set(this.#localStorage.chatViewSide);
     this.#volume.set(this.#localStorage.volume);
   }
 
@@ -44,6 +46,10 @@ class OptionServiceInit {
 
   get chatViewOffset(): Readable<number> {
     return this.#chatViewOffset;
+  }
+
+  get chatViewSide(): Readable<'left' | 'right'> {
+    return this.#chatViewSide;
   }
 
   get volume(): Readable<number> {
@@ -78,6 +84,11 @@ class OptionServiceInit {
   setChatViewOffset(value: number) {
     this.#chatViewOffset.set(value);
     this.#localStorage.chatViewOffset = value;
+  }
+
+  setChatViewSide(value: 'left' | 'right') {
+    this.#chatViewSide.set(value);
+    this.#localStorage.chatViewSide = value;
   }
 
   setVolume(value: number) {

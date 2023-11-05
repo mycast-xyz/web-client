@@ -23,6 +23,7 @@
   let isCheckerBarEnable = get(OptionService.enableCheckerBar);
   let windowInnerWidth: number;
   let chatViewOffset = get(OptionService.chatViewOffset);
+  let chatViewSide: 'left' | 'right' = get(OptionService.chatViewSide);
   let chatConnected = false;
 
   ChatNetworkService.init(privateKey);
@@ -37,10 +38,13 @@
     ChatNetworkService.applyMyStatusEvent.subscribe((it) => {
       it && onApplyMyStatusEvent(it);
     });
+    OptionService.chatViewSide.subscribe((it) => (chatViewSide = it));
   });
 
-  function onOffsetChanged(e: CustomEvent<number>) {
-    OptionService.setChatViewOffset(e.detail);
+  function onOffsetChanged(e: CustomEvent<{ offset: number; side: 'left' | 'right' }>) {
+    const { offset, side } = e.detail;
+    OptionService.setChatViewOffset(offset);
+    OptionService.setChatViewSide(side);
   }
 
   function onPhotoClick() {
@@ -72,7 +76,12 @@
 </script>
 
 <div class="main-section">
-  <VerticalSplitView minSideSize={300} offset={chatViewOffset} on:offsetchange={onOffsetChanged}>
+  <VerticalSplitView
+    minSideSize={300}
+    offset={chatViewOffset}
+    bind:side={chatViewSide}
+    on:offsetchange={onOffsetChanged}
+  >
     <div slot="side" class="chat-section">
       {#if chatConnected}
         <ChatPage />

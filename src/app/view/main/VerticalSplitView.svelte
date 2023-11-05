@@ -1,28 +1,35 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher<{ offsetchange: number }>();
+  const dispatch = createEventDispatcher<{
+    offsetchange: { offset: number; side: 'left' | 'right' };
+  }>();
 
   export let minSideSize: number;
   export let offset = 300;
+  export let side: 'left' | 'right';
 
   let isMoveMode = false;
   let clientWidth: number;
-
+  $: dividerOffset = side === 'left' ? offset : clientWidth - offset;
   $: minX = minSideSize;
   $: maxX = clientWidth - minSideSize;
-  $: dividerPos = trimPosition(offset, minX, maxX);
-  $: isSideLeft = dividerPos < clientWidth / 2;
-  $: sideWidth = isSideLeft ? dividerPos : clientWidth - dividerPos;
-  $: sideLeft = isSideLeft ? '0' : 'auto';
-  $: sideRight = isSideLeft ? 'auto' : '0';
+  $: sideLeft = side === 'left' ? '0' : 'auto';
+  $: sideRight = side === 'left' ? 'auto' : '0';
   $: {
-    dispatch('offsetchange', dividerPos);
+    dispatch('offsetchange', { offset, side: side });
   }
 
   const onDividerMove = (e: MouseEvent) => {
     if (isMoveMode) {
-      offset = e.clientX;
+      let movingOffset = trimPosition(e.clientX, minX, maxX);
+      if (movingOffset < clientWidth / 2) {
+        side = 'left';
+        offset = movingOffset;
+      } else {
+        side = 'right';
+        offset = clientWidth - movingOffset;
+      }
     }
   };
 
@@ -36,18 +43,18 @@
 <div class="container" bind:clientWidth>
   <div
     class="divided"
-    style="left: {sideRight}; right: {sideLeft}; width: calc(100% - {sideWidth}px);"
+    style="left: {sideRight}; right: {sideLeft}; width: calc(100% - {offset}px);"
   >
     <slot name="main" />
   </div>
-  <div class="divided" style="left: {sideLeft}; right: {sideRight}; width: {sideWidth}px;">
+  <div class="divided" style="left: {sideLeft}; right: {sideRight}; width: {offset}px;">
     <slot name="side" />
   </div>
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class="divider"
     class:active={isMoveMode}
-    style="left: {dividerPos}px"
+    style="left: {dividerOffset}px;"
     on:mousedown={(_) => (isMoveMode = true)}
     on:mousemove={onDividerMove}
     on:mouseup={(_) => (isMoveMode = false)}

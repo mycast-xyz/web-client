@@ -14,6 +14,7 @@ export class LocalStorageManager {
   #KEY_FAVORITE_STREAMS = 'vega.favorite_stream';
   #KEY_BOOKMARKS = 'vega.bookmarks';
   #KEY_CHAT_VIEW_OFFSET = 'vega.chat_view_offset';
+  #KEY_CHAT_VIEW_SIDE = 'vega.chat_view_side';
   #KEY_VOLUME = 'vega.volume';
   #KEY_THEME_DARK_MODE = 'vega.theme_dark_mode';
   #KEY_MUTE_BOT_SETTINGS = 'vega.mute_bot_settings';
@@ -83,6 +84,15 @@ export class LocalStorageManager {
 
   set chatViewOffset(value: number) {
     this.#storage?.setItem(this.#KEY_CHAT_VIEW_OFFSET, value.toString());
+  }
+
+  get chatViewSide(): 'left' | 'right' {
+    const raw = this.#storage?.getItem(this.#KEY_CHAT_VIEW_SIDE) ?? 'left';
+    return raw === 'right' ? 'right' : 'left';
+  }
+
+  set chatViewSide(value: 'left' | 'right') {
+    this.#storage?.setItem(this.#KEY_CHAT_VIEW_SIDE, value);
   }
 
   get volume(): number {
