@@ -16,7 +16,8 @@
   let videoElement: HTMLMediaElement;
   let interfaceShow = false;
   let volume: number = 100;
-  $: videoVolume = MobileUtils.isMobile() ? 1 : volume / 100;
+  let isMobile: boolean = false;
+  $: videoVolume = isMobile ? 1 : volume / 100;
 
   const mountPlayer = (element: HTMLMediaElement, url: string): any | null => {
     // @ts-ignore
@@ -38,6 +39,7 @@
   };
 
   onMount(() => {
+    isMobile = MobileUtils.isMobile();
     OptionService.volume.subscribe((it) => (volume = it));
     flvPlayer = mountPlayer(videoElement, url);
     flvPlayer?.play();
