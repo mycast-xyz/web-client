@@ -47,7 +47,6 @@
   }
 
   function onThumbnailError() {
-    console.log('1111');
     isThumbnalError = true;
   }
 </script>
