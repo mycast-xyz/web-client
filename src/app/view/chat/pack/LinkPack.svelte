@@ -7,6 +7,7 @@
   export let body: string;
 
   let isDataSave = true;
+  let isThumbnalError = false;
   let thumbnail: string = '';
   let title: string = '';
   let link: string = '';
@@ -44,6 +45,11 @@
     document.execCommand('copy', false);
     document.body.removeChild(t);
   }
+
+  function onThumbnailError() {
+    console.log('1111');
+    isThumbnalError = true;
+  }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -61,12 +67,12 @@
 {:else}
   <div
     class="root"
-    class:thumbnail-attched={thumbnail}
+    class:thumbnail-attched={thumbnail && !isThumbnalError}
     on:click={openWindow}
     on:contextmenu|preventDefault={openContent}
   >
-    {#if thumbnail}
-      <img class="thumbnail" alt="thumbnail" src={thumbnail} />
+    {#if thumbnail && !isThumbnalError}
+      <img class="thumbnail" alt="thumbnail" src={thumbnail} on:error={onThumbnailError} />
     {/if}
     <div class="info">
       <div class="info-header">
