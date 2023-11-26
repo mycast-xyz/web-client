@@ -16,11 +16,11 @@
       icon: 'mycast',
       title: '로컬서버'
     },
-    {
-      id: 'totoro',
-      icon: 'totoro',
-      title: '이웃서버'
-    },
+    // {
+    //   id: 'totoro',
+    //   icon: 'totoro',
+    //   title: '이웃서버'
+    // },
     {
       id: 'twitch',
       icon: 'twitch',
