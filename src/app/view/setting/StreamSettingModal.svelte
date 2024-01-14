@@ -98,9 +98,17 @@
       {:else if currentPlatformId === 'totoro'}
         <LocalStreamSettingForm streamLink="rtmp://totoro.mycast.xyz/live" streamKey={localId} />
       {:else if currentPlatformId === 'afreeca'}
-        <ExternalStreamSettingForm bind:streamKey={afreecaId} />
+        <ExternalStreamSettingForm
+          title="아프리카 아이디"
+          subtitle="AFREECA ID"
+          bind:streamKey={afreecaId}
+        />
       {:else if currentPlatformId === 'twitch'}
-        <ExternalStreamSettingForm bind:streamKey={twitchId} />
+        <ExternalStreamSettingForm
+          title="트위치 아이디"
+          subtitle="TWITCH ID"
+          bind:streamKey={twitchId}
+        />
       {:else if currentPlatformId === 'youtube' || currentPlatformId === 'youtube-private'}
         <ExternalStreamSettingForm bind:streamKey={youtubeHandle}>
           <p slot="significant">
