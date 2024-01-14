@@ -2,13 +2,8 @@
   import TextSettingInput from './TextSettingInput.svelte';
 
   export let streamKey: string;
-  export let significant: string;
 </script>
 
-<TextSettingInput
-  title="스트림 키"
-  subtitle="STREAM KEY"
-  bind:value={streamKey}
-  bind:significant
-  name="stream-key"
-/>
+<TextSettingInput title="스트림 키" subtitle="STREAM KEY" bind:value={streamKey} name="stream-key">
+  <slot name="significant" slot="significant" />
+</TextSettingInput>

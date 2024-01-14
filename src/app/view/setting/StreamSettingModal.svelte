@@ -98,21 +98,30 @@
       {:else if currentPlatformId === 'totoro'}
         <LocalStreamSettingForm streamLink="rtmp://totoro.mycast.xyz/live" streamKey={localId} />
       {:else if currentPlatformId === 'afreeca'}
-        <ExternalStreamSettingForm
-          bind:streamKey={afreecaId}
-          bind:significant={currentPlatformId}
-        />
+        <ExternalStreamSettingForm bind:streamKey={afreecaId} />
       {:else if currentPlatformId === 'twitch'}
-        <ExternalStreamSettingForm bind:streamKey={twitchId} bind:significant={currentPlatformId} />
+        <ExternalStreamSettingForm bind:streamKey={twitchId} />
       {:else if currentPlatformId === 'youtube' || currentPlatformId === 'youtube-private'}
-        <ExternalStreamSettingForm
-          bind:streamKey={youtubeHandle}
-          bind:significant={currentPlatformId}
-        />
-        <ExternalStreamSettingForm
-          bind:streamKey={youtubeVideoId}
-          bind:significant={currentPlatformId}
-        />
+        <ExternalStreamSettingForm bind:streamKey={youtubeHandle}>
+          <p slot="significant">
+            <br />
+            공개 방송용 Youtube Handle란입니다.
+            <br />
+            @를 포함한 핸들값이 필요합니다. ex. @abcde
+            <br />
+          </p>
+        </ExternalStreamSettingForm>
+        <ExternalStreamSettingForm bind:streamKey={youtubeVideoId}>
+          <p slot="significant">
+            <br />
+            비공개 방송을 위한 Video Id 항목입니다.
+            <br />
+            "watch?v="의 뒤에 값이 필요합니다.
+            <br />
+            <br />
+            <b>해당 값은 생방송을 키고 확인 후 변경이 계속 필요합니다.</b>
+          </p>
+        </ExternalStreamSettingForm>
       {:else}
         <div />
       {/if}
