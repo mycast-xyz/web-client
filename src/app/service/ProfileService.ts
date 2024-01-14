@@ -9,7 +9,7 @@ class ProfileServiceInit {
   readonly localId = writable('');
   readonly twitchId = writable('');
   readonly afreecaId = writable('');
-  readonly youtubeWatchId = writable('');
+  readonly youtubeHandle = writable('');
 
   async loadStreamProfile(privateKey: string) {
     const profile = await new VegaStreamProfileLoader(privateKey).load();
@@ -17,7 +17,7 @@ class ProfileServiceInit {
     this.localId.set(profile.localId);
     this.afreecaId.set(profile.afreecaId);
     this.twitchId.set(profile.twitchId);
-    this.youtubeWatchId.set(profile.youtubeHandle);
+    this.youtubeHandle.set(profile.youtubeHandle);
   }
 }
 
