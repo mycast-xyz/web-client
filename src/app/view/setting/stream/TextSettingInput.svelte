@@ -13,7 +13,7 @@
     {#if subtitle}<small>({subtitle})</small>{/if}
   </p>
   <input type="text" bind:value {name} {placeholder} />
-  {#if significant == 'youtube'}
+  {#if significant == 'youtube-private'}
     <p>
       <br />
       유튜브의 경우 "watch?v="의 뒤에 값이 필요합니다.

@@ -104,9 +104,13 @@
         />
       {:else if currentPlatformId === 'twitch'}
         <ExternalStreamSettingForm bind:streamKey={twitchId} bind:significant={currentPlatformId} />
-      {:else if currentPlatformId === 'youtube'}
+      {:else if currentPlatformId === 'youtube' || currentPlatformId === 'youtube-private'}
         <ExternalStreamSettingForm
           bind:streamKey={youtubeHandle}
+          bind:significant={currentPlatformId}
+        />
+        <ExternalStreamSettingForm
+          bind:streamKey={youtubeVideoId}
           bind:significant={currentPlatformId}
         />
       {:else}
