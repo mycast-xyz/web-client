@@ -42,6 +42,7 @@
   let afreecaId = get(ProfileService.afreecaId);
   let twitchId = get(ProfileService.twitchId);
   let youtubeHandle = get(ProfileService.youtubeHandle);
+  let youtubeVideoId = get(ProfileService.youtubeVideoId);
 
   onMount(() => {
     ProfileService.platform.subscribe((v) => (currentPlatformId = v));
@@ -49,6 +50,7 @@
     ProfileService.afreecaId.subscribe((v) => (afreecaId = v));
     ProfileService.twitchId.subscribe((v) => (twitchId = v));
     ProfileService.youtubeHandle.subscribe((v) => (youtubeHandle = v));
+    ProfileService.youtubeVideoId.subscribe((v) => (youtubeVideoId = v));
   });
 
   function onSubmitClick() {
@@ -59,7 +61,9 @@
       '',
       afreecaId,
       twitchId,
-      youtubeHandle
+      '',
+      youtubeHandle,
+      youtubeVideoId
     );
     ProfileService.afreecaId.set(afreecaId);
     ProfileService.twitchId.set(twitchId);

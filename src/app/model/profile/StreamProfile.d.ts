@@ -5,4 +5,5 @@ export type StreamProfile = {
   readonly afreecaId: string;
   readonly twitchId: string;
   readonly youtubeHandle: string;
+  readonly youtubeVideoId: string;
 };
