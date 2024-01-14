@@ -41,14 +41,14 @@
   let localId = get(ProfileService.localId);
   let afreecaId = get(ProfileService.afreecaId);
   let twitchId = get(ProfileService.twitchId);
-  let youtubeWatchId = get(ProfileService.youtubeHandle);
+  let youtubeHandle = get(ProfileService.youtubeHandle);
 
   onMount(() => {
     ProfileService.platform.subscribe((v) => (currentPlatformId = v));
     ProfileService.localId.subscribe((v) => (localId = v));
     ProfileService.afreecaId.subscribe((v) => (afreecaId = v));
     ProfileService.twitchId.subscribe((v) => (twitchId = v));
-    ProfileService.youtubeHandle.subscribe((v) => (youtubeWatchId = v));
+    ProfileService.youtubeHandle.subscribe((v) => (youtubeHandle = v));
   });
 
   function onSubmitClick() {
@@ -59,11 +59,11 @@
       '',
       afreecaId,
       twitchId,
-      youtubeWatchId
+      youtubeHandle
     );
     ProfileService.afreecaId.set(afreecaId);
     ProfileService.twitchId.set(twitchId);
-    ProfileService.youtubeHandle.set(youtubeWatchId);
+    ProfileService.youtubeHandle.set(youtubeHandle);
     ProfileService.platform.set(currentPlatformId);
     WindowService.closeModal();
   }
@@ -102,7 +102,7 @@
         <ExternalStreamSettingForm bind:streamKey={twitchId} bind:significant={currentPlatformId} />
       {:else if currentPlatformId === 'youtube'}
         <ExternalStreamSettingForm
-          bind:streamKey={youtubeWatchId}
+          bind:streamKey={youtubeHandle}
           bind:significant={currentPlatformId}
         />
       {:else}
