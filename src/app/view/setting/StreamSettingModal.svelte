@@ -30,25 +30,40 @@
       id: 'afreeca',
       icon: 'afreecatv',
       title: '아프리카TV'
+    },
+    {
+      id: 'youtube',
+      icon: 'youtube',
+      title: '유튜브'
     }
   ];
   let currentPlatformId = 'local';
   let localId = get(ProfileService.localId);
   let afreecaId = get(ProfileService.afreecaId);
   let twitchId = get(ProfileService.twitchId);
+  let youtubeWatchId = get(ProfileService.youtubeWatchId);
 
   onMount(() => {
     ProfileService.platform.subscribe((v) => (currentPlatformId = v));
     ProfileService.localId.subscribe((v) => (localId = v));
     ProfileService.afreecaId.subscribe((v) => (afreecaId = v));
     ProfileService.twitchId.subscribe((v) => (twitchId = v));
+    ProfileService.youtubeWatchId.subscribe((v) => (youtubeWatchId = v));
   });
 
   function onSubmitClick() {
     const privateKey = SessionService.getPrivateKey();
-    new ModifyStreamCommand().execute(privateKey, currentPlatformId, '', afreecaId, twitchId);
+    new ModifyStreamCommand().execute(
+      privateKey,
+      currentPlatformId,
+      '',
+      afreecaId,
+      twitchId,
+      youtubeWatchId
+    );
     ProfileService.afreecaId.set(afreecaId);
     ProfileService.twitchId.set(twitchId);
+    ProfileService.youtubeWatchId.set(youtubeWatchId);
     ProfileService.platform.set(currentPlatformId);
     WindowService.closeModal();
   }
@@ -79,9 +94,17 @@
       {:else if currentPlatformId === 'totoro'}
         <LocalStreamSettingForm streamLink="rtmp://totoro.mycast.xyz/live" streamKey={localId} />
       {:else if currentPlatformId === 'afreeca'}
-        <ExternalStreamSettingForm bind:streamKey={afreecaId} />
+        <ExternalStreamSettingForm
+          bind:streamKey={afreecaId}
+          bind:significant={currentPlatformId}
+        />
       {:else if currentPlatformId === 'twitch'}
-        <ExternalStreamSettingForm bind:streamKey={twitchId} />
+        <ExternalStreamSettingForm bind:streamKey={twitchId} bind:significant={currentPlatformId} />
+      {:else if currentPlatformId === 'youtube'}
+        <ExternalStreamSettingForm
+          bind:streamKey={youtubeWatchId}
+          bind:significant={currentPlatformId}
+        />
       {:else}
         <div />
       {/if}
