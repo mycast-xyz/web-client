@@ -17,7 +17,7 @@ class ProfileServiceInit {
     this.localId.set(profile.localId);
     this.afreecaId.set(profile.afreecaId);
     this.twitchId.set(profile.twitchId);
-    this.youtubeWatchId.set(profile.youtubeWatchId);
+    this.youtubeWatchId.set(profile.youtubeHandle);
   }
 }
 

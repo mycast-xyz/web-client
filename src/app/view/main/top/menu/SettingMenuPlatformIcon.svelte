@@ -12,6 +12,8 @@
   <SettingMenuImage imageSrc="/assets/image/stream/afreecatv.svg" />
 {:else if platformId === 'twitch'}
   <SettingMenuImage imageSrc="/assets/image/stream/twitch.svg" />
+{:else if platformId === 'youtube'}
+  <SettingMenuImage imageSrc="/assets/image/stream/youtube.svg" />
 {:else}
   <SettingMenuImage imageSrc="/assets/image/stream/mycast.svg" />
 {/if}

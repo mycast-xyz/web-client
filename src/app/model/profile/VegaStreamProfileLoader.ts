@@ -17,7 +17,7 @@ export class VegaStreamProfileLoader {
       localId: data.localHash,
       platform: data.platform,
       twitchId: data.twitchId,
-      youtubeWatchId: data.youtubeWatchId
+      youtubeHandle: data.youtubeHandle
     };
   }
 
@@ -32,5 +32,5 @@ type UserStreamDto = {
   localHash: string;
   afreecaId: string;
   twitchId: string;
-  youtubeWatchId: string;
+  youtubeHandle: string;
 };
