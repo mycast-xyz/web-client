@@ -111,7 +111,11 @@
           bind:streamKey={twitchId}
         />
       {:else if currentPlatformId === 'youtube' || currentPlatformId === 'youtube-private'}
-        <ExternalStreamSettingForm bind:streamKey={youtubeHandle}>
+        <ExternalStreamSettingForm
+          bind:streamKey={youtubeHandle}
+          title="유튜브 핸들"
+          subtitle="YOUTUBE HANDLE"
+        >
           <p slot="significant">
             <br />
             공개 방송용 Youtube Handle란입니다.
@@ -120,7 +124,11 @@
             <br />
           </p>
         </ExternalStreamSettingForm>
-        <ExternalStreamSettingForm bind:streamKey={youtubeVideoId}>
+        <ExternalStreamSettingForm
+          bind:streamKey={youtubeVideoId}
+          title="비디오 아이디"
+          subtitle="VIDEO ID"
+        >
           <p slot="significant">
             <br />
             비공개 방송을 위한 Video Id 항목입니다.
