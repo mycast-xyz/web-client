@@ -7,7 +7,9 @@ export class ModifyStreamCommand {
     backgroundImage: string,
     afreecaId: string,
     twitchId: string,
-    youtubeHandle: string
+    chzzkId: string,
+    youtubeHandle: string,
+    youtubeVideoId: string
   ): Promise<boolean> {
     const url = `https://mycast.xyz:9011/user/${privateKey}/stream`;
     try {
@@ -16,7 +18,9 @@ export class ModifyStreamCommand {
         backgroundImage,
         afreecaId,
         twitchId,
-        youtubeHandle
+        chzzkId,
+        youtubeHandle,
+        youtubeVideoId
       };
       const { data } = await axios.put<PutStreamDto>(url, form);
       return data.result;
