@@ -21,6 +21,11 @@
       id: 'youtube',
       name: '유튜브',
       icon: 'youtube'
+    },
+    {
+      id: 'chzzk',
+      name: '치지직',
+      icon: 'chzzk'
     }
   ];
   let currentPlatform: Platform;
