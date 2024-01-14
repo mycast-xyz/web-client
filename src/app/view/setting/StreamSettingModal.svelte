@@ -68,6 +68,7 @@
     ProfileService.afreecaId.set(afreecaId);
     ProfileService.twitchId.set(twitchId);
     ProfileService.youtubeHandle.set(youtubeHandle);
+    ProfileService.youtubeVideoId.set(youtubeVideoId);
     ProfileService.platform.set(currentPlatformId);
     WindowService.closeModal();
   }
