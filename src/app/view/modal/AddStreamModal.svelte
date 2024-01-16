@@ -95,16 +95,16 @@
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <div class="live-corp" on:click={(_) => onPlatformClick(platform)}>
-            <div class="live-corp-img">
+            <div class="live-corp-img" class:active={platform === currentPlatform}>
               <div class="checks">
                 <input
                   type="radio"
                   name="live-corp-select"
                   checked={platform === currentPlatform}
                 />
-                <div class="icon">
-                  <InlineSvg src="/assets/image/stream/{platform.icon}.svg" />
-                </div>
+              </div>
+              <div class="icon">
+                <InlineSvg src="/assets/image/stream/{platform.icon}.svg" />
               </div>
             </div>
             <p>{platform.name}</p>
@@ -219,13 +219,17 @@
 
           margin-bottom: 5px;
 
+          &.active {
+            background-color: var(--primary-activeground-color) !important;
+          }
+
           .icon {
             width: 60px;
             height: 60px;
             margin-bottom: 15px;
             position: absolute;
-            top: 15px;
-            left: -50px;
+            top: 20px;
+            left: 15px;
             fill: var(--primary-foreground-color);
           }
 
@@ -234,6 +238,7 @@
             height: 21px;
 
             position: absolute;
+            display: none;
             top: 5px;
             right: 5px;
           }
@@ -254,8 +259,8 @@
     }
     .live-stream-search {
       width: calc(100% - 20px);
+      padding: 10px;
       padding-bottom: 5px;
-      padding-top: 10px;
 
       label {
         width: 100%;
