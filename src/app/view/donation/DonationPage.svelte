@@ -1,9 +1,6 @@
 <script lang="ts">
   import DonationDashboard from './DonationDashboard.svelte';
-  import DonationVoice from './DonationVoice.svelte';
   import DonationVideo from './DonationVideo.svelte';
-  import DonationOsu from './DonationOsu.svelte';
-  import ChatView from './ChatView.svelte';
 
   type DonationPage = {
     View: string;
@@ -29,21 +26,6 @@
         donationPage.Title = '영상 도네이션';
         donationSelected = 'video';
         break;
-      case 'chat':
-        donationPage.View = 'chat';
-        donationPage.Title = '채팅 설정';
-        donationSelected = 'chat';
-        break;
-      case 'voice':
-        donationPage.View = 'voice';
-        donationPage.Title = '음성 도네이션';
-        donationSelected = 'voice';
-        break;
-      case 'osu':
-        donationPage.View = 'osu';
-        donationPage.Title = 'Osu 맵 도네이션';
-        donationSelected = 'osu';
-        break;
       default:
         donationPage.View = 'dashboard';
         donationPage.Title = '도네이션 대시보드';
@@ -65,32 +47,11 @@
         대시보드
       </button>
       <button
-        class="nav-btn {donationSelected === 'chat' ? 'selected' : ''}"
-        on:click={onDonationBtnClick}
-        value="chat"
-      >
-        채팅
-      </button>
-      <button
-        class="nav-btn {donationSelected === 'voice' ? 'selected' : ''}"
-        on:click={onDonationBtnClick}
-        value="voice"
-      >
-        음성
-      </button>
-      <button
         class="nav-btn {donationSelected === 'video' ? 'selected' : ''}"
         on:click={onDonationBtnClick}
         value="video"
       >
         영상
-      </button>
-      <button
-        class="nav-btn {donationSelected === 'osu' ? 'selected' : ''}"
-        on:click={onDonationBtnClick}
-        value="osu"
-      >
-        Osu
       </button>
     </div>
   </div>
@@ -98,12 +59,6 @@
     <DonationDashboard />
   {:else if donationPage.View == 'video'}
     <DonationVideo />
-  {:else if donationPage.View == 'chat'}
-    <ChatView />
-  {:else if donationPage.View == 'voice'}
-    <DonationVoice />
-  {:else if donationPage.View == 'osu'}
-    <DonationOsu />
   {/if}
 </article>
 

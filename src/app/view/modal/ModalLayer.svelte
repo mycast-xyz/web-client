@@ -13,6 +13,7 @@
   import AddStreamModal from './AddStreamModal.svelte';
   import UploadImageChatModal from './image/UploadImageChatModal.svelte';
   import UploadMemoModal from './memo/UploadMemoModal.svelte';
+  import DonationSend from '../donation/DonationSend.svelte';
 
   let modalWrapper: HTMLElement;
   let modal: ComponentType | null = null;
@@ -48,6 +49,9 @@
         break;
       case 'upload-memo':
         modal = UploadMemoModal;
+        break;
+      case 'donation-send':
+        modal = DonationSend;
         break;
       case 'test-command':
         modal = TestCommandModal;

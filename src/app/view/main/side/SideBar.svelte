@@ -30,6 +30,10 @@
     WindowService.openModal('add-stream');
     WindowService.closeSideBar();
   }
+  function onDonationClick() {
+    WindowService.openModal('donation-send');
+    WindowService.closeSideBar();
+  }
 </script>
 
 <div class="side-bar">
@@ -47,9 +51,15 @@
       <i class="fas fa-book" />
       <span>메모</span>
     </li>
-    {#if false}
+    {#if true}
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <li class="main" on:click={(_) => dispatch('donationclick')}>
+        <i class="fas fa-money-bill-wave" />
+        <span>도네이션 설정</span>
+      </li>
+      <!-- 실험적 기능 추가용 // 수정 필요 -->
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+      <li class="main" on:click={onDonationClick}>
         <i class="fas fa-money-bill-wave" />
         <span>도네이션</span>
       </li>

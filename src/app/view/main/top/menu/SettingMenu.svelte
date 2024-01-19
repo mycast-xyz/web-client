@@ -57,8 +57,12 @@
     icon="fas fa-mobile"
     menuClick={() => window.open('/chat', '_blank', 'width=300,height=720')}
   />
-  {#if false}
-    <DefaultMenuItem name="후원리스트" icon="fas fa-clipboard-list" />
+  {#if true}
+    <DefaultMenuItem
+      name="후원리스트"
+      icon="fas fa-clipboard-list"
+      menuClick={() => window.open('/chat', '_blank', 'width=300,height=720')}
+    />
   {/if}
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <!-- svelte-ignore a11y-click-events-have-key-events -->

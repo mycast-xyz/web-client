@@ -4,9 +4,11 @@
   import { SessionService } from '../../service/SessionService';
 
   let secretKey = '';
+  let videoUse = false;
 
   onMount(async () => {
     secretKey = await getSecretKey();
+    videoUse = await getDonationVideoUse();
   });
 
   async function getSecretKey(): Promise<string> {
@@ -15,6 +17,51 @@
     const { data: secretKey } = await axios.get(uri);
     return secretKey;
   }
+
+  // 사용자 비디오 도네이션 여부 확인
+  async function getDonationVideoUse(): Promise<any> {
+    const privateKey = SessionService.getPrivateKey();
+    const uri = `http://localhost:9940/users/${privateKey}/video/data/use`;
+    const { data: donationVideoSetting } = await axios.get(uri);
+
+    if (donationVideoSetting[0]['donation_use'] == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // 사용자 비디오 도네이션 설정 변경
+  async function setDonationVideoUse(videoUse: boolean): Promise<boolean> {
+    // 사용값을 넘겨주기 위한 변환작업
+    let videoUseNum: string = '';
+    if (videoUse) {
+      videoUseNum = '1';
+    } else {
+      videoUseNum = '0';
+    }
+
+    // 도네이션 api 서버로 전송
+    const privateKey = SessionService.getPrivateKey();
+    const host = `http://localhost:9940/users/${privateKey}`;
+    const url = `${host}/video/set/use`;
+    try {
+      const param = new URLSearchParams();
+      param.append('donationUse', videoUseNum);
+      const { data } = await axios.post<Result>(url, param.toString());
+      if (!data || !data.result) {
+        return false;
+      }
+      return true;
+    } catch (e) {
+      console.error('unknown error', e);
+      return false;
+    }
+  }
+
+  type Result = {
+    result: boolean;
+  };
 </script>
 
 <article>
@@ -46,6 +93,7 @@
         <p>음성 도네이션 수</p>
       </div>
     </div>
+    <!--
     <div class="don-item" style="background-color: #ee02ab;">
       <span class="icon">
         <i class="fas fa-music" />
@@ -55,6 +103,7 @@
         <p>OSU 도네이션 수</p>
       </div>
     </div>
+    -->
   </div>
   <div class="donation-setup-group">
     <div class="donation-card">
@@ -86,65 +135,73 @@
         </div>
       </div>
     </div>
-    <div class="donation-card">
-      <div class="title">
-        <h1>채팅창 링크 / <small> Chatting Link</small></h1>
-      </div>
-      <div class="content">
-        <div class="link-group">
-          <h3 class="link-text">http://mycast.xyz/Chatting/스트림키</h3>
-          <div class="btn-group">
-            <button class="icon-btn">
-              <span class="icon">
-                <i class="fas fa-paperclip" />
-              </span>
-            </button>
-            <button class="text-btn">
-              <p>이동</p>
-            </button>
+    {#if false}
+      <div class="donation-card">
+        <div class="title">
+          <h1>채팅창 링크 / <small> Chatting Link</small></h1>
+        </div>
+        <div class="content">
+          <div class="link-group">
+            <h3 class="link-text">http://mycast.xyz/Chatting/스트림키</h3>
+            <div class="btn-group">
+              <button class="icon-btn">
+                <span class="icon">
+                  <i class="fas fa-paperclip" />
+                </span>
+              </button>
+              <button class="text-btn">
+                <p>이동</p>
+              </button>
+            </div>
           </div>
-        </div>
-        <hr />
-        <div class="supporting-text">
-          <p>※해당 스트림키는 남에게 보여주시면 안됩니다.</p>
-          <p>
-            ※사용방법 : "http://mycast.xyz/Chatting/스트림키"주소 뒤에 스트림키를 붙여 OBS 브라우저
-            URL에 추가
-          </p>
-          <p>※화면크기 : 720 * 1280 // 필히 준수해주시길 바랍니다.</p>
-        </div>
-        <!--<div class="input-group">
+          <hr />
+          <div class="supporting-text">
+            <p>※해당 스트림키는 남에게 보여주시면 안됩니다.</p>
+            <p>
+              ※사용방법 : "http://mycast.xyz/Chatting/스트림키"주소 뒤에 스트림키를 붙여 OBS
+              브라우저 URL에 추가
+            </p>
+            <p>※화면크기 : 720 * 1280 // 필히 준수해주시길 바랍니다.</p>
+          </div>
+          <!--<div class="input-group">
                   <input value="7887826671F1F91414BBFE29E7F7C17E"/>
                 </div>
                 <div class="btn-group">
                 </div>-->
+        </div>
       </div>
-    </div>
+    {/if}
     <div class="donation-card">
       <div class="title">
         <h1>후원 설정 / <small> Support Setting</small></h1>
       </div>
       <div class="btn-list">
-        <div class="set-btn-group">
-          <h3>음성 도네</h3>
-          <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round" />
-          </label>
-        </div>
-        <hr />
+        {#if false}
+          <div class="set-btn-group">
+            <h3>음성 도네</h3>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round" />
+            </label>
+          </div>
+          <hr />
+          <div class="set-btn-group">
+            <h3>OSU 도네</h3>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round" />
+            </label>
+          </div>
+          <hr />
+        {/if}
         <div class="set-btn-group">
           <h3>영상 도네</h3>
           <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round" />
-          </label>
-        </div>
-        <hr />
-        <div class="set-btn-group">
-          <h3>OSU 도네</h3>
-          <label class="switch">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              bind:checked={videoUse}
+              on:change={setDonationVideoUse(videoUse)}
+            />
             <span class="slider round" />
           </label>
         </div>
