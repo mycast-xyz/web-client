@@ -128,7 +128,7 @@
     let youtubeRow: any = {};
     let youtubeChk = false;
 
-    const uri = `http://localhost:9940/video/search/${urlid}`;
+    const uri = `http://localhost:10030/video/search/${urlid}`;
     const { data: videoData } = await axios.get(uri);
 
     if (videoData) {

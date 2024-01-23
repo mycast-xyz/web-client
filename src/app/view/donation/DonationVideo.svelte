@@ -25,7 +25,7 @@
   // 사용자 비디오 도네이션 데이터 가져오기
   async function getDonationVideoUse(): Promise<any> {
     const privateKey = SessionService.getPrivateKey();
-    const uri = `http://localhost:9940/users/${privateKey}/video/data/all`;
+    const uri = `http://localhost:10030/setting/${privateKey}/video/data/all`;
     const { data: donationVideoSetting } = await axios.get(uri);
 
     console.log(donationVideoSetting.length);
@@ -49,7 +49,7 @@
 
     // 도네이션 api 서버로 전송
     const privateKey = SessionService.getPrivateKey();
-    const host = `http://localhost:9940/users/${privateKey}`;
+    const host = `http://localhost:10030/setting/${privateKey}`;
     const url = `${host}/video/set/use`;
     try {
       const param = new URLSearchParams();
@@ -77,7 +77,7 @@
     } else {
       // 도네이션 api 서버로 전송
       const privateKey = SessionService.getPrivateKey();
-      const host = `http://localhost:9940/users/${privateKey}`;
+      const host = `http://localhost:10030/setting/${privateKey}`;
       const url = `${host}/video/set/limit`;
       try {
         const param = new URLSearchParams();

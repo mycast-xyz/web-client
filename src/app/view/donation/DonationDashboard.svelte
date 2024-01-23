@@ -21,10 +21,12 @@
   // 사용자 비디오 도네이션 여부 확인
   async function getDonationVideoUse(): Promise<any> {
     const privateKey = SessionService.getPrivateKey();
-    const uri = `http://localhost:9940/users/${privateKey}/video/data/use`;
-    const { data: donationVideoSetting } = await axios.get(uri);
+    const uri = `http://localhost:10030/setting/${privateKey}/video/data/use`;
+    const { data: donation } = await axios.get(uri);
 
-    if (donationVideoSetting[0]['donation_use'] == 0) {
+    console.log(donation);
+
+    if (donation.video_donation_use == 0) {
       return false;
     } else {
       return true;
@@ -43,7 +45,7 @@
 
     // 도네이션 api 서버로 전송
     const privateKey = SessionService.getPrivateKey();
-    const host = `http://localhost:9940/users/${privateKey}`;
+    const host = `http://localhost:10030/setting/${privateKey}`;
     const url = `${host}/video/set/use`;
     try {
       const param = new URLSearchParams();
