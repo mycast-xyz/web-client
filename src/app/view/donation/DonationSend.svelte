@@ -10,10 +10,13 @@
   import { SessionService } from '../../service/SessionService';
   import { WindowService } from '../../service/WindowService';
 
+  // 영상 도내 용 비디오 송출 타입
   type DonDefSet = {
     preview: boolean;
     videoLimit: number;
   };
+
+  // 에러 송출용 타입
   type DonSendError = {
     userName: string;
     videoUrl: string;
@@ -21,14 +24,34 @@
     videoStart: string;
   };
 
-  let DonDefSet: DonDefSet = {
-    videoLimit: 0,
-    preview: false
+  // 영상 도네이션 보내기 타입
+  type DonationVideoEntry = {
+    // 도네이션 공통 처리
+    recipientUserKey: string;
+    senderUserKey: string;
+    donationPrint: boolean;
+    donationUserName: string;
+    donationType: string;
+    // 비디오 도네이션 단독 처리
+    videoType: string;
+    videoUrl: string;
+    videoLimit: number;
+    videoId: string;
+    videoTitle: string;
+    videoStart: number;
+    videoDuration: number;
   };
+
   onMount(async () => {
     const donationVideoSetting = await getDonationVideoUse();
     DonDefSet.videoLimit = donationVideoSetting['video_limit'];
   });
+
+  // 도네이션 비디오 송출
+  let DonDefSet: DonDefSet = {
+    videoLimit: 0,
+    preview: false
+  };
 
   // 결과 값 처리용
   let videoDonSet = {
@@ -61,7 +84,7 @@
   // 사용자 비디오 도네이션 데이터 가져오기
   async function getDonationVideoUse(): Promise<any> {
     const privateKey = SessionService.getPrivateKey();
-    const uri = `http://localhost:9940/users/${privateKey}/video/data/all`;
+    const uri = `http://localhost:10030/setting/${privateKey}/video/data/all`;
     const { data: donationVideoSetting } = await axios.get(uri);
 
     console.log(donationVideoSetting.length);
@@ -161,10 +184,121 @@
       }
     }
   };
-  // 비디오 시작 지점 체커
-  const donVideoStartChk = () => {};
 
-  const donVideoSub = async () => {};
+  // 비디오 시작 지점 체커
+  const donVideoStartChk = () => {
+    // 시간 & 시작 지점 tmp 생성
+    let tmp_videoStart = videoDonSet.start;
+    let tmp_videoLimit = videoDonSet.limit;
+    // 시간 & 시작 지점 숫자 체커
+    if (isNaN(tmp_videoStart)) {
+      error.videoStart = '숫자가 아닙니다.';
+    } else if (isNaN(tmp_videoLimit)) {
+      error.videoEndSe = '숫자가 아닙니다.';
+    } else {
+      // 시작 지점이 동영상 길이 보다 긴가
+      if (Number(videoDonSet.duration) < tmp_videoStart) {
+        error.videoStart = '총합 ' + Number(videoDonSet.duration) + '초를 초과 합니다.';
+        error.videoEndSe = '';
+      } else if (Number(videoDonSet.duration) < tmp_videoLimit + tmp_videoStart) {
+        error.videoEndSe = '총합 ' + Number(videoDonSet.duration) + '초를 초과 합니다.';
+        error.videoStart = '총합 ' + Number(videoDonSet.duration) + '초를 초과 합니다.';
+      } else if (tmp_videoStart < 0) {
+        error.videoStart = '0보다 큰 수를 넣어주세요.';
+      } else {
+        error.videoStart = '';
+      }
+    }
+  };
+
+  const donVideoSub = async () => {
+    // 시간 & 시작 지점 tmp 생성
+    let tmp_videoStart = videoDonSet.start;
+    let tmp_videoLimit = videoDonSet.limit;
+
+    if (videoDonSet.user_name.length == 0) {
+      error.userName = '닉네임을 설정해주세요.';
+    } else if (videoDonSet.user_name.length > 16) {
+      error.userName = '16자 까지 입력됩니다.';
+    } else if (!videoDonSet.urlChk) {
+      error.videoUrl = '정상적인 유튜브 주소가 아닙니다.';
+    } else if (isNaN(tmp_videoStart)) {
+      error.videoStart = '숫자가 아닙니다.';
+    } else if (isNaN(tmp_videoLimit)) {
+      error.videoEndSe = '숫자가 아닙니다.';
+    } else if (tmp_videoLimit > videoDonSet.limit) {
+      error.videoEndSe = videoDonSet.limit + '이 최대 수 입니다.';
+    } else if (tmp_videoLimit <= 0) {
+      error.videoEndSe = '0보다 큰 수를 넣어주세요.';
+    } else if (tmp_videoStart < 0) {
+      error.videoStart = '0보다 큰 수를 넣어주세요.';
+    } else if (Number(videoDonSet.duration) - tmp_videoLimit < 0) {
+      error.videoEndSe = '동영산 길이를 초과 합니다.';
+    } else if (Number(videoDonSet.duration) < tmp_videoStart) {
+      error.videoStart = '총합 ' + Number(videoDonSet.duration) + '초를 초과 합니다.';
+    } else if (Number(videoDonSet.duration) < tmp_videoLimit + tmp_videoStart) {
+      error.videoEndSe = '총합 ' + Number(videoDonSet.duration) + '초를 초과 합니다.';
+      error.videoStart = '총합 ' + Number(videoDonSet.duration) + '초를 초과 합니다.';
+    } else {
+      const regex =
+        /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
+      const videoTitle = videoDonSet.urlTitle.replace(regex, '');
+
+      let videoDonData: DonationVideoEntry = {
+        recipientUserKey: '받는 유저키',
+        senderUserKey: '보내는 유저키',
+        donationPrint: false,
+        donationUserName: videoDonSet.user_name,
+        donationType: 'video',
+        videoType: 'youtube',
+        videoUrl: videoDonSet.url,
+        videoLimit: tmp_videoLimit,
+        videoId: videoDonSet.urlId,
+        videoTitle: videoTitle,
+        videoStart: tmp_videoStart,
+        videoDuration: videoDonSet.duration
+      };
+
+      const videoSendChk = await setVideoDonationSend(videoDonData);
+
+      if (videoSendChk) {
+        // 에러 초기화
+        error.userName = '';
+        error.videoUrl = '';
+        error.videoStart = '';
+        error.videoEndSe = '';
+        // 입력값 초기화
+        videoDonSet.url = '';
+        videoDonSet.limit = 10;
+        videoDonSet.start = 0;
+        videoDonSet.urlChk = false;
+        DonDefSet.preview = false;
+        //toast.success('도네이션 전달 완료.');
+      } else {
+        //toast.error('도네이션 전달 불가.');
+      }
+    }
+
+    // 수정필요
+    async function setVideoDonationSend(data: DonationVideoEntry) {
+      const sendData = JSON.stringify({
+        type: 'send',
+        data: data
+      });
+      // 도네이션 api 서버로 전송
+      const url = `http://localhost:10030/donation/send/`;
+      try {
+        const { data } = await axios.post(sendData);
+        if (!data || !data.result) {
+          return false;
+        }
+        return true;
+      } catch (e) {
+        console.error('unknown error', e);
+        return false;
+      }
+    }
+  };
 </script>
 
 <div class="modal">
