@@ -4,7 +4,7 @@
   import BottomBarItem from './BottomBarItem.svelte';
 
   function onIconClick() {
-    WindowService.openImageViewerPopup('https://i.imgur.com/ofBoNoq.png');
+    WindowService.openImageViewerPopup('https://i.ibb.co/mq56D7k/thumb.jpg');
   }
 </script>
 
