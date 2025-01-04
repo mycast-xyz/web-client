@@ -18,6 +18,7 @@ export class LocalStorageManager {
   #KEY_VOLUME = 'vega.volume';
   #KEY_THEME_DARK_MODE = 'vega.theme_dark_mode';
   #KEY_MUTE_BOT_SETTINGS = 'vega.mute_bot_settings';
+  #KEY_ENABLE_EXPERIMENT_SETTING = 'vega.enable_experiment_setting';
 
   #storage: Storage | null = browser ? localStorage : null;
 
@@ -118,5 +119,13 @@ export class LocalStorageManager {
 
   set muteBotSettings(value: string) {
     this.#storage?.setItem(this.#KEY_MUTE_BOT_SETTINGS, value ? value : '[]');
+  }
+
+  get enableExperimentSetting(): boolean {
+    return this.#storage?.getItem(this.#KEY_ENABLE_EXPERIMENT_SETTING) === TRUE;
+  }
+
+  set enableExperimentSetting(value: boolean) {
+    this.#storage?.setItem(this.#KEY_ENABLE_EXPERIMENT_SETTING, value ? TRUE : FALSE);
   }
 }
