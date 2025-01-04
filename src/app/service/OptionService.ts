@@ -7,6 +7,7 @@ class OptionServiceInit {
   readonly #enableCheckerBar = writable(true);
   readonly #enableCheckerRightAlign = writable(false);
   readonly #enableDataSave = writable(false);
+  readonly #enableExprimentSetting = writable(false);
   readonly #chatViewOffset = writable<number>(300);
   readonly #chatViewSide = writable<'left' | 'right'>('left');
   readonly #volume = writable(50);
@@ -22,6 +23,7 @@ class OptionServiceInit {
     this.#chatViewOffset.set(this.#localStorage.chatViewOffset);
     this.#chatViewSide.set(this.#localStorage.chatViewSide);
     this.#volume.set(this.#localStorage.volume);
+    this.#enableExprimentSetting.set(this.#localStorage.enableExperimentSetting);
   }
 
   get timestamp(): Readable<boolean> {
@@ -42,6 +44,10 @@ class OptionServiceInit {
 
   get enableDataSave(): Readable<boolean> {
     return this.#enableDataSave;
+  }
+
+  get enableExprimentSetting(): Readable<boolean> {
+    return this.#enableExprimentSetting;
   }
 
   get chatViewOffset(): Readable<number> {
@@ -79,6 +85,11 @@ class OptionServiceInit {
   setEnableDataSave(value: boolean) {
     this.#enableDataSave.set(value);
     this.#localStorage.enableDataSave = value;
+  }
+
+  setEnableExprimentSetting(value: boolean) {
+    this.#enableExprimentSetting.set(value);
+    this.#localStorage.enableExperimentSetting = value;
   }
 
   setChatViewOffset(value: number) {

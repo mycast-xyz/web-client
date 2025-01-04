@@ -8,12 +8,14 @@
   let enableBot = get(OptionService.enableBot);
   let enableCheckerBot = get(OptionService.enableCheckerBar);
   let enableDataSave = get(OptionService.enableDataSave);
+  let enableExprimentSetting = get(OptionService.enableExprimentSetting);
   let enableCheckerRightAlign = false;
 
   OptionService.timestamp.subscribe((v) => (enableTimestamp = v));
   OptionService.enableBot.subscribe((v) => (enableBot = v));
   OptionService.enableCheckerBar.subscribe((v) => (enableCheckerBot = v));
   OptionService.enableDataSave.subscribe((v) => (enableDataSave = v));
+  OptionService.enableExprimentSetting.subscribe((it) => (enableExprimentSetting = it));
   OptionService.enableCheckerRightAlign.subscribe((it) => (enableCheckerRightAlign = it));
 </script>
 
@@ -43,6 +45,11 @@
       title="데이터세이브"
       enable={enableDataSave}
       onClick={() => OptionService.setEnableDataSave(!enableDataSave)}
+    />
+    <PreferenceView
+      title="실험적 기능 사용"
+      enable={enableExprimentSetting}
+      onClick={() => OptionService.setEnableExprimentSetting(!enableExprimentSetting)}
     />
   </div>
 </SettingModal>

@@ -9,7 +9,9 @@
   import BookmarkItem from './bookmark/BookmarkBottomBarItem.svelte';
   import ContentHistoryItem from './ContentHistoryItem.svelte';
   import HappyNewYearEventItem from './HappyNewYearEventItem.svelte';
+  import RandomPhotoItem from './RandomPhotoItem.svelte';
 
+  let enableExprimentSetting: boolean = false;
   let rightAlign: boolean = false;
   let bookmarks: Bookmark[] = [];
   let histories: ContentHistory[] = [];
@@ -17,6 +19,9 @@
   onMount(() => {
     OptionService.enableCheckerRightAlign.subscribe((it) => {
       rightAlign = it;
+    });
+    OptionService.enableExprimentSetting.subscribe((it) => {
+      enableExprimentSetting = it;
     });
     BookmarkService.bookmarks.subscribe((it) => (bookmarks = it));
     ContentHistoryService.histories.subscribe((it) => (histories = it));
@@ -31,6 +36,10 @@
   {#each histories as history}
     <ContentHistoryItem {history} />
   {/each}
+  {#if enableExprimentSetting === true }
+    <RandomPhotoItem />
+  {/if}
+  
   <HappyNewYearEventItem />
 </div>
 
