@@ -37,6 +37,9 @@
           src: link
         });
         break;
+      case 'image-viewer':
+        WindowService.openImageViewerPopup(link);
+        break;
     }
   }
 </script>
