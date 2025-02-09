@@ -195,7 +195,7 @@
       transition: 0.2s ease-in-out;
       width: $side-bar-width;
       height: 100%;
-      transform: translateX(-$side-bar-width);
+      transform: translateX(-$side-bar-width - 5px);
       z-index: 5;
 
       &.show {
