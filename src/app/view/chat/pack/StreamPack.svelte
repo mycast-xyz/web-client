@@ -76,7 +76,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 {#if isDataSave}
-  <div on:click={onClick}>(대충 {name} 방송)</div>
+  <div on:click={onClick}><strong>(대충 {name} 방송)</strong></div>
 {:else}
   <div class="stream-live-box" on:click={onClick}>
     <div class="stream-live-img">
