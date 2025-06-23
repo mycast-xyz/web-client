@@ -57,8 +57,12 @@
   ];
 
   const reactionMenus = [
-    { icon: 'thumbs-up', value: 'thumb-up' },
-    { icon: 'thumbs-down', value: 'thumb-down' }
+    { icon: '👍', value: 'thumb-up' },
+    { icon: '👎', value: 'thumb-down' },
+    { icon: '👏', value: 'clap' },
+    { icon: '😆', value: 'laugh' },
+    { icon: '😢', value: 'sad' },
+    { icon: '🤢', value: 'disgust' }
   ];
 
   $: pack = getComponent(message.type);
@@ -149,14 +153,9 @@
     <div class="menu">
       {#each reactionMenus as menu}
         <button on:click={(_) => onReactionClick(menu.value)}>
-          <i class="far fa-{menu.icon}" />
+          <span>{menu.icon}</span>
         </button>
       {/each}
-      <!-- <button><i class="far fa-angry" /></button>
-      <button><i class="far fa-grimace" /></button>
-      <button><i class="far fa-grin" /></button>
-      <button><i class="far fa-grin-squint-tears" /></button>
-      <button><i class="far fa-sad-tear" /></button> -->
     </div>
   </div>
   {#if reactions?.length > 0}

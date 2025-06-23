@@ -15,8 +15,18 @@
 <div class="reaction-item">
   {#if param.value === 'thumb-up'}
     <span>👍</span>
-  {:else}
+  {:else if param.value === 'thumb-down'}
     <span>👎</span>
+  {:else if param.value === 'clap'}
+    <span>👏</span>
+  {:else if param.value === 'laugh'}
+    <span>😆</span>
+  {:else if param.value === 'sad'}
+    <span>😢</span>
+  {:else if param.value === 'disgust'}
+    <span>🤢</span>
+  {:else}
+    <span />
   {/if}
   <div class="reaction-item-title">
     <span> {title} </span>
