@@ -4,7 +4,18 @@
   import Item from './ChatReactionItemView.svelte';
 
   export let reactions: ChatReaction[];
-  $: params = mergeReaction(reactions);
+
+  const merge: boolean = false;
+  $: params = merge ? mergeReaction(reactions) : getParam(reactions);
+
+  function getParam(reactions: ChatReaction[]): Param[] {
+    return reactions.map((r) => {
+      return {
+        users: [r.user],
+        value: r.value
+      };
+    });
+  }
 
   function mergeReaction(reactions: ChatReaction[]): Param[] {
     const merged: Param[] = [];
