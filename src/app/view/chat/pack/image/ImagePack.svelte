@@ -5,7 +5,13 @@
   import { WindowService } from '../../../../service/WindowService';
 
   export let body = '';
+  export let onSaveDataToggle: (active: boolean) => void;
+
   let show = !get(OptionService.enableDataSave);
+
+  $: if (onSaveDataToggle) {
+    onSaveDataToggle(show);
+  }
 
   const openImageViewerPopup = () => {
     WindowService.openImageViewerPopup(body);
