@@ -5,13 +5,8 @@
   import { WindowService } from '../../../../service/WindowService';
 
   export let body = '';
-  export let onSaveDataToggle: (active: boolean) => void;
 
   let show = !get(OptionService.enableDataSave);
-
-  $: if (onSaveDataToggle) {
-    onSaveDataToggle(show);
-  }
 
   const openImageViewerPopup = () => {
     WindowService.openImageViewerPopup(body);
@@ -37,7 +32,7 @@
       on:load={onImageLoaded}
     />
   {:else}
-    <div on:click={(_) => (show = true)}>이미지</div>
+    <div class="saved" on:click={(_) => (show = true)}>이미지</div>
   {/if}
 </div>
 
@@ -46,7 +41,13 @@
     width: 100%;
     height: auto;
     text-align: center;
+
+    div.saved {
+      width: 100%;
+      text-align: start;
+    }
   }
+
   .image {
     max-width: 90%;
     height: auto;

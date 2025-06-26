@@ -30,7 +30,6 @@
 
   export let message: ChatMessage;
   let menuActive: boolean = false;
-  let isImagePreviewActive: boolean = false;
   let enableTimestamp: boolean = false;
   const packs: Pack[] = [
     { type: 'afreeca', component: AfreecaPack },
@@ -108,12 +107,7 @@
 
   function onMouseEnter() {
     if (!MobileUtils.isMobile()) {
-      let hash: string | null = message.hash;
-
-      if (message.type === 'image' && !isImagePreviewActive) {
-        hash = null;
-      }
-      ChatService.setActive(hash);
+      ChatService.setActive(message.hash);
     }
   }
 
@@ -131,10 +125,6 @@
         ChatService.setActive(message.hash);
       }
     }
-  }
-
-  function setImagePreview(active: boolean) {
-    isImagePreviewActive = active;
   }
 
   type Pack = {
@@ -155,11 +145,7 @@
 >
   <div class="body">
     {#if pack}
-      {#if message.type === 'image'}
-        <svelte:component this={pack} body={message.body} onSaveDataToggle={setImagePreview} />
-      {:else}
-        <svelte:component this={pack} body={message.body} />
-      {/if}
+      <svelte:component this={pack} body={message.body} />
     {:else}
       {message.type}
     {/if}

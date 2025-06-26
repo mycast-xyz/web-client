@@ -48,7 +48,9 @@
       </div>
     {/if}
   {:else}
-    <div on:click={(_) => (dataSaveMode = true)}>이미지</div>
+    <div class="saved" on:click|stopPropagation|preventDefault={(_) => (dataSaveMode = true)}>
+      <strong>이미지</strong>
+    </div>
   {/if}
 </div>
 
@@ -57,6 +59,11 @@
     width: 100%;
     height: auto;
     text-align: center;
+
+    div.saved {
+      width: 100%;
+      text-align: start;
+    }
   }
 
   .image-wrapper {
