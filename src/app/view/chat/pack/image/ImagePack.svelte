@@ -32,7 +32,7 @@
       on:load={onImageLoaded}
     />
   {:else}
-    <div class="saved" on:click={(_) => (show = true)}>이미지</div>
+    <div class="saved" on:click={(_) => (show = true)}><strong>이미지</strong></div>
   {/if}
 </div>
 
