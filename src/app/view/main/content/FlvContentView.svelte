@@ -13,7 +13,7 @@
   let paused: boolean;
   let muted: boolean;
   let flvPlayer: FlvJs.FlvPlayer | null;
-  let videoElement: HTMLMediaElement;
+  let videoElement: HTMLVideoElement;
   let interfaceShow = false;
   let volume: number = 100;
   let isMobile: boolean = false;
@@ -65,6 +65,14 @@
     muted = !muted;
   };
 
+  async function requestPip() {
+    if (document.pictureInPictureElement) {
+      document.exitPictureInPicture();
+    } else {
+      await videoElement.requestPictureInPicture();
+    }
+  }
+
   const requestFullScreen = () => {
     videoElement.requestFullscreen();
   };
@@ -108,6 +116,7 @@
       {muted}
       {paused}
       onPlayPauseClick={togglePause}
+      onPipClick={requestPip}
       onFullscreenClick={requestFullScreen}
       onMuteClick={toggleMute}
     />

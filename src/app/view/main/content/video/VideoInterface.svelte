@@ -10,6 +10,7 @@
   export let onPlayPauseClick = () => {};
   export let onMuteClick = () => {};
   export let onFullscreenClick = () => {};
+  export let onPipClick = () => {};
 </script>
 
 <div class="video-bar" transition:fade={{ delay: 150, duration: 400 }}>
@@ -24,6 +25,7 @@
   </div>
   <div class="right-list">
     <div class="size-btn">
+      <VideoButton icon="fas fa-external-link-alt" onClick={onPipClick} />
       <VideoButton icon="fas fa-expand" onClick={onFullscreenClick} />
     </div>
   </div>

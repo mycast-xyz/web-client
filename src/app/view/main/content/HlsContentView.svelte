@@ -13,7 +13,7 @@
   const hls = new Hls();
   let paused: boolean;
   let muted: boolean;
-  let videoElement: HTMLMediaElement;
+  let videoElement: HTMLVideoElement;
   let interfaceShow = false;
   let volume: number = 100;
   $: videoVolume = MobileUtils.isMobile() ? 1 : volume / 100;
@@ -54,6 +54,14 @@
   const requestFullScreen = () => {
     videoElement.requestFullscreen();
   };
+
+  async function requestPip() {
+    if (document.pictureInPictureElement) {
+      document.exitPictureInPicture();
+    } else {
+      await videoElement.requestPictureInPicture();
+    }
+  }
 
   const togglePause = () => {
     if (paused) {
@@ -96,6 +104,7 @@
       {muted}
       {paused}
       onPlayPauseClick={togglePause}
+      onPipClick={requestPip}
       onFullscreenClick={requestFullScreen}
       onMuteClick={toggleMute}
     />
