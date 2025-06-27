@@ -5,6 +5,7 @@
   import type FlvJs from './flv';
   import VideoInfoHeader from './video/VideoInfoHeader.svelte';
   import VideoInterface from './video/VideoInterface.svelte';
+  import { WindowService } from '../../../service/WindowService';
 
   export let icon: string = '';
   export let url: string;
@@ -69,7 +70,8 @@
     if (document.pictureInPictureElement) {
       document.exitPictureInPicture();
     } else {
-      await videoElement.requestPictureInPicture();
+      const pip = await videoElement.requestPictureInPicture();
+      WindowService.requestPip(pip);
     }
   }
 

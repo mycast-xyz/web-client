@@ -9,6 +9,7 @@
   const defaultOffset = -1;
 
   export let subViewActivated = false;
+  let hasPip: boolean = false;
   let height = defaultHeight;
   let offset = defaultOffset;
   let closing = false;
@@ -19,6 +20,24 @@
       offset = defaultOffset;
       closing = false;
     }
+  }
+
+  onMount(() => {
+    WindowService.lastPip.subscribe((pip) => {
+      console.log(pip, document.pictureInPictureElement);
+      hasPip = pip === document.pictureInPictureElement && pip != null;
+      console.log(hasPip);
+    });
+  });
+
+  function onEnterPictureInPicture() {
+    hasPip = true;
+    console.log('enter');
+  }
+
+  function onLeavePictureInPicture() {
+    hasPip = false;
+    console.log('leave');
   }
 
   function onTouchStart(e: TouchEvent) {
@@ -47,9 +66,13 @@
   }
 </script>
 
+<svelte:document
+  on:enterpictureinpicture={onEnterPictureInPicture}
+  on:leavepictureinpicture={onLeavePictureInPicture}
+/>
 <div class="container">
   {#if subViewActivated}
-    <div class="sub-division" style="height: {height}px">
+    <div class="sub-division" style="height: {height}px" style:display={hasPip ? 'none' : 'block'}>
       <ContentView />
       {#if closing}
         <div class="closing-guide" />

@@ -5,6 +5,7 @@
   import Hls from 'hls.js';
   import VideoInfoHeader from './video/VideoInfoHeader.svelte';
   import VideoInterface from './video/VideoInterface.svelte';
+  import { WindowService } from '../../../service/WindowService';
 
   export let icon: string = '';
   export let url: string;
