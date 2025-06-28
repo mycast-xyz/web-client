@@ -70,8 +70,7 @@
     if (document.pictureInPictureElement) {
       document.exitPictureInPicture();
     } else {
-      const pip = await videoElement.requestPictureInPicture();
-      WindowService.requestPip(pip);
+      await videoElement.requestPictureInPicture();
     }
   }
 
