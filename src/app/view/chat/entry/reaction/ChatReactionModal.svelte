@@ -1,26 +1,29 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { EmojiUtils } from '../../../../model/chat/emoji/EmojiUtils';
+  import { ChatReactionService } from '../../../../service/ChatReactionService';
+  import { SessionService } from '../../../../service/SessionService';
+  import { SocketService } from '../../../../service/SocketService';
   import { WindowService } from '../../../../service/WindowService';
   import ModalTextInput from '../../../../view-framework/modal/input/ModalTextInput.svelte';
   import Modal from '../../../../view-framework/modal/Modal.svelte';
-  import { SocketService } from '../../../../service/SocketService';
-  import { SessionService } from '../../../../service/SessionService';
-  import { ChatReactionService } from '../../../../service/ChatReactionService';
-  import { EmojiUtils } from '../../../../model/chat/emoji/EmojiUtils';
 
   let reaction: string;
 
   function onKeyDown(code: string) {
     if (code === 'Enter') {
-      if (EmojiUtils.isEmoji(reaction)) {
-        const privateKey = SessionService.getPrivateKey();
-        const stagedChat = ChatReactionService.stagedChat;
-        stagedChat && SocketService.reaction?.execute(privateKey, stagedChat, `c${reaction}`);
-      }
-      WindowService.closeModal();
+      submitReaction();
     } else {
       reaction = '';
     }
+  }
+
+  function submitReaction() {
+    if (EmojiUtils.isEmoji(reaction)) {
+      const privateKey = SessionService.getPrivateKey();
+      const stagedChat = ChatReactionService.stagedChat;
+      stagedChat && SocketService.reaction?.execute(privateKey, stagedChat, `c${reaction}`);
+    }
+    WindowService.closeModal();
   }
 </script>
 
@@ -32,5 +35,22 @@
       name=""
       on:keydown={(e) => onKeyDown(e.detail)}
     />
-  </div></Modal
->
+  </div>
+  <div slot="footer">
+    <button class="footer-button" on:click={() => submitReaction()}>SUBMIT</button>
+  </div>
+</Modal>
+
+<style lang="scss">
+  .footer-button {
+    width: 100%;
+    height: auto;
+    border: 0px;
+    background-color: var(--primary-activeground-color);
+    color: var(--primary-activeground-font-color);
+
+    &:disabled {
+      background-color: var(--primary-hoverground-color);
+    }
+  }
+</style>
