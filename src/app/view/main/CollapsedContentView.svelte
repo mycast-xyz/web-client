@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { WindowService } from '../../service/WindowService';
   import ContentView from './content/ContentView.svelte';
 
@@ -19,6 +20,10 @@
       closing = false;
     }
   }
+
+  onMount(() => {
+    WindowService.content.subscribe((_) => onContentChanged());
+  });
 
   function onEnterPictureInPicture() {
     hasPip = true;
@@ -51,6 +56,13 @@
       WindowService.closeContent();
     }
     closing = false;
+  }
+
+  function onContentChanged() {
+    if (document.pictureInPictureEnabled && document.pictureInPictureElement) {
+      document.exitPictureInPicture();
+      hasPip = false;
+    }
   }
 </script>
 
