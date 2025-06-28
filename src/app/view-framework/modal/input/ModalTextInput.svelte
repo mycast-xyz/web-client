@@ -10,6 +10,7 @@
   export let name = '';
   export let placeholder = '';
   export let type = 'text';
+  export let onTextChange: (() => void) | null = null;
 
   function onKeyDown(e: KeyboardEvent) {
     dispatch('keydown', e.code);
@@ -20,7 +21,14 @@
   {#if type === 'password'}
     <input type="password" bind:value {name} {placeholder} />
   {:else}
-    <input type="text" bind:value {name} {placeholder} on:keydown={onKeyDown} />
+    <input
+      type="text"
+      bind:value
+      {name}
+      {placeholder}
+      on:keydown={onKeyDown}
+      on:change={(_) => onTextChange?.()}
+    />
   {/if}
 </ModalInputGroup>
 

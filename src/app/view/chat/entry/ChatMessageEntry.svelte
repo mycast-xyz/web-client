@@ -27,10 +27,14 @@
   import MobileImagePack from '../pack/image/MobileImagePack.svelte';
   import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import ReactionList from './reaction/ChatReactionListView.svelte';
+  import { WindowService } from '../../../service/WindowService';
+  import { ChatReactionService } from '../../../service/ChatReactionService';
 
   export let message: ChatMessage;
   let menuActive: boolean = false;
   let enableTimestamp: boolean = false;
+  let enableExprimentSetting: boolean = false;
+
   const packs: Pack[] = [
     { type: 'afreeca', component: AfreecaPack },
     { type: 'animation', component: AnimationPack },
@@ -56,7 +60,7 @@
     { type: 'champion', component: LolChampionPack }
   ];
 
-  const reactionMenus = [
+  const defaultReactionMenus = [
     { icon: '👍', value: 'thumb-up' },
     { icon: '👎', value: 'thumb-down' },
     { icon: '👏', value: 'clap' },
@@ -64,10 +68,14 @@
     { icon: '😢', value: 'sad' },
     { icon: '🤢', value: 'disgust' }
   ];
+  let customReactionMenus: string[] = [];
 
   $: pack = getComponent(message.type);
   $: reactions = message.reactions;
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
+  $: reactionMenus = defaultReactionMenus.concat(
+    customReactionMenus.map((e) => ({ icon: e, value: `c${e}` }))
+  );
 
   const getComponent = (type: string): typeof SvelteComponent | null => {
     const pack = packs.find((p) => p.type === type);
@@ -97,12 +105,18 @@
   onMount(() => {
     ChatService.activeChatMessage.subscribe((it) => (menuActive = it === message.hash));
     OptionService.timestamp.subscribe((it) => (enableTimestamp = it));
+    OptionService.enableExprimentSetting.subscribe((it) => (enableExprimentSetting = it));
   });
 
   function onReactionClick(reactionValue: string) {
     const privateKey = SessionService.getPrivateKey();
     const chatHash = message.hash;
     SocketService.reaction?.execute(privateKey, chatHash, reactionValue);
+  }
+
+  function onCustomReactionClick() {
+    ChatReactionService.stageChat(message.hash);
+    WindowService.openModal('chat-reaction');
   }
 
   function onMouseEnter() {
@@ -156,6 +170,9 @@
           <span>{menu.icon}</span>
         </button>
       {/each}
+      {#if enableExprimentSetting}
+        <button on:click={(_) => onCustomReactionClick()}><i class="fas fa-icons" /></button>
+      {/if}
     </div>
   </div>
   {#if reactions?.length > 0}

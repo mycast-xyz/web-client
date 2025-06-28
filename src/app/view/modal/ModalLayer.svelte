@@ -14,6 +14,7 @@
   import UploadImageChatModal from './image/UploadImageChatModal.svelte';
   import UploadMemoModal from './memo/UploadMemoModal.svelte';
   import DonationSend from '../donation/DonationSend.svelte';
+  import ChatReactionModal from '../chat/entry/reaction/ChatReactionModal.svelte';
 
   let modalWrapper: HTMLElement;
   let modal: ComponentType | null = null;
@@ -52,6 +53,9 @@
         break;
       case 'donation-send':
         modal = DonationSend;
+        break;
+      case 'chat-reaction':
+        modal = ChatReactionModal;
         break;
       case 'test-command':
         modal = TestCommandModal;

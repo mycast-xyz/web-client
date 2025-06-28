@@ -10,4 +10,5 @@ export type ModalType =
   | 'add-stream'
   | 'upload-memo'
   | 'test-command'
+  | 'chat-reaction'
   | 'donation-send';

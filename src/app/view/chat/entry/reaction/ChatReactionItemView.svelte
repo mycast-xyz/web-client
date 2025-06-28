@@ -25,8 +25,8 @@
     <span>😢</span>
   {:else if param.value === 'disgust'}
     <span>🤢</span>
-  {:else}
-    <span />
+  {:else if param.value.startsWith('c')}
+    <span>{param.value.substring(1)}</span>
   {/if}
   <div class="reaction-item-title">
     <span> {title} </span>
