@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-
   import { WindowService } from '../../service/WindowService';
   import ContentView from './content/ContentView.svelte';
 
@@ -22,22 +20,12 @@
     }
   }
 
-  onMount(() => {
-    WindowService.lastPip.subscribe((pip) => {
-      console.log(pip, document.pictureInPictureElement);
-      hasPip = pip === document.pictureInPictureElement && pip != null;
-      console.log(hasPip);
-    });
-  });
-
   function onEnterPictureInPicture() {
     hasPip = true;
-    console.log('enter');
   }
 
   function onLeavePictureInPicture() {
     hasPip = false;
-    console.log('leave');
   }
 
   function onTouchStart(e: TouchEvent) {
