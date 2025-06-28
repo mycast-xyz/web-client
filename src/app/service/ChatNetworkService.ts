@@ -79,6 +79,7 @@ class ChatNetworkServiceInit {
           break;
         case 'reaction':
           GroupedChatService.updateReactions(command.response.chatHash, command.response.reactions);
+          ChatService.requestScrollDown();
           break;
         case 'applyNotifyFrom':
           PushListService.push({
