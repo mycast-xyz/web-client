@@ -3,6 +3,7 @@
   import { ChatReactionService } from '../../../../service/ChatReactionService';
   import { SessionService } from '../../../../service/SessionService';
   import { SocketService } from '../../../../service/SocketService';
+  import { ToastService } from '../../../../service/ToastService';
   import { WindowService } from '../../../../service/WindowService';
   import ModalTextInput from '../../../../view-framework/modal/input/ModalTextInput.svelte';
   import Modal from '../../../../view-framework/modal/Modal.svelte';
@@ -22,6 +23,8 @@
       const privateKey = SessionService.getPrivateKey();
       const stagedChat = ChatReactionService.stagedChat;
       stagedChat && SocketService.reaction?.execute(privateKey, stagedChat, `c${reaction}`);
+    } else {
+      ToastService.toastText('추가 실패');
     }
     WindowService.closeModal();
   }
