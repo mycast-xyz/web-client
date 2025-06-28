@@ -6,13 +6,26 @@
   import { SocketService } from '../../service/SocketService';
   import { ToastService } from '../../service/ToastService';
   import { WindowService } from '../../service/WindowService';
+  import { onMount } from 'svelte';
 
+  let root: HTMLElement;
   let target: NotificationTarget | null = get(NotifyUserService.target);
   $: hash = target?.hash;
   $: icon = target?.icon;
   $: name = target?.nickname;
 
   NotifyUserService.target.subscribe((v) => (target = v));
+
+  onMount(() => {
+    root.focus();
+  });
+
+  function onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      notifyUser();
+      WindowService.closeModal();
+    }
+  }
 
   const notifyUser = () => {
     const privateKey = SessionService.getPrivateKey();
@@ -26,7 +39,9 @@
   };
 </script>
 
-<div class="modal">
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div class="modal" bind:this={root} on:keydown={onKeyDown} tabindex="0">
   <img class="icon" src={icon} alt="호출 유저 아이콘" />
   <div>
     <div class="title">
@@ -57,6 +72,15 @@
     border: 5px solid var(--primary-background-color);
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
       0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+    &:focus-visible {
+      outline: 1px solid var(--primary-hoverground-color);
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+      box-shadow: 1px 1px 5px rgba(1, 1, 0, 0.7);
+    }
 
     img {
       width: 120px;
