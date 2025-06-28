@@ -127,7 +127,11 @@
       position: fixed;
       top: 50px;
       .body {
-        height: calc(100vh - 73px);
+        height: calc(100vh - 173px);
+      }
+
+      .footer {
+        height: 50px;
       }
     }
   }
