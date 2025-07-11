@@ -10,6 +10,7 @@
   import ChatBotList from './user/ChatBotList.svelte';
   import ClipList from './clip/ClipList.svelte';
   import type { ActiveInterfaceMenu } from '../../service/window/ActiveInterfaceMenu';
+  import ChatReplyView from './reply/ChatReplyView.svelte';
 
   const clipboard = new ClipboardManager();
 
@@ -58,6 +59,9 @@
   <div class="chat-list">
     <ChatList />
   </div>
+  <div class="reply-box">
+    <ChatReplyView />
+  </div>
   <div class="chat-user-list" class:hide={activeInterfaceMenu !== 'user'}>
     <ChatUserList />
   </div>
@@ -90,6 +94,17 @@
     top: 0;
     width: 100%;
     height: calc(100% - #{$chat-interface-height});
+  }
+
+  .reply-box {
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: $chat-interface-height;
+    width: 100%;
+    height: auto;
+    opacity: 0.7;
+    background: #000000;
   }
 
   .chat-user-list {

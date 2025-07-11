@@ -29,6 +29,7 @@
   import ReactionList from './reaction/ChatReactionListView.svelte';
   import { WindowService } from '../../../service/WindowService';
   import { ChatReactionService } from '../../../service/ChatReactionService';
+  import { ChatReplyService } from '../../../service/ChatReplyService';
 
   export let message: ChatMessage;
   let menuActive: boolean = false;
@@ -141,6 +142,10 @@
     }
   }
 
+  function onDoubleClick() {
+    ChatReplyService.stageChat(message.hash);
+  }
+
   type Pack = {
     type: string;
     component: ComponentType;
@@ -153,6 +158,7 @@
 <div
   class="container"
   class:hover={menuActive}
+  on:dblclick={onDoubleClick}
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
   on:click={onClick}
