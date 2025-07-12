@@ -84,7 +84,6 @@
 
   function onKeyDown(e: KeyboardEvent) {
     const { key } = e;
-    console.log(key);
     switch (key) {
       case 'ArrowUp':
         e.preventDefault();
