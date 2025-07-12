@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { ChatReplyService } from '../../../service/ChatReplyService';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import { ChatReplyService } from '../../../service/ChatReplyService';
 
   let message: ChatMessage | null = null;
 
@@ -16,6 +16,9 @@
     <div class="body">
       {message.body}
     </div>
+    <button on:click={() => ChatReplyService.unstageChat()}>
+      <i class="fas fa-backspace" />
+    </button>
   </div>
 {/if}
 
@@ -48,5 +51,20 @@
     flex-shrink: 0;
     position: relative;
     top: 1px;
+  }
+
+  .main button {
+    background: none;
+    flex-shrink: 0;
+    width: 30px;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    color: var(--primary-foreground-color);
+
+    &:hover {
+      color: var(--primary-activeground-color);
+    }
   }
 </style>

@@ -2,7 +2,6 @@
   import { SvelteComponent, onMount, type ComponentType } from 'svelte';
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
-  import type { ChatReply } from '../../../model/chat/ChatReply';
   import { ChatReactionService } from '../../../service/ChatReactionService';
   import { ChatReplyService } from '../../../service/ChatReplyService';
   import { ChatService } from '../../../service/ChatService';
@@ -147,6 +146,7 @@
 
   function onReplyClick() {
     ChatReplyService.stageChat(message);
+    ChatService.focusInput();
   }
 
   type Pack = {
@@ -164,6 +164,7 @@
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
   on:click={onClick}
+  on:dblclick|preventDefault={(_) => onReplyClick()}
 >
   <div class="body">
     {#if pack}

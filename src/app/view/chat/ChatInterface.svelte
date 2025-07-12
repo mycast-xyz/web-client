@@ -17,6 +17,7 @@
   const clipboardManager = new ClipboardManager();
   const chatHistories = new ChatHistoryManager();
   let imageInput: HTMLInputElement;
+  let chatPrompt: HTMLInputElement;
   let message: string = '';
   let isConnected = false;
   let isScrollLock = false;
@@ -37,6 +38,7 @@
 
   onMount(() => {
     ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
+    ChatService.focusInputEvent.subscribe((e) => e && chatPrompt.focus());
     EmojiService.appendEmojiChat.subscribe((it) => it && onAppendEmojiChat(it));
   });
 
@@ -82,6 +84,7 @@
 
   function onKeyDown(e: KeyboardEvent) {
     const { key } = e;
+    console.log(key);
     switch (key) {
       case 'ArrowUp':
         e.preventDefault();
@@ -90,6 +93,11 @@
       case 'ArrowDown':
         e.preventDefault();
         message = chatHistories.getNext();
+        return false;
+      case 'Escape':
+        if (ChatReplyService.isStaged()) {
+          ChatReplyService.unstageChat();
+        }
         return false;
       default:
         return true;
@@ -152,6 +160,7 @@
     </div>
   </div>
   <input
+    bind:this={chatPrompt}
     type="text"
     class="input-box"
     bind:value={message}
