@@ -143,7 +143,7 @@
   }
 
   function onDoubleClick() {
-    ChatReplyService.stageChat(message.hash);
+    ChatReplyService.stageChat(message);
   }
 
   type Pack = {

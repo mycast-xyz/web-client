@@ -1,12 +1,18 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { ChatReplyService } from '../../../service/ChatReplyService';
+  import type { ChatMessage } from '../../../model/chat/ChatMessage';
 
-  let hash: string | null = null;
+  let message: ChatMessage | null = null;
 
   onMount(() => {
-    ChatReplyService.stagedChat.subscribe((it) => (hash = it));
+    ChatReplyService.stagedChat.subscribe((it) => (message = it));
   });
 </script>
 
-<div>{hash}</div>
+<div>
+  {#if message}
+    {message?.body}
+    {message?.hash}
+  {/if}
+</div>
