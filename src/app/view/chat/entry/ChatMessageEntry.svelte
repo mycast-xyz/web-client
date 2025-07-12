@@ -73,21 +73,9 @@
   ];
   let customReactionMenus: string[] = [];
 
-  const testReply: ChatReply = {
-    hash: '1234',
-    timestamp: '1234!@#',
-    user: {
-      hash: '12341234',
-      icon: 'https://i.imgur.com/9o7a6bp.jpeg',
-      nickname: 'nickname1111111111111111111111111111111111'
-    },
-    value: 'test'
-  };
-
   $: pack = getComponent(message.type);
   $: reactions = message.reactions;
   $: replies = message.replies;
-  // const replies: ChatReply[] = [];
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
   $: reactionMenus = defaultReactionMenus.concat(
     customReactionMenus.map((e) => ({ icon: e, value: `c${e}` }))
@@ -157,7 +145,7 @@
     }
   }
 
-  function onDoubleClick() {
+  function onReplyClick() {
     ChatReplyService.stageChat(message);
   }
 
@@ -173,7 +161,6 @@
 <div
   class="container"
   class:hover={menuActive}
-  on:dblclick={onDoubleClick}
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
   on:click={onClick}
@@ -186,6 +173,9 @@
     {/if}
 
     <div class="menu">
+      <button on:click={(_) => onReplyClick()}>
+        <i class="fas fa-comment-dots" />
+      </button>
       {#each reactionMenus as menu}
         <button on:click={(_) => onReactionClick(menu.value)}>
           <span>{menu.icon}</span>
