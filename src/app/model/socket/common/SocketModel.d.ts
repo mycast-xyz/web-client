@@ -139,6 +139,12 @@ type SocketCurrentChat = {
     user: { hash: string; icon: string; nickname: string };
     value: string;
   }[];
+  replies: {
+    hash: string;
+    timestamp: string;
+    user: { hash: string; icon: string; nickname: string };
+    value: string;
+  }[];
   timestamp: string;
   type: string; // TODO: make type
 };

@@ -29,7 +29,8 @@ export class ChatAdapter {
       hash: socketChat.hash,
       timestamp: socketChat.timestamp,
       body: socketChat.msg.response,
-      reactions: socketChat.reactions
+      reactions: socketChat.reactions,
+      replies: socketChat.replies
     };
   }
 
