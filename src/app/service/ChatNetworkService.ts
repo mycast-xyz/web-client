@@ -5,6 +5,7 @@ import { SocketLoginCommand } from '../model/socket/command/SocketLoginCommand';
 import { ModifyProfileCommand } from '../model/socket/command/SocketModifyProfileCommand';
 import { NotifyUserCommand } from '../model/socket/command/SocketNotifyUserCommand';
 import { SocketReactionCommand } from '../model/socket/command/SocketReactionCommand';
+import { SocketReplyCommand } from '../model/socket/command/SocketReplyCommand';
 import type {
   SocketCommand,
   SocketCurrentBot,
@@ -56,6 +57,7 @@ class ChatNetworkServiceInit {
     SocketService.modifyProfile = new ModifyProfileCommand(this.#socket);
     SocketService.notifyUser = new NotifyUserCommand(this.#socket);
     SocketService.reaction = new SocketReactionCommand(this.#socket);
+    SocketService.reply = new SocketReplyCommand(this.#socket);
 
     this.#socket.onReceived((command: SocketCommand) => {
       switch (command.commandType) {
@@ -79,6 +81,10 @@ class ChatNetworkServiceInit {
           break;
         case 'reaction':
           GroupedChatService.updateReactions(command.response.chatHash, command.response.reactions);
+          ChatService.requestScrollDown();
+          break;
+        case 'reply':
+          GroupedChatService.updateReply(command.response.chatHash, command.response.replies);
           ChatService.requestScrollDown();
           break;
         case 'applyNotifyFrom':

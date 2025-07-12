@@ -1,5 +1,3 @@
-import type { ChatClip } from '../../chat/clip/ChatClip';
-
 export interface SocketModel {
   send(request: SocketRequest): void;
   onReceived(callback: SocketCallback): void;
@@ -12,7 +10,8 @@ export type SocketRequest =
   | SocketChatRequest
   | SocketModifyProfileRequest
   | SocketNotifyUserRequest
-  | SocketReactionRequest;
+  | SocketReactionRequest
+  | SocketReplyRequest;
 
 type SocketLoginRequest = {
   commandType: 'user-login';
@@ -60,6 +59,15 @@ type SocketReactionRequest = {
   };
 };
 
+type SocketReplyRequest = {
+  commandType: 'reply';
+  resource: {
+    userKey: string;
+    chatHash: string;
+    reply: string;
+  };
+};
+
 export type SocketCallback = (response: SocketCommand) => void;
 
 export type SocketCommand =
@@ -72,7 +80,8 @@ export type SocketCommand =
   | SocketCurrentBotsCommand
   | SocketNotificationFromCommand
   | SocketNotificationToCommand
-  | SocketReactionCommand;
+  | SocketReactionCommand
+  | SocketReplyCommand;
 
 type BaseSocketCommand<T, Request, Response> = {
   hash: string;
@@ -197,3 +206,15 @@ type SocketReactionResponse = {
 };
 
 type SocketReactionCommand = BaseSocketCommand<'reaction', null, SocketReactionResponse>;
+
+type SocketReplyResponse = {
+  chatHash: string;
+  replies: {
+    hash: string;
+    timestamp: string;
+    user: { hash: string; icon: string; nickname: string };
+    value: string;
+  }[];
+};
+
+type SocketReplyCommand = BaseSocketCommand<'reply', null, SocketReplyResponse>;

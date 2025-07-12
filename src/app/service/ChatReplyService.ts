@@ -13,6 +13,10 @@ class ChatReplyServiceInit {
       this.#stagedChat.set(message);
     }
   }
+
+  unstageChat() {
+    this.#stagedChat.set(null);
+  }
 }
 
 export const ChatReplyService = new ChatReplyServiceInit();

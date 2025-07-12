@@ -1,6 +1,7 @@
 import { writable, type Readable, type Writable } from 'svelte/store';
 import type { Chat } from '../../model/chat/Chat';
 import type { ChatReaction } from '../../model/chat/ChatReaction';
+import type { ChatReply } from '../../model/chat/ChatReply';
 import { HashGenerator } from '../../util/hash/HashGenerator';
 import type { ChatGroup } from '../../view/chat/entry/ChatGroup';
 
@@ -33,6 +34,20 @@ class GroupedChatServiceInit {
         const found = messages.find((m) => m.hash === chatHash);
         if (found) {
           found.reactions = reactions;
+        }
+      });
+      return [...it];
+    });
+  }
+
+  updateReply(chatHash: string, replies: ChatReply[]) {
+    console.log(replies);
+    this.#groupedChats.update((it) => {
+      it.forEach((groupedChat) => {
+        const message = groupedChat.messages;
+        const found = message.find((m) => m.hash === chatHash);
+        if (found) {
+          found.replies = replies;
         }
       });
       return [...it];

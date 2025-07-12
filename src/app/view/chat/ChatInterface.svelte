@@ -11,6 +11,8 @@
   import { SessionService } from '../../service/SessionService';
   import { SocketService } from '../../service/SocketService';
   import { WindowService } from '../../service/WindowService';
+  import { ChatReplyService } from '../../service/ChatReplyService';
+  import { get } from 'svelte/store';
 
   const clipboardManager = new ClipboardManager();
   const chatHistories = new ChatHistoryManager();
@@ -59,8 +61,15 @@
       if (!privateKey) {
         return;
       }
-      SocketService.chat?.execute(privateKey, 'chat', message);
-      chatHistories.addHistory(message);
+
+      const replyStagedChat = get(ChatReplyService.stagedChat);
+      if (replyStagedChat) {
+        SocketService.reply?.execute(privateKey, replyStagedChat.hash, message);
+        ChatReplyService.unstageChat();
+      } else {
+        SocketService.chat?.execute(privateKey, 'chat', message);
+        chatHistories.addHistory(message);
+      }
       if (EmojiUtils.isEmoji(message)) {
         EmojiService.registerRecent(message);
       }

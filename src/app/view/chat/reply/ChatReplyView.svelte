@@ -15,7 +15,6 @@
     <i class="fas fa-comment-dots" />
     <div class="body">
       {message.body}
-      {message?.hash}
     </div>
   </div>
 {/if}
@@ -35,6 +34,7 @@
   }
 
   .body {
+    flex-grow: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

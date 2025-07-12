@@ -86,8 +86,8 @@
 
   $: pack = getComponent(message.type);
   $: reactions = message.reactions;
-  //$: replies = message.replies ?? [reply, reply];
-  const replies: ChatReply[] = [];
+  $: replies = message.replies;
+  // const replies: ChatReply[] = [];
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
   $: reactionMenus = defaultReactionMenus.concat(
     customReactionMenus.map((e) => ({ icon: e, value: `c${e}` }))
