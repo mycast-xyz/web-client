@@ -6,4 +6,5 @@ export type ChatMessage = {
   timestamp: string;
   body: any; //TODO: remove any
   reactions: ChatReaction[];
+  replies: ChatReply[];
 };

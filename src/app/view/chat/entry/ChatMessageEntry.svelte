@@ -2,10 +2,14 @@
   import { SvelteComponent, onMount, type ComponentType } from 'svelte';
   import { get } from 'svelte/store';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
+  import type { ChatReply } from '../../../model/chat/ChatReply';
+  import { ChatReactionService } from '../../../service/ChatReactionService';
+  import { ChatReplyService } from '../../../service/ChatReplyService';
   import { ChatService } from '../../../service/ChatService';
   import { OptionService } from '../../../service/OptionService';
   import { SessionService } from '../../../service/SessionService';
   import { SocketService } from '../../../service/SocketService';
+  import { WindowService } from '../../../service/WindowService';
   import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import AfreecaPack from '../pack/AfreecaPack.svelte';
   import AnimationPack from '../pack/AnimationPack.svelte';
@@ -27,9 +31,7 @@
   import MobileImagePack from '../pack/image/MobileImagePack.svelte';
   import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import ReactionList from './reaction/ChatReactionListView.svelte';
-  import { WindowService } from '../../../service/WindowService';
-  import { ChatReactionService } from '../../../service/ChatReactionService';
-  import { ChatReplyService } from '../../../service/ChatReplyService';
+  import ReplyList from './reply/ChatReplyListView.svelte';
 
   export let message: ChatMessage;
   let menuActive: boolean = false;
@@ -71,8 +73,21 @@
   ];
   let customReactionMenus: string[] = [];
 
+  const testReply: ChatReply = {
+    hash: '1234',
+    timestamp: '1234!@#',
+    user: {
+      hash: '12341234',
+      icon: 'https://i.imgur.com/9o7a6bp.jpeg',
+      nickname: 'nickname1111111111111111111111111111111111'
+    },
+    value: 'test'
+  };
+
   $: pack = getComponent(message.type);
   $: reactions = message.reactions;
+  //$: replies = message.replies ?? [reply, reply];
+  const replies: ChatReply[] = [];
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
   $: reactionMenus = defaultReactionMenus.concat(
     customReactionMenus.map((e) => ({ icon: e, value: `c${e}` }))
@@ -184,6 +199,11 @@
   {#if reactions?.length > 0}
     <div class="reaction">
       <ReactionList {reactions} />
+    </div>
+  {/if}
+  {#if replies?.length > 0}
+    <div>
+      <ReplyList {replies} />
     </div>
   {/if}
   {#if enableTimestamp}

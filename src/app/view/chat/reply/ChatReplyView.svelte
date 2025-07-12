@@ -42,11 +42,11 @@
   }
 
   .main i {
-    font-size: 0.85rem; /* 텍스트 크기보다 약간 작게 */
+    font-size: 0.85rem;
     opacity: 0.7;
     margin-right: 5px;
     flex-shrink: 0;
     position: relative;
-    top: 1px; /* 텍스트와 baseline 맞추기 위해 미세 조정 */
+    top: 1px;
   }
 </style>
