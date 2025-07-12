@@ -173,9 +173,11 @@
     {/if}
 
     <div class="menu">
-      <button on:click={(_) => onReplyClick()}>
-        <i class="fas fa-comment-dots" />
-      </button>
+      {#if message.type === 'chat'}
+        <button on:click={(_) => onReplyClick()}>
+          <i class="fas fa-comment-dots" />
+        </button>
+      {/if}
       {#each reactionMenus as menu}
         <button on:click={(_) => onReactionClick(menu.value)}>
           <span>{menu.icon}</span>
