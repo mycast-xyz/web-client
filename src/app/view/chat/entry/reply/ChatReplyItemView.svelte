@@ -21,6 +21,7 @@
 <style lang="scss">
   .entry {
     position: relative;
+    max-width: 100%;
     display: flex;
 
     .icon img {
@@ -35,6 +36,8 @@
       flex-grow: 1;
       color: var(--primary-foreground-color);
       font-size: 0.8em;
+      word-wrap: break-word;
+      max-width: calc(100% - 20px);
     }
 
     .title {
