@@ -41,7 +41,6 @@ class GroupedChatServiceInit {
   }
 
   updateReply(chatHash: string, replies: ChatReply[]) {
-    console.log(replies);
     this.#groupedChats.update((it) => {
       it.forEach((groupedChat) => {
         const message = groupedChat.messages;
