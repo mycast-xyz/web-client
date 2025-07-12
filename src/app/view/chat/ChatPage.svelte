@@ -103,8 +103,6 @@
     bottom: $chat-interface-height;
     width: 100%;
     height: auto;
-    opacity: 0.7;
-    background: #000000;
   }
 
   .chat-user-list {
