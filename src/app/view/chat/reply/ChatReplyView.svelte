@@ -13,9 +13,17 @@
 {#if message}
   <div class="main">
     <i class="fas fa-comment-dots" />
-    <div class="body">
-      {message.body}
-    </div>
+    {#if message.type === 'chat'}
+      <div class="body">
+        {message.body}
+      </div>
+    {/if}
+    {#if message.type === 'image'}
+      <div class="body">
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <img src={message.body} />
+      </div>
+    {/if}
     <button on:click={() => ChatReplyService.unstageChat()}>
       <i class="fas fa-backspace" />
     </button>
@@ -42,6 +50,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     word-break: break-all;
+
+    img {
+      width: auto;
+      height: 30px;
+    }
   }
 
   .main i {

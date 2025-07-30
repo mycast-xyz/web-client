@@ -13,7 +13,7 @@ class ChatReplyServiceInit {
   }
 
   stageChat(message: ChatMessage) {
-    if (message.type === 'chat') {
+    if (message.type === 'chat' || message.type === 'image') {
       this.#stagedChat.set(message);
     }
   }

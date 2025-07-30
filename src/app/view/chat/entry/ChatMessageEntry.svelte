@@ -174,7 +174,7 @@
     {/if}
 
     <div class="menu">
-      {#if message.type === 'chat'}
+      {#if message.type === 'chat' || message.type === 'image'}
         <button on:click={(_) => onReplyClick()}>
           <i class="fas fa-comment-dots" />
         </button>
