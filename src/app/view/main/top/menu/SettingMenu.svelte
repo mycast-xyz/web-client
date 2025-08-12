@@ -9,6 +9,7 @@
   import SettingMenuPlatformIcon from './SettingMenuPlatformIcon.svelte';
   import SettingSwitch from './SettingSwitch.svelte';
   import UserSettingMenuItem from './UserSettingMenuItem.svelte';
+  import { Feature } from '../../../../service/FeatureService';
 
   let platformId = 'local';
   let darkMode = false;
@@ -37,6 +38,13 @@
     <SettingMenuPlatformIcon slot="extra" {platformId} />
   </DefaultMenuItem>
   <DefaultMenuItem menuClick={() => openModal('site')} name="사이트 설정" icon="fas fa-tools" />
+  {#if Feature.emojiSetting}
+    <DefaultMenuItem
+      menuClick={() => openModal('setting-emoji')}
+      name="이모지 설정"
+      icon="fas fa-icons"
+    />
+  {/if}
   <DefaultMenuItem
     menuClick={() => openModal('bookmark')}
     name="북마크 설정"

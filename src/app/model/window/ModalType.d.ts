@@ -6,6 +6,7 @@ export type ModalType =
   | 'chat-widget'
   | 'donation'
   | 'notify-user'
+  | 'setting-emoji'
   | 'upload-image-chat'
   | 'add-stream'
   | 'upload-memo'

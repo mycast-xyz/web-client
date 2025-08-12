@@ -2,6 +2,8 @@
   import type { ComponentType } from 'svelte';
   import { WindowService } from '../../service/WindowService';
   import Layer from '../../view-framework/layer/Layer.svelte';
+  import ChatReactionModal from '../chat/entry/reaction/ChatReactionModal.svelte';
+  import DonationSend from '../donation/DonationSend.svelte';
   import TestCommandModal from '../lab/TestCommandModal.svelte';
   import NotifyUserModal from '../notification/NotifyUserModal.svelte';
   import ChatWidgetSettingModal from '../setting/ChatWidgetSettingModal.svelte';
@@ -10,11 +12,10 @@
   import SiteSettingModal from '../setting/SiteSettingModal.svelte';
   import StreamSettingModal from '../setting/StreamSettingModal.svelte';
   import BookmarkSettingModal from '../setting/bookmark/BookmarkSettingModal.svelte';
+  import EmojiSettingModal from '../setting/emoji/EmojiSettingModal.svelte';
   import AddStreamModal from './AddStreamModal.svelte';
   import UploadImageChatModal from './image/UploadImageChatModal.svelte';
   import UploadMemoModal from './memo/UploadMemoModal.svelte';
-  import DonationSend from '../donation/DonationSend.svelte';
-  import ChatReactionModal from '../chat/entry/reaction/ChatReactionModal.svelte';
 
   let modalWrapper: HTMLElement;
   let modal: ComponentType | null = null;
@@ -59,6 +60,9 @@
         break;
       case 'test-command':
         modal = TestCommandModal;
+        break;
+      case 'setting-emoji':
+        modal = EmojiSettingModal;
         break;
       default:
         modal = null;
