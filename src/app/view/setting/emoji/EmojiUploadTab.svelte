@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import { ToastService } from '../../../service/ToastService';
+  import { EmojiUploadService } from './EmojiUploadService';
 
   const dispatch = createEventDispatcher();
 
@@ -33,8 +34,9 @@
     dragOver = false;
   }
 
-  function onFileChange(event: DragEvent) {
-    const file = event.target?.files?.[0];
+  function onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input?.files?.[0];
     if (file) {
       handleFile(file);
     }
@@ -51,7 +53,8 @@
 
     const reader = new FileReader();
     reader.onload = (e) => {
-      imagePreview = e.target?.result;
+      const result = e.target?.result;
+      imagePreview = typeof result === 'string' ? result : '';
     };
     reader.readAsDataURL(file);
   }
@@ -68,6 +71,9 @@
     uploading = true;
 
     dispatch('upload', { imageFile, emojiName, uploader });
+
+    console.log('업로드 시작:', imageFile, emojiName, uploader);
+    EmojiUploadService.uploadByFile(imageFile, emojiName);
 
     // 업로드 완료 가정 (예: 2초 뒤)
     setTimeout(() => {
