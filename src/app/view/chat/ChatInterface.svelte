@@ -37,6 +37,7 @@
   ChatNetworkService.isConnected.subscribe((v) => (isConnected = v));
 
   onMount(() => {
+    message = '';
     ChatService.scrollLock.subscribe((v) => (isScrollLock = v));
     ChatService.focusInputEvent.subscribe((e) => e && chatPrompt?.focus());
     EmojiService.appendEmojiChat.subscribe((it) => it && onAppendEmojiChat(it));
