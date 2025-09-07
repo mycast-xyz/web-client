@@ -1,5 +1,5 @@
 class FeatureServiceInit {
-  readonly emojiSetting = true;
+  readonly customEmoji = false;
 }
 
 export const Feature = new FeatureServiceInit();

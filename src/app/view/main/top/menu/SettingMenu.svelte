@@ -38,7 +38,7 @@
     <SettingMenuPlatformIcon slot="extra" {platformId} />
   </DefaultMenuItem>
   <DefaultMenuItem menuClick={() => openModal('site')} name="사이트 설정" icon="fas fa-tools" />
-  {#if Feature.emojiSetting}
+  {#if Feature.customEmoji}
     <DefaultMenuItem
       menuClick={() => openModal('setting-emoji')}
       name="이모지 설정"
