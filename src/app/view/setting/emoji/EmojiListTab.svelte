@@ -23,7 +23,6 @@
 </script>
 
 <div class="content">
-
   {#if emojis.length > 0}
     <table>
       <thead>

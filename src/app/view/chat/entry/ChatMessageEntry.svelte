@@ -28,6 +28,7 @@
   import GeneralPurposeCarouselPack from '../pack/gpc/GeneralPurposeCarouselPack.svelte';
   import ImagePack from '../pack/image/ImagePack.svelte';
   import MobileImagePack from '../pack/image/MobileImagePack.svelte';
+  import RichTextPack from '../pack/richtext/RichTextPack.svelte';
   import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import ReactionList from './reaction/ChatReactionListView.svelte';
   import ReplyList from './reply/ChatReplyListView.svelte';
@@ -42,6 +43,7 @@
     { type: 'animation', component: AnimationPack },
     { type: 'book', component: BookPack },
     { type: 'chat', component: TextPack },
+    { type: 'rich-text', component: RichTextPack },
     {
       type: 'image',
       component: ImagePack,

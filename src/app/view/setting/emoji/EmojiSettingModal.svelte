@@ -12,7 +12,9 @@
   <div slot="body" class="site-set-box">
     <div class="tab">
       <div class="item {tab === 'list' ? 'active' : ''}" on:click={() => (tab = 'list')}>List</div>
-      <div class="item {tab === 'upload' ? 'active' : ''}" on:click={() => (tab = 'upload')}>Upload</div>
+      <div class="item {tab === 'upload' ? 'active' : ''}" on:click={() => (tab = 'upload')}>
+        Upload
+      </div>
     </div>
 
     {#if tab === 'list'}
