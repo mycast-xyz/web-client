@@ -22,6 +22,7 @@
       {#if content.type === 'emoji-image'}
         <img
           class="emoji-image"
+          class:big={richTexts.length === 1}
           src={content.url}
           alt={`:${content.name}:`}
           on:contextmenu={() => false}
@@ -49,6 +50,12 @@
         height: 32px;
         margin: 0px;
         object-fit: contain;
+        border-radius: 5px;
+
+        &.big {
+          width: 64px;
+          height: 64px;
+        }
       }
     }
   }
