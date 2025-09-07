@@ -2,7 +2,7 @@ import axios from 'axios';
 import { SessionService } from '../../../../service/SessionService';
 
 export class EmojiUploadCommand {
-  async execute(file: File, name: string): Promise<EmojiDto | null> {
+  async execute(file: File, name: string): Promise<UploadResult | null> {
     if (!file || !this.#isValidFile(file)) {
       console.error('invalid files');
       return null;
@@ -12,7 +12,7 @@ export class EmojiUploadCommand {
     const uri = 'https://mycast.xyz:9011/emoji';
     const privKey = SessionService.getPrivateKey();
     try {
-      const { data } = await axios.post<EmojiDto>(uri, { base64, name, privKey });
+      const { data } = await axios.post<UploadResult>(uri, { base64, name, privKey });
       return data;
     } catch (e) {
       console.error(e);
@@ -35,4 +35,23 @@ export class EmojiUploadCommand {
   }
 }
 
-type EmojiDto = {};
+export type UploadResult = UploadSuccessResult | UploadFailResult;
+
+type UploadSuccessResult = {
+  result: true;
+  emoji: UploadEmojiDto;
+};
+
+type UploadFailResult = {
+  result: false;
+  reason: string;
+  msg: string;
+};
+
+type UploadEmojiDto = {
+  type: string;
+  name: string;
+  imageHash: string;
+  thumbnailUrl: string;
+  uploaderIdx: number;
+};

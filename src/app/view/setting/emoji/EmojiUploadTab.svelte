@@ -60,7 +60,7 @@
     reader.readAsDataURL(file);
   }
 
-  function upload() {
+  async function upload() {
     if (!imageFile) {
       alert('이미지를 선택해주세요.');
       return;
@@ -74,15 +74,17 @@
     dispatch('upload', { imageFile, emojiName, uploader });
 
     console.log('업로드 시작:', imageFile, emojiName, uploader);
-    EmojiUploadService.uploadByFile(imageFile, emojiName);
 
-    // 업로드 완료 가정 (예: 2초 뒤)
-    setTimeout(async () => {
-      uploading = false;
-      ToastService.toastText('업로드 완료!');
-      reset();
-      await NewEmojiService.init();
-    }, 2000);
+    const result = await EmojiUploadService.uploadByFile(imageFile, emojiName);
+    uploading = false;
+    if (!result.result) {
+      ToastService.toastText(`업로드 실패: ${result.msg}`);
+      return;
+    }
+
+    ToastService.toastText('업로드 완료!');
+    reset();
+    await NewEmojiService.init();
   }
 
   function reset() {
