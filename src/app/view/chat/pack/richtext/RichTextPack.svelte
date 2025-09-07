@@ -45,8 +45,8 @@
       .emoji-image {
         display: inline-block;
         vertical-align: middle;
-        width: 22px;
-        height: 22px;
+        width: 32px;
+        height: 32px;
         margin: 0px;
         object-fit: contain;
       }
