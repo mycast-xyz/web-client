@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import { NewEmojiService } from '../../../service/NewEmojiService';
   import { ToastService } from '../../../service/ToastService';
   import { EmojiUploadService } from './EmojiUploadService';
 
@@ -12,7 +13,7 @@
   let uploading = false;
   let fileInput: HTMLInputElement;
 
-  // 드래그 오버 상태 표시용
+  // drag over state
   let dragOver = false;
 
   function onDrop(event: DragEvent) {
@@ -43,7 +44,7 @@
   }
 
   function handleFile(file: File) {
-    // 이미지 파일인지 확인 (JPEG, PNG, GIF, WEBP)
+    // check image file type (JPEG, PNG, GIF, WEBP)
     const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     if (!validTypes.includes(file.type)) {
       alert('지원하지 않는 파일 형식입니다.');
@@ -76,10 +77,11 @@
     EmojiUploadService.uploadByFile(imageFile, emojiName);
 
     // 업로드 완료 가정 (예: 2초 뒤)
-    setTimeout(() => {
+    setTimeout(async () => {
       uploading = false;
       ToastService.toastText('업로드 완료!');
       reset();
+      await NewEmojiService.init();
     }, 2000);
   }
 
@@ -103,7 +105,6 @@
   >
     {#if imagePreview}
       <img src={imagePreview} alt="Preview" class="preview" />
-      <div class="placeholder">끌어다 놓거나 <span style="color:#4287f5;">파일 선택</span></div>
     {:else}
       <div class="placeholder">
         <svg
@@ -113,8 +114,8 @@
           stroke-width="2"
           viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg
         >
-        <!--끌어다 놓거나 <span style="color:#4287f5;">파일 선택</span><br />
-        JPEG, PNG, GIF, 또는 WEBP. 대형 파일은 자동으로 크기가 조정되어요.-->
+        <br />
+        <p>끌어다 놓거나 <span style="color:#4287f5;">파일 선택</span><br /></p>
       </div>
     {/if}
     <input
