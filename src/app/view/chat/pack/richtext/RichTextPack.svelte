@@ -63,12 +63,12 @@
       line-height: 22px;
 
       .emoji-images {
-        .emoji-image:first-child {
+        img:first-child {
           border-top-left-radius: 5px;
           border-bottom-left-radius: 5px;
         }
 
-        .emoji-image:last-child {
+        img:last-child {
           border-top-right-radius: 5px;
           border-bottom-right-radius: 5px;
         }
