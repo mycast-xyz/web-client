@@ -23,7 +23,6 @@
 </script>
 
 <div class="content">
-  <h3>내 이모지</h3>
 
   {#if emojis.length > 0}
     <table>
@@ -55,6 +54,13 @@
 
 <style lang="scss">
   .content {
+    .emoji-title {
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 0 0 18px 0;
+      letter-spacing: 1px;
+    }
     font-size: 14px;
     line-height: 1.5;
 
