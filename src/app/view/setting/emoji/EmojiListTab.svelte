@@ -1,14 +1,20 @@
 <script lang="ts">
-  let emojies = [
-    { src: 'https://i.imgur.com/v14PNs1.jpeg', name: 'myo' },
-    { src: 'https://i.imgur.com/5F0oNc7.png', name: 'me' }
-  ];
+  import { onMount } from 'svelte';
+  import { NewEmojiService } from '../../../service/NewEmojiService';
+  import type { CustomEmoji } from '../../../model/emoji/CustomEmoji';
+
+  let emojis: CustomEmoji[] = [];
+
+  onMount(() => {
+    NewEmojiService.emojis.subscribe((it) => (emojis = it));
+    NewEmojiService.init();
+  });
 </script>
 
 <div class="content">
   <h3>내 이모지</h3>
 
-  {#if emojies.length > 0}
+  {#if emojis.length > 0}
     <table>
       <thead>
         <tr>
@@ -17,9 +23,9 @@
         </tr>
       </thead>
       <tbody>
-        {#each emojies as emoji}
+        {#each emojis as emoji}
           <tr>
-            <td><img src={emoji.src} alt={emoji.name} /></td>
+            <td><img src={emoji.thumbnailUrl} alt={emoji.name} /></td>
             <td>:{emoji.name}:</td>
           </tr>
         {/each}
