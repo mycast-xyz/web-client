@@ -20,7 +20,12 @@
   <p>
     {#each richTexts as content}
       {#if content.type === 'emoji-image'}
-        <span><img class="emoji-image" src={content.url} alt={`:${content.name}:`} /></span>
+        <img
+          class="emoji-image"
+          src={content.url}
+          alt={`:${content.name}:`}
+          on:contextmenu={() => false}
+        />
       {:else if content.type === 'plain'}
         <span>{@html content.text}</span>
       {/if}
