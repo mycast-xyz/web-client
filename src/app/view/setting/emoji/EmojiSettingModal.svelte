@@ -11,8 +11,8 @@
 <SettingModal title="이모지 설정" icon="fas fa-icons">
   <div slot="body" class="site-set-box">
     <div class="tab">
-      <div class="item {tab === 'list' ? 'active' : ''}" on:click={() => (tab = 'list')}>List</div>
-      <div class="item {tab === 'upload' ? 'active' : ''}" on:click={() => (tab = 'upload')}>
+      <div class="item" class:active={tab === 'list'} on:click={() => (tab = 'list')}>List</div>
+      <div class="item" class:active={tab === 'upload'} on:click={() => (tab = 'upload')}>
         Upload
       </div>
     </div>

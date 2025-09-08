@@ -4,13 +4,13 @@ const MAX_RECENT_COUNT = 10;
 
 class EmojiServiceInit {
   readonly #recents: Writable<string[]> = writable([]);
-  readonly #appendEmojiChatCommand: Writable<string> = writable();
+  readonly #appendEmojiChatCommand: Writable<string | null> = writable();
 
   get recents(): Readable<string[]> {
     return this.#recents;
   }
 
-  get appendEmojiChat(): Readable<string> {
+  get appendEmojiChat(): Readable<string | null> {
     return this.#appendEmojiChatCommand;
   }
 
@@ -24,6 +24,7 @@ class EmojiServiceInit {
 
   appendEmoji(emoji: string) {
     this.#appendEmojiChatCommand.set(emoji);
+    this.#appendEmojiChatCommand.set(null);
   }
 }
 
