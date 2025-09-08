@@ -11,14 +11,20 @@
   $: totalPages = Math.ceil(emojis.length / 10);
 
   onMount(() => {
-    NewEmojiService.emojis.subscribe((it) => (emojis = it));
+    const unsubscribe = NewEmojiService.emojis.subscribe((it) => (emojis = it));
     NewEmojiService.init();
+
+    return () => unsubscribe();
   });
 
   async function deleteEmoji(idx: number) {
     const ok = await NewEmojiService.delete(idx);
     if (ok) {
       ToastService.toastText('이모지 삭제 완료');
+      const newTotalPages = Math.ceil(emojis.length / 10);
+      if (page > newTotalPages) {
+        page = newTotalPages;
+      }
     } else {
       ToastService.toastText('이모지 삭제 실패');
     }
@@ -50,18 +56,16 @@
       </tbody>
     </table>
     {#if totalPages > 1}
-      <!-- svelte-ignore a11y-missing-attribute -->
-      <!-- svelte-ignore a11y-missing-content -->
       <div class="pagination">
         <button on:click={() => (page = Math.max(1, page - 1))} disabled={page === 1}>
-          <a class="fas fa-chevron-left" />
+          <i class="fas fa-chevron-left" />
         </button>
         <span>Page {page} of {totalPages}</span>
         <button
           on:click={() => (page = Math.min(totalPages, page + 1))}
           disabled={page === totalPages}
         >
-          <a class="fas fa-chevron-right" />
+          <i class="fas fa-chevron-right" />
         </button>
       </div>
     {/if}
@@ -126,6 +130,7 @@
       border-radius: 2px;
       transition: background 0.2s;
     }
+
     .delete-btn:hover {
       background: var(--primary-hoverground-color);
     }
@@ -147,18 +152,17 @@
       cursor: pointer;
       font-weight: 600;
       transition: background 0.2s;
-
-      a {
-        color: var(--primary-activeground-font-color);
-      }
     }
+
     button:disabled {
       background: #555;
       cursor: not-allowed;
     }
+
     button:not(:disabled):hover {
       background: var(--primary-hoverground-color);
     }
+
     span {
       font-size: 14px;
     }
