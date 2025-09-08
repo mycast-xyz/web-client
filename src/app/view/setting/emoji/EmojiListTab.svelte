@@ -55,24 +55,21 @@
         {/each}
       </tbody>
     </table>
-    {#if totalPages > 1}
-      <div class="pagination">
-        <button on:click={() => (page = Math.max(1, page - 1))} disabled={page === 1}>
-          <i class="fas fa-chevron-left" />
-        </button>
-        <span>Page {page} of {totalPages}</span>
-        <button
-          on:click={() => (page = Math.min(totalPages, page + 1))}
-          disabled={page === totalPages}
-        >
-          <i class="fas fa-chevron-right" />
-        </button>
-      </div>
-    {/if}
   {:else}
     <p>없음</p>
   {/if}
 </div>
+{#if totalPages > 1}
+  <div class="pagination">
+    <button on:click={() => (page = Math.max(1, page - 1))} disabled={page === 1}>
+      <i class="fas fa-chevron-left" />
+    </button>
+    <span>Page {page} of {totalPages}</span>
+    <button on:click={() => (page = Math.min(totalPages, page + 1))} disabled={page === totalPages}>
+      <i class="fas fa-chevron-right" />
+    </button>
+  </div>
+{/if}
 
 <style lang="scss">
   .content {
