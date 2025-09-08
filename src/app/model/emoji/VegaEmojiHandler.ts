@@ -1,4 +1,4 @@
-import type { CustomEmoji } from './CustomEmoji';
+import type { CustomEmoji, CustomEmojiDetail } from './CustomEmoji';
 
 export class VegaEmojiHandler {
   readonly #host = 'https://mycast.xyz:9011/emoji';
@@ -9,6 +9,18 @@ export class VegaEmojiHandler {
       const res = await fetch(url);
       const json = await res.json();
       return json as CustomEmoji[];
+    } catch {
+      return [];
+    }
+  }
+
+  async loadAll(): Promise<CustomEmojiDetail[]> {
+    try {
+      const url = `${this.#host}`;
+      const res = await fetch(url);
+      const json = await res.json();
+      console.log(json);
+      return json as CustomEmojiDetail[];
     } catch {
       return [];
     }

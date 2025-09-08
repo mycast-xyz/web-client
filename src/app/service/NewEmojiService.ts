@@ -1,9 +1,10 @@
 import { type Readable, type Writable, writable } from 'svelte/store';
-import type { CustomEmoji } from '../model/emoji/CustomEmoji';
+import type { CustomEmoji, CustomEmojiDetail } from '../model/emoji/CustomEmoji';
 import { VegaEmojiHandler } from '../model/emoji/VegaEmojiHandler';
 import { SessionService } from './SessionService';
 
 class NewEmojiServiceInit {
+  #allEmojis: Writable<CustomEmojiDetail[]> = writable([]);
   #emojis: Writable<CustomEmoji[]> = writable([]);
   #handler: VegaEmojiHandler = new VegaEmojiHandler();
 
@@ -11,9 +12,18 @@ class NewEmojiServiceInit {
     return this.#emojis;
   }
 
+  get allEmojis(): Readable<CustomEmojiDetail[]> {
+    return this.#allEmojis;
+  }
+
   async init() {
     const privateKey = SessionService.getPrivateKey();
     this.#emojis.set(await this.#handler.load(privateKey));
+  }
+
+  async fetchAll() {
+    const details = await this.#handler.loadAll();
+    this.#allEmojis.set(details);
   }
 
   async delete(emojiIdx: number): Promise<boolean> {

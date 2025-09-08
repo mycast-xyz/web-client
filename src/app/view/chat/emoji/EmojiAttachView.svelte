@@ -1,14 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { EmojiService } from '../../../service/EmojiService';
-  import type { CustomEmoji } from '../../../model/emoji/CustomEmoji';
+  import type { CustomEmoji, CustomEmojiDetail } from '../../../model/emoji/CustomEmoji';
   import { NewEmojiService } from '../../../service/NewEmojiService';
   import { SessionService } from '../../../service/SessionService';
   import { SocketService } from '../../../service/SocketService';
   import { WindowService } from '../../../service/WindowService';
 
   let recentEmojies: string[] = [];
-  let customEmojis: CustomEmoji[] = [];
+  let customEmojis: CustomEmojiDetail[] = [];
   let tab: 'default' | 'custom' = 'default';
 
   const emojiStream: string =
@@ -22,8 +22,11 @@
 
   onMount(() => {
     const unsubscribeRecents = EmojiService.recents.subscribe((it) => (recentEmojies = it));
-    const unsubscribeCustom = NewEmojiService.emojis.subscribe((it) => (customEmojis = it));
+    const unsubscribeCustom = NewEmojiService.allEmojis.subscribe((it) => (customEmojis = it));
     NewEmojiService.init();
+    NewEmojiService.fetchAll();
+
+    console.log('EmojiAttachView mounted');
 
     return () => {
       unsubscribeRecents();
@@ -37,7 +40,7 @@
     WindowService.closeEmojiAttachView();
   }
 
-  function onCustomEmojiClick(emoji: CustomEmoji) {
+  function onCustomEmojiClick(emoji: CustomEmojiDetail) {
     EmojiService.appendEmoji(`:${emoji.name}:`);
   }
 
@@ -83,7 +86,7 @@
     {:else if tab === 'custom'}
       <div class="custom-emoji-list">
         {#if customEmojis.length > 0}
-          {#each customEmojis as emoji (emoji.idx)}
+          {#each customEmojis as emoji (emoji.name)}
             <button class="custom-emoji-item" on:click={() => onCustomEmojiClick(emoji)}>
               <img src={emoji.thumbnailUrl} alt={emoji.name} title={`:${emoji.name}:`} />
             </button>
