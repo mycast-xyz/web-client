@@ -157,25 +157,25 @@
       height: calc(100% - #{$title-container-height} - #{$tab-container-height});
       overflow-y: scroll;
       scrollbar-width: thin;
+
       &::-webkit-scrollbar {
         width: 5px;
         height: 5px;
         border: 3px solid;
       }
+
       &::-webkit-scrollbar-button:start:decrement,
       &::-webkit-scrollbar-button:end:increment {
         display: block;
         height: 5px;
       }
+
       &::-webkit-scrollbar-track {
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
+        background: var(--primary-background-color);
       }
+
       &::-webkit-scrollbar-thumb {
-        height: 50px;
-        width: 50px;
-        -webkit-border-radius: 8px;
-        border-radius: 8px;
+        background: var(--primary-activeground-color);
       }
       .recent-title {
         width: calc(100% - 10px);

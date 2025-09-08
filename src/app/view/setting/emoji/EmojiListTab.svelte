@@ -83,6 +83,10 @@
       margin: 0 0 18px 0;
       letter-spacing: 1px;
     }
+
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
     font-size: 14px;
     line-height: 1.5;
 
@@ -106,7 +110,7 @@
 
     th,
     td {
-      padding: 8px 5px;
+      padding: 4px 5px;
       border-bottom: 1px solid #333;
       text-align: center;
       vertical-align: middle;
@@ -133,6 +137,25 @@
 
     .delete-btn:hover {
       background: var(--primary-hoverground-color);
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      display: block;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--primary-background-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--primary-activeground-color);
     }
   }
 
