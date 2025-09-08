@@ -46,12 +46,12 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="container">
   <div class="title">
     <h4>이모티콘</h4>
   </div>
-  <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div class="tab-container">
     <div class="item" class:active={tab === 'default'} on:click={() => (tab = 'default')}>기본</div>
     <div class="item" class:active={tab === 'custom'} on:click={() => (tab = 'custom')}>커스텀</div>
@@ -64,8 +64,6 @@
         </div>
         <div class="def-emoji-list">
           {#each recentEmojies as emoji}
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
             <span
               on:click={(_) => onEmojiClick(emoji)}
               on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}>{emoji}</span
@@ -75,10 +73,7 @@
         <hr />
       {/if}
       <div class="def-emoji-list">
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
         {#each emojies as emoji}
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
             on:click={(_) => onEmojiClick(emoji)}
             on:contextmenu|preventDefault={(_) => onEmojiContextMenu(emoji)}>{emoji}</span
