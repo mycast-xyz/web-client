@@ -13,20 +13,24 @@
 </script>
 
 <div class="reaction-item">
-  {#if param.value === 'thumb-up'}
-    <span>👍</span>
-  {:else if param.value === 'thumb-down'}
-    <span>👎</span>
-  {:else if param.value === 'clap'}
-    <span>👏</span>
-  {:else if param.value === 'laugh'}
-    <span>😆</span>
-  {:else if param.value === 'sad'}
-    <span>😢</span>
-  {:else if param.value === 'disgust'}
-    <span>🤢</span>
-  {:else if param.value.startsWith('c')}
-    <span>{param.value.substring(1)}</span>
+  {#if param.type === 'emoji-image'}
+    <img src={param.value.url} alt={param.value.name} />
+  {:else if param.type === 'emoji'}
+    {#if param.value === 'thumb-up'}
+      <span>👍</span>
+    {:else if param.value === 'thumb-down'}
+      <span>👎</span>
+    {:else if param.value === 'clap'}
+      <span>👏</span>
+    {:else if param.value === 'laugh'}
+      <span>😆</span>
+    {:else if param.value === 'sad'}
+      <span>😢</span>
+    {:else if param.value === 'disgust'}
+      <span>🤢</span>
+    {:else if param.value.startsWith('c')}
+      <span>{param.value.substring(1)}</span>
+    {/if}
   {/if}
   <div class="reaction-item-title">
     <span> {title} </span>
@@ -38,6 +42,12 @@
     position: relative;
     display: inline-block;
     cursor: default;
+
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+    }
 
     .reaction-item-title {
       position: absolute;

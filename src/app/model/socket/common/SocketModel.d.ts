@@ -1,3 +1,5 @@
+import { EmbededEmoji } from '../../../view/chat/pack/richtext/RichTextProp';
+
 export interface SocketModel {
   send(request: SocketRequest): void;
   onReceived(callback: SocketCallback): void;
@@ -55,6 +57,7 @@ type SocketReactionRequest = {
   resource: {
     userKey: string;
     chatHash: string;
+    type: 'emoji-image' | 'emoji';
     reaction: string;
   };
 };
@@ -136,6 +139,7 @@ type SocketCurrentChat = {
   reactions: {
     hash: string;
     timestamp: string;
+    type: 'emoji-image' | 'emoji';
     user: { hash: string; icon: string; nickname: string };
     value: string;
   }[];
@@ -203,12 +207,7 @@ type SocketNotificationToCommand = BaseSocketCommand<
 
 type SocketReactionResponse = {
   chatHash: string;
-  reactions: {
-    hash: string;
-    timestamp: string;
-    user: { hash: string; icon: string; nickname: string };
-    value: string;
-  }[];
+  reactions: ChatReaction[];
 };
 
 type SocketReactionCommand = BaseSocketCommand<'reaction', null, SocketReactionResponse>;
@@ -220,6 +219,7 @@ type SocketReplyResponse = {
     timestamp: string;
     user: { hash: string; icon: string; nickname: string };
     value: string;
+    emojis: EmbededEmoji[];
   }[];
 };
 

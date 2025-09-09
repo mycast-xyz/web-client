@@ -22,7 +22,8 @@
     if (EmojiUtils.isEmoji(reaction)) {
       const privateKey = SessionService.getPrivateKey();
       const stagedChat = ChatReactionService.stagedChat;
-      stagedChat && SocketService.reaction?.execute(privateKey, stagedChat, `c${reaction}`);
+      stagedChat &&
+        SocketService.reaction?.execute(privateKey, stagedChat, 'emoji', `c${reaction}`);
     } else {
       ToastService.toastText('추가 실패');
     }

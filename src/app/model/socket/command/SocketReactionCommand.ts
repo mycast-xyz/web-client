@@ -7,10 +7,20 @@ export class SocketReactionCommand {
     this.#socket = socket;
   }
 
-  execute(privateKey: string, chatHash: string, reaction: string): void {
+  execute(
+    privateKey: string,
+    chatHash: string,
+    type: 'emoji-image' | 'emoji',
+    reaction: string
+  ): void {
     this.#socket.send({
       commandType: 'reaction',
-      resource: { userKey: privateKey, chatHash, reaction }
+      resource: {
+        userKey: privateKey,
+        chatHash,
+        type,
+        reaction
+      }
     });
   }
 }

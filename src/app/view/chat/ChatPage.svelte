@@ -11,6 +11,7 @@
   import ClipList from './clip/ClipList.svelte';
   import type { ActiveInterfaceMenu } from '../../service/window/ActiveInterfaceMenu';
   import ChatReplyView from './reply/ChatReplyView.svelte';
+  import EmojiReactionView from './emoji/EmojiReactionView.svelte';
 
   const clipboard = new ClipboardManager();
 
@@ -74,6 +75,9 @@
   <div class="emoji-attach" class:hide={activeInterfaceMenu !== 'emoji'}>
     <EmojiAttachView />
   </div>
+  <div class="emoji-reaction" class:hide={activeInterfaceMenu !== 'emoji-reaction'}>
+    <EmojiReactionView />
+  </div>
   <div class="chat-interface"><ChatInterface /></div>
 </div>
 
@@ -119,6 +123,19 @@
   }
 
   .emoji-attach {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: $chat-interface-height;
+    width: 100%;
+    height: 300px;
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .emoji-reaction {
     display: block;
     position: absolute;
     left: 0;

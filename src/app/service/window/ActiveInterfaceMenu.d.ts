@@ -1,1 +1,1 @@
-export type ActiveInterfaceMenu = 'user' | 'bot' | 'clip' | 'emoji';
+export type ActiveInterfaceMenu = 'user' | 'bot' | 'clip' | 'emoji' | 'emoji-reaction';

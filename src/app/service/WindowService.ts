@@ -55,6 +55,12 @@ class WindowServiceInit {
     });
   }
 
+  closeEmojiReactionView() {
+    this.#activeInterfaceMenu.update((prev) => {
+      return prev !== 'emoji-reaction' ? prev : null;
+    });
+  }
+
   get sideBarShow(): Readable<boolean> {
     return this.#sideBarShow;
   }

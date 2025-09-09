@@ -10,10 +10,19 @@
 
   function getParam(reactions: ChatReaction[]): Param[] {
     return reactions.map((r) => {
-      return {
-        users: [r.user],
-        value: r.value
-      };
+      if (r.type === 'emoji') {
+        return {
+          users: [r.user],
+          type: r.type,
+          value: r.value
+        };
+      } else {
+        return {
+          users: [r.user],
+          type: r.type,
+          value: r.value
+        };
+      }
     });
   }
 
@@ -22,10 +31,19 @@
     for (const entry of reactions) {
       const found = merged.find((r) => r.value === entry.value);
       if (!found) {
-        merged.push({
-          users: [entry.user],
-          value: entry.value
-        });
+        if (entry.type === 'emoji') {
+          merged.push({
+            users: [entry.user],
+            type: entry.type,
+            value: entry.value
+          });
+        } else {
+          merged.push({
+            users: [entry.user],
+            type: entry.type,
+            value: { url: entry.value.url, name: entry.value.name }
+          });
+        }
       } else {
         found.users.push(entry.user);
       }

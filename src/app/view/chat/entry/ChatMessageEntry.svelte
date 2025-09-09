@@ -66,11 +66,7 @@
 
   const defaultReactionMenus = [
     { icon: '👍', value: 'thumb-up' },
-    { icon: '👎', value: 'thumb-down' },
-    { icon: '👏', value: 'clap' },
-    { icon: '😆', value: 'laugh' },
-    { icon: '😢', value: 'sad' },
-    { icon: '🤢', value: 'disgust' }
+    { icon: '👎', value: 'thumb-down' }
   ];
   let customReactionMenus: string[] = [];
 
@@ -116,12 +112,17 @@
   function onReactionClick(reactionValue: string) {
     const privateKey = SessionService.getPrivateKey();
     const chatHash = message.hash;
-    SocketService.reaction?.execute(privateKey, chatHash, reactionValue);
+    SocketService.reaction?.execute(privateKey, chatHash, 'emoji', reactionValue);
   }
 
   function onCustomReactionClick() {
     ChatReactionService.stageChat(message.hash);
     WindowService.openModal('chat-reaction');
+  }
+
+  function onEmojiReactionClick() {
+    ChatReactionService.stageChat(message.hash);
+    WindowService.toggleChatInterfaceMenu('emoji-reaction');
   }
 
   function onMouseEnter() {
@@ -187,7 +188,7 @@
         </button>
       {/each}
       {#if enableExprimentSetting}
-        <button on:click={(_) => onCustomReactionClick()}><i class="fas fa-icons" /></button>
+        <button on:click={(_) => onEmojiReactionClick()}><i class="fas fa-smile" /></button>
       {/if}
     </div>
   </div>
