@@ -19,7 +19,6 @@ export class VegaEmojiHandler {
       const url = `${this.#host}`;
       const res = await fetch(url);
       const json = await res.json();
-      console.log(json);
       return json as CustomEmojiDetail[];
     } catch {
       return [];

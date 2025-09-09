@@ -26,8 +26,6 @@
     NewEmojiService.init();
     NewEmojiService.fetchAll();
 
-    console.log('EmojiAttachView mounted');
-
     return () => {
       unsubscribeRecents();
       unsubscribeCustom();

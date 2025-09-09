@@ -17,7 +17,6 @@ class EmojiServiceInit {
   registerRecent(emoji: string) {
     this.#recents.update((it) => {
       const filtered = it.filter((e) => e !== emoji).slice(0, MAX_RECENT_COUNT - 1);
-      console.log([emoji, ...filtered]);
       return [emoji, ...filtered];
     });
   }
