@@ -187,9 +187,7 @@
           <span>{menu.icon}</span>
         </button>
       {/each}
-      {#if enableExprimentSetting}
-        <button on:click={(_) => onEmojiReactionClick()}><i class="fas fa-smile" /></button>
-      {/if}
+      <button on:click={(_) => onEmojiReactionClick()}><i class="fas fa-smile" /></button>
     </div>
   </div>
   {#if reactions?.length > 0}
