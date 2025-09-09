@@ -65,8 +65,8 @@
   ];
 
   const defaultReactionMenus = [
-    { icon: '👍', value: 'thumb-up' },
-    { icon: '👎', value: 'thumb-down' }
+    // { icon: '👍', value: 'thumb-up' },
+    // { icon: '👎', value: 'thumb-down' }
   ];
   let customReactionMenus: string[] = [];
 
