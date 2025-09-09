@@ -1,8 +1,15 @@
 <script lang="ts">
   import type { ChatReply } from '../../../../model/chat/ChatReply';
+  import { RichTextMerger } from '../../pack/richtext/RichTextMerger';
+  import { RichTextParser } from '../../pack/richtext/RichTextParser';
 
   export let reply: ChatReply;
   let hover = false;
+  const parser = new RichTextParser();
+  const merger = new RichTextMerger();
+
+  $: richTexts = parser.parse(reply.value, reply.emojis);
+  $: mergedTexts = merger.merge(richTexts);
 </script>
 
 <div class="entry">
@@ -10,7 +17,35 @@
   <div class="icon" on:mouseenter={() => (hover = true)} on:mouseleave={() => (hover = false)}>
     <img src={reply.user.icon} alt={reply.user.nickname} />
   </div>
-  <div class="content">{reply.value}</div>
+  <div class="content">
+    {#each mergedTexts as content}
+      {#if content.type === 'emoji-image'}
+        <span class="emoji-solo-image">
+          <img
+            class="emoji-image"
+            src={content.url}
+            alt={`:${content.name}:`}
+            on:contextmenu={() => false}
+          />
+        </span>
+      {:else if content.type === 'emoji-images'}
+        <span class="emoji-images">
+          {#each content.emojis as emoji}
+            <img
+              class="emoji-image"
+              class:big={richTexts.length === 1}
+              src={emoji.url}
+              alt={`:${emoji.name}:`}
+              on:contextmenu={() => false}
+            />
+          {/each}
+        </span>
+      {:else if content.type === 'plain'}
+        <span>{@html content.text}</span>
+      {/if}
+    {/each}
+    <!-- {reply.value} -->
+  </div>
   {#if hover}
     <div class="title">
       <span> {reply.user.nickname} </span>
@@ -38,6 +73,15 @@
       font-size: 0.8em;
       word-wrap: break-word;
       max-width: calc(100% - 20px);
+
+      .emoji-image {
+        display: inline-block;
+        vertical-align: middle;
+        width: 16px;
+        height: 16px;
+        margin: 0px;
+        object-fit: contain;
+      }
     }
 
     .title {
