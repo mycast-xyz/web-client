@@ -14,7 +14,7 @@
 
 <div class="reaction-item">
   {#if param.type === 'emoji-image'}
-    <img src={param.value.url} alt={param.value.name} />
+    <img src={param.value.url} alt={`:${param.value.name}:`} />
   {:else if param.type === 'emoji'}
     {#if param.value === 'thumb-up'}
       <span>👍</span>
