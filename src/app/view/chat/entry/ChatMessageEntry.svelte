@@ -1,7 +1,6 @@
 <script lang="ts">
   import { SvelteComponent, onMount, type ComponentType } from 'svelte';
   import { get } from 'svelte/store';
-  import { useSwipe, type SwipeCustomEvent, type GestureCustomEvent } from 'svelte-gestures';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { ChatReactionService } from '../../../service/ChatReactionService';
   import { ChatReplyService } from '../../../service/ChatReplyService';
@@ -35,6 +34,9 @@
   export let message: ChatMessage;
   let menuActive: boolean = false;
   let enableTimestamp: boolean = false;
+  let isSwiping = false;
+  let touchstartX = 0;
+  let touchstartY = 0;
   let enableExprimentSetting: boolean = false;
 
   const packs: Pack[] = [
@@ -117,6 +119,9 @@
   }
 
   function onClick() {
+    if (isSwiping) {
+      return;
+    }
     if (MobileUtils.isMobile()) {
       if (message.hash === get(ChatService.activeChatMessage)) {
         ChatService.setActive(null);
@@ -131,8 +136,31 @@
     ChatService.focusInput();
   }
 
-  function onSwipe(event: SwipeCustomEvent) {
-    onReplyClick();
+  function handleTouchStart(event: TouchEvent) {
+    if (!MobileUtils.isMobile()) {
+      return;
+    }
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+  }
+
+  function handleTouchEnd(event: TouchEvent) {
+    if (!MobileUtils.isMobile()) {
+      return;
+    }
+    const touchendX = event.changedTouches[0].screenX;
+    const touchendY = event.changedTouches[0].screenY;
+
+    const dx = touchendX - touchstartX;
+    const dy = touchendY - touchstartY;
+    const swipeThreshold = 50; // pixels
+
+    if (Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy)) {
+      isSwiping = true;
+      // Use a timeout to reset the flag, allowing it to absorb the click event that fires after a swipe.
+      setTimeout(() => (isSwiping = false), 200);
+      onReplyClick();
+    }
   }
 
   type Pack = {
@@ -146,13 +174,14 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="container"
-  {...useSwipe(onSwipe, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}
+  style="touch-action: pan-y;"
   class:hover={menuActive}
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
   on:click={onClick}
+  on:touchstart={handleTouchStart}
+  on:touchend={handleTouchEnd}
 >
-  <!-- on:dblclick|preventDefault={(_) => onReplyClick()} -->
   <div class="body">
     {#if pack}
       <svelte:component this={pack} body={message.body} />
