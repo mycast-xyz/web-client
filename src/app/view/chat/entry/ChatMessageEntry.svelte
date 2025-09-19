@@ -64,19 +64,12 @@
     { type: 'champion', component: LolChampionPack }
   ];
 
-  const defaultReactionMenus = [
-    // { icon: '👍', value: 'thumb-up' },
-    // { icon: '👎', value: 'thumb-down' }
-  ];
   let customReactionMenus: string[] = [];
 
   $: pack = getComponent(message.type);
   $: reactions = message.reactions;
   $: replies = message.replies;
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
-  $: reactionMenus = defaultReactionMenus.concat(
-    customReactionMenus.map((e) => ({ icon: e, value: `c${e}` }))
-  );
 
   const getComponent = (type: string): typeof SvelteComponent | null => {
     const pack = packs.find((p) => p.type === type);
@@ -182,11 +175,6 @@
           <i class="fas fa-comment-dots" />
         </button>
       {/if}
-      {#each reactionMenus as menu}
-        <button on:click={(_) => onReactionClick(menu.value)}>
-          <span>{menu.icon}</span>
-        </button>
-      {/each}
       <button on:click={(_) => onEmojiReactionClick()}><i class="fas fa-smile" /></button>
     </div>
   </div>
