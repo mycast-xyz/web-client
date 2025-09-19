@@ -5,6 +5,8 @@
   import type { RichTextProp } from './RichTextProp';
 
   export let body: string;
+
+  const bigEmojiThreashold = 3;
   const parser = new RichTextParser();
   const merger = new RichTextMerger();
   let richTexts: RichText[];
@@ -18,6 +20,11 @@
       merged = merger.merge(richTexts);
     } catch {}
   }
+
+  $: isOnlyEmojis =
+    merged.length === 1 &&
+    merged[0].type === 'emoji-images' &&
+    merged[0].emojis.length <= bigEmojiThreashold;
 </script>
 
 <div>
@@ -38,7 +45,7 @@
           {#each content.emojis as emoji}
             <img
               class="emoji-image"
-              class:big={richTexts.length === 1}
+              class:big={isOnlyEmojis}
               src={emoji.url}
               alt={`:${emoji.name}:`}
               on:contextmenu={() => false}
