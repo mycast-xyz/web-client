@@ -64,8 +64,6 @@
     { type: 'champion', component: LolChampionPack }
   ];
 
-  let customReactionMenus: string[] = [];
-
   $: pack = getComponent(message.type);
   $: reactions = message.reactions;
   $: replies = message.replies;
@@ -101,17 +99,6 @@
     OptionService.timestamp.subscribe((it) => (enableTimestamp = it));
     OptionService.enableExprimentSetting.subscribe((it) => (enableExprimentSetting = it));
   });
-
-  function onReactionClick(reactionValue: string) {
-    const privateKey = SessionService.getPrivateKey();
-    const chatHash = message.hash;
-    SocketService.reaction?.execute(privateKey, chatHash, 'emoji', reactionValue);
-  }
-
-  function onCustomReactionClick() {
-    ChatReactionService.stageChat(message.hash);
-    WindowService.openModal('chat-reaction');
-  }
 
   function onEmojiReactionClick() {
     ChatReactionService.stageChat(message.hash);
