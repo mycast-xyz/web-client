@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  svelte-gestures:
+    specifier: ^5.2.1
+    version: 5.2.1
+
 devDependencies:
   '@playwright/test':
     specifier: ^1.28.1
@@ -2219,6 +2224,10 @@ packages:
       postcss-scss: 4.0.9(postcss@8.4.31)
       svelte: 4.2.2
     dev: true
+
+  /svelte-gestures@5.2.1:
+    resolution: {integrity: sha512-c3ax0ZbGxKdWfXS3c9N9EmoDD9ZBTrNJmF8ktep2Gp476TGlpyyvMyKEpt8uHVC6vChaeuAVPon6PjHfpw5LuQ==}
+    dev: false
 
   /svelte-hmr@0.15.3(svelte@4.2.2):
     resolution: {integrity: sha512-41snaPswvSf8TJUhlkoJBekRrABDXDMdpNpT2tfHIv4JuhgvHqLMhEPGtaQn0BmbNSTkuz2Ed20DF2eHw0SmBQ==}

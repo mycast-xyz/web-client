@@ -1,13 +1,12 @@
 <script lang="ts">
   import { SvelteComponent, onMount, type ComponentType } from 'svelte';
   import { get } from 'svelte/store';
+  import { useSwipe, type SwipeCustomEvent, type GestureCustomEvent } from 'svelte-gestures';
   import type { ChatMessage } from '../../../model/chat/ChatMessage';
   import { ChatReactionService } from '../../../service/ChatReactionService';
   import { ChatReplyService } from '../../../service/ChatReplyService';
   import { ChatService } from '../../../service/ChatService';
   import { OptionService } from '../../../service/OptionService';
-  import { SessionService } from '../../../service/SessionService';
-  import { SocketService } from '../../../service/SocketService';
   import { WindowService } from '../../../service/WindowService';
   import { MobileUtils } from '../../../util/mobile/MobileUtils';
   import AfreecaPack from '../pack/AfreecaPack.svelte';
@@ -132,6 +131,10 @@
     ChatService.focusInput();
   }
 
+  function onSwipe(event: SwipeCustomEvent) {
+    onReplyClick();
+  }
+
   type Pack = {
     type: string;
     component: ComponentType;
@@ -143,12 +146,13 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="container"
+  {...useSwipe(onSwipe, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}
   class:hover={menuActive}
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
   on:click={onClick}
-  on:dblclick|preventDefault={(_) => onReplyClick()}
 >
+  <!-- on:dblclick|preventDefault={(_) => onReplyClick()} -->
   <div class="body">
     {#if pack}
       <svelte:component this={pack} body={message.body} />
