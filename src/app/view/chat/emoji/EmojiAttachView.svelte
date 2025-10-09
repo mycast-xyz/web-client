@@ -6,6 +6,7 @@
   import { SessionService } from '../../../service/SessionService';
   import { SocketService } from '../../../service/SocketService';
   import { WindowService } from '../../../service/WindowService';
+    import { ChatService } from '../../../service/ChatService';
 
   let recentEmojies: string[] = [];
   let customEmojis: CustomEmojiDetail[] = [];
@@ -40,6 +41,7 @@
 
   function onCustomEmojiClick(emoji: CustomEmojiDetail) {
     EmojiService.appendEmoji(`:${emoji.name}:`);
+    ChatService.focusInput();
   }
 
   function onEmojiContextMenu(emoji: string) {
