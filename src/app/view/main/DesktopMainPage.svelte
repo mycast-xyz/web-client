@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
   import type { SocketMyStatus } from '../../model/socket/common/SocketModel';
+  import type { Content } from '../../model/window/Content';
   import { ChatNetworkService } from '../../service/ChatNetworkService';
   import { CheckerNetworkService } from '../../service/CheckerNetworkService';
   import { OptionService } from '../../service/OptionService';
@@ -26,8 +27,20 @@
   let chatViewSide: 'left' | 'right' = get(OptionService.chatViewSide);
   let chatConnected = false;
 
+  const contentStore = WindowService.content;
+  const watchContentTypes = new Set<Content['type']>([
+    'iframe',
+    'local-stream',
+    'totoro-stream',
+    'hls',
+    'twitch-stream'
+  ]);
+
+  $: streamActive = $contentStore !== null && watchContentTypes.has($contentStore.type);
+
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
+
   WindowService.sideBarShow.subscribe((v) => (sideBarVisible = v));
   OptionService.enableCheckerBar.subscribe((v) => (isCheckerBarEnable = v));
   ChatNetworkService.isConnected.subscribe((it) => (chatConnected = it));
@@ -80,6 +93,7 @@
     minSideSize={300}
     offset={chatViewOffset}
     bind:side={chatViewSide}
+    stackWhenNarrow={streamActive}
     on:offsetchange={onOffsetChanged}
   >
     <div slot="side" class="chat-section">
@@ -94,7 +108,12 @@
         </div>
       {/if}
     </div>
-    <div slot="main" class="content-section" class:checker-attached={isCheckerBarEnable}>
+    <div
+      slot="main"
+      class="content-section"
+      class:checker-attached={isCheckerBarEnable}
+      class:stream-active={streamActive}
+    >
       <div class="content"><ContentView /></div>
       <div class="bottom-bar"><BottomBar /></div>
     </div>
@@ -184,6 +203,19 @@
         .bottom-bar {
           display: block;
           height: $bottom-bar-height;
+        }
+      }
+
+      @media (max-aspect-ratio: 6/5) {
+        &.stream-active.checker-attached {
+          .content {
+            height: 100%;
+          }
+
+          .bottom-bar {
+            display: none;
+            height: 0;
+          }
         }
       }
     }
