@@ -8,7 +8,7 @@
   export let minSideSize: number;
   export let offset = 300;
   export let side: 'left' | 'right';
-  export let narrowLayout: 'split' | 'stream-stacked' | 'content-stacked' = 'split';
+  export let stackWhenNarrow = false;
 
   let isMoveMode = false;
   let clientWidth: number;
@@ -41,12 +41,7 @@
   };
 </script>
 
-<div
-  class="container"
-  class:narrow-stream-stacked={narrowLayout === 'stream-stacked'}
-  class:narrow-content-stacked={narrowLayout === 'content-stacked'}
-  bind:clientWidth
->
+<div class="container" class:stack-when-narrow={stackWhenNarrow} bind:clientWidth>
   <div
     class="divided main-division"
     style="left: {sideRight}; right: {sideLeft}; width: calc(100% - {offset}px);"
@@ -101,8 +96,7 @@
   }
 
   @media (max-aspect-ratio: 6/5) {
-    .container.narrow-stream-stacked,
-    .container.narrow-content-stacked {
+    .container.stack-when-narrow {
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -116,7 +110,9 @@
         width: 100% !important;
         height: auto;
 
-        min-height: 0;
+        aspect-ratio: 16 / 9;
+
+        flex: 0 0 auto;
       }
 
       .side-division {
@@ -136,20 +132,6 @@
 
       .divider {
         display: none;
-      }
-    }
-
-    .container.narrow-stream-stacked {
-      .main-division {
-        aspect-ratio: 16 / 9;
-        flex: 0 0 auto;
-      }
-    }
-
-    .container.narrow-content-stacked {
-      .main-division,
-      .side-division {
-        flex: 1 1 50%;
       }
     }
   }

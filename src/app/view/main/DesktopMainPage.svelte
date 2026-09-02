@@ -37,8 +37,6 @@
   ]);
 
   $: streamActive = $contentStore !== null && watchContentTypes.has($contentStore.type);
-  $: narrowLayout =
-    $contentStore === null ? 'split' : streamActive ? 'stream-stacked' : 'content-stacked';
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);
@@ -95,7 +93,7 @@
     minSideSize={300}
     offset={chatViewOffset}
     bind:side={chatViewSide}
-    {narrowLayout}
+    stackWhenNarrow={streamActive}
     on:offsetchange={onOffsetChanged}
   >
     <div slot="side" class="chat-section">
