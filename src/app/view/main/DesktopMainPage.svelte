@@ -206,7 +206,7 @@
         }
       }
 
-      @media (max-aspect-ratio: 6/5) {
+      @media (max-aspect-ratio: 1/1) {
         &.stream-active.checker-attached {
           .content {
             height: 100%;

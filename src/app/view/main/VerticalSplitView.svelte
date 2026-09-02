@@ -95,7 +95,7 @@
     }
   }
 
-  @media (max-aspect-ratio: 6/5) {
+  @media (max-aspect-ratio: 1/1) {
     .container.stack-when-narrow {
       display: flex;
       flex-direction: column;
