@@ -37,7 +37,8 @@
   ]);
 
   $: streamActive = $contentStore !== null && watchContentTypes.has($contentStore.type);
-  $: narrowLayout = $contentStore === null ? 'split' : streamActive ? 'stacked' : 'main-only';
+  $: narrowLayout =
+    $contentStore === null ? 'split' : streamActive ? 'stream-stacked' : 'content-stacked';
 
   ChatNetworkService.init(privateKey);
   CheckerNetworkService.init(privateKey);

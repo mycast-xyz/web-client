@@ -8,7 +8,7 @@
   export let minSideSize: number;
   export let offset = 300;
   export let side: 'left' | 'right';
-  export let narrowLayout: 'split' | 'stacked' | 'main-only' = 'split';
+  export let narrowLayout: 'split' | 'stream-stacked' | 'content-stacked' = 'split';
 
   let isMoveMode = false;
   let clientWidth: number;
@@ -43,8 +43,8 @@
 
 <div
   class="container"
-  class:narrow-stacked={narrowLayout === 'stacked'}
-  class:narrow-main-only={narrowLayout === 'main-only'}
+  class:narrow-stream-stacked={narrowLayout === 'stream-stacked'}
+  class:narrow-content-stacked={narrowLayout === 'content-stacked'}
   bind:clientWidth
 >
   <div
@@ -101,7 +101,8 @@
   }
 
   @media (max-aspect-ratio: 6/5) {
-    .container.narrow-stacked {
+    .container.narrow-stream-stacked,
+    .container.narrow-content-stacked {
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -115,9 +116,7 @@
         width: 100% !important;
         height: auto;
 
-        aspect-ratio: 16 / 9;
-
-        flex: 0 0 auto;
+        min-height: 0;
       }
 
       .side-division {
@@ -140,16 +139,17 @@
       }
     }
 
-    .container.narrow-main-only {
+    .container.narrow-stream-stacked {
       .main-division {
-        left: 0 !important;
-        right: auto !important;
-        width: 100% !important;
+        aspect-ratio: 16 / 9;
+        flex: 0 0 auto;
       }
+    }
 
-      .side-division,
-      .divider {
-        display: none;
+    .container.narrow-content-stacked {
+      .main-division,
+      .side-division {
+        flex: 1 1 50%;
       }
     }
   }
