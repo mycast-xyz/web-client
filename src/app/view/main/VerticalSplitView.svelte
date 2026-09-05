@@ -9,6 +9,7 @@
   export let offset = 300;
   export let side: 'left' | 'right';
   export let stackWhenNarrow = false;
+  export let sideOnlyWhenNarrow = false;
 
   let isMoveMode = false;
   let clientWidth: number;
@@ -41,7 +42,12 @@
   };
 </script>
 
-<div class="container" class:stack-when-narrow={stackWhenNarrow} bind:clientWidth>
+<div
+  class="container"
+  class:stack-when-narrow={stackWhenNarrow}
+  class:side-only-when-narrow={sideOnlyWhenNarrow}
+  bind:clientWidth
+>
   <div
     class="divided main-division"
     style="left: {sideRight}; right: {sideLeft}; width: calc(100% - {offset}px);"
@@ -92,6 +98,21 @@
       height: 100% !important;
       transform: none;
       -webkit-transform: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .container.side-only-when-narrow {
+      .main-division,
+      .divider {
+        display: none;
+      }
+
+      .side-division {
+        left: 0 !important;
+        right: auto !important;
+        width: 100% !important;
+      }
     }
   }
 

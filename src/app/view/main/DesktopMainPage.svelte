@@ -94,6 +94,7 @@
     offset={chatViewOffset}
     bind:side={chatViewSide}
     stackWhenNarrow={streamActive}
+    sideOnlyWhenNarrow={$contentStore === null}
     on:offsetchange={onOffsetChanged}
   >
     <div slot="side" class="chat-section">
