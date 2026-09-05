@@ -8,6 +8,7 @@
   export let minSideSize: number;
   export let offset = 300;
   export let side: 'left' | 'right';
+  export let stackWhenNarrow = false;
 
   let isMoveMode = false;
   let clientWidth: number;
@@ -40,14 +41,17 @@
   };
 </script>
 
-<div class="container" bind:clientWidth>
+<div class="container" class:stack-when-narrow={stackWhenNarrow} bind:clientWidth>
   <div
-    class="divided"
+    class="divided main-division"
     style="left: {sideRight}; right: {sideLeft}; width: calc(100% - {offset}px);"
   >
     <slot name="main" />
   </div>
-  <div class="divided" style="left: {sideLeft}; right: {sideRight}; width: {offset}px;">
+  <div
+    class="divided side-division"
+    style="left: {sideLeft}; right: {sideRight}; width: {offset}px;"
+  >
     <slot name="side" />
   </div>
   <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -55,9 +59,9 @@
     class="divider"
     class:active={isMoveMode}
     style="left: {dividerOffset}px;"
-    on:mousedown={(_) => (isMoveMode = true)}
+    on:mousedown={() => (isMoveMode = true)}
     on:mousemove={onDividerMove}
-    on:mouseup={(_) => (isMoveMode = false)}
+    on:mouseup={() => (isMoveMode = false)}
   />
 </div>
 
@@ -88,6 +92,47 @@
       height: 100% !important;
       transform: none;
       -webkit-transform: none;
+    }
+  }
+
+  @media (max-aspect-ratio: 1/1) {
+    .container.stack-when-narrow {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      .main-division {
+        position: relative;
+
+        left: auto !important;
+        right: auto !important;
+
+        width: 100% !important;
+        height: auto;
+
+        aspect-ratio: 16 / 9;
+
+        flex: 0 0 auto;
+      }
+
+      .side-division {
+        position: relative;
+
+        left: auto !important;
+        right: auto !important;
+
+        width: 100% !important;
+        height: auto;
+
+        flex: 1 1 auto;
+        min-height: 0;
+
+        overflow: hidden;
+      }
+
+      .divider {
+        display: none;
+      }
     }
   }
 </style>
