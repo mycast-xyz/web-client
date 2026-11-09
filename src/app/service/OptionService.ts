@@ -10,6 +10,7 @@ class OptionServiceInit {
   readonly #enableExprimentSetting = writable(false);
   readonly #chatViewOffset = writable<number>(300);
   readonly #chatViewSide = writable<'left' | 'right'>('left');
+  readonly #chatViewVisible = writable(true);
   readonly #volume = writable(50);
 
   #localStorage = new LocalStorageManager();
@@ -22,6 +23,7 @@ class OptionServiceInit {
     this.#enableDataSave.set(this.#localStorage.enableDataSave);
     this.#chatViewOffset.set(this.#localStorage.chatViewOffset);
     this.#chatViewSide.set(this.#localStorage.chatViewSide);
+    this.#chatViewVisible.set(this.#localStorage.chatViewVisible);
     this.#volume.set(this.#localStorage.volume);
     this.#enableExprimentSetting.set(this.#localStorage.enableExperimentSetting);
   }
@@ -60,6 +62,15 @@ class OptionServiceInit {
 
   get volume(): Readable<number> {
     return this.#volume;
+  }
+
+  get chatViewVisible(): Readable<boolean> {
+    return this.#chatViewVisible;
+  }
+
+  setChatViewVisible(value: boolean) {
+    this.#chatViewVisible.set(value);
+    this.#localStorage.chatViewVisible = value;
   }
 
   setTimestamp(value: boolean) {

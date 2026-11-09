@@ -28,6 +28,7 @@
   let chatConnected = false;
 
   const contentStore = WindowService.content;
+  const chatViewVisible = OptionService.chatViewVisible;
   const watchContentTypes = new Set<Content['type']>([
     'iframe',
     'local-stream',
@@ -93,6 +94,7 @@
     minSideSize={300}
     offset={chatViewOffset}
     bind:side={chatViewSide}
+    sideVisible={$chatViewVisible}
     stackWhenNarrow={streamActive}
     sideOnlyWhenNarrow={$contentStore === null}
     on:offsetchange={onOffsetChanged}

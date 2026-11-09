@@ -4,6 +4,8 @@
   import SettingModal from './SettingModal.svelte';
   import PreferenceView from './site/SiteSettingPreferenceView.svelte';
 
+  const chatViewVisible = OptionService.chatViewVisible;
+
   let enableTimestamp = get(OptionService.timestamp);
   let enableBot = get(OptionService.enableBot);
   let enableCheckerBot = get(OptionService.enableCheckerBar);
@@ -21,6 +23,11 @@
 
 <SettingModal title="사이트 설정" icon="fas fa-tools">
   <div slot="body" class="site-set-box">
+    <PreferenceView
+      title="메인 채팅창 표시"
+      enable={$chatViewVisible}
+      onClick={() => OptionService.setChatViewVisible(!$chatViewVisible)}
+    />
     <PreferenceView
       title="채팅 시각 표기"
       enable={enableTimestamp}

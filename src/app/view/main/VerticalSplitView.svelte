@@ -10,9 +10,11 @@
   export let side: 'left' | 'right';
   export let stackWhenNarrow = false;
   export let sideOnlyWhenNarrow = false;
+  export let sideVisible = true;
 
   let isMoveMode = false;
   let clientWidth: number;
+  $: if (!sideVisible) isMoveMode = false;
   $: dividerOffset = side === 'left' ? offset : clientWidth - offset;
   $: minX = minSideSize;
   $: maxX = clientWidth - minSideSize;
@@ -44,8 +46,9 @@
 
 <div
   class="container"
-  class:stack-when-narrow={stackWhenNarrow}
-  class:side-only-when-narrow={sideOnlyWhenNarrow}
+  class:stack-when-narrow={sideVisible && stackWhenNarrow}
+  class:side-only-when-narrow={sideVisible && sideOnlyWhenNarrow}
+  class:side-hidden={!sideVisible}
   bind:clientWidth
 >
   <div
@@ -81,6 +84,19 @@
   .divided {
     position: absolute;
     height: 100%;
+  }
+
+  .container.side-hidden {
+    .main-division {
+      left: 0 !important;
+      right: auto !important;
+      width: 100% !important;
+    }
+
+    .side-division,
+    .divider {
+      display: none;
+    }
   }
 
   .divider {
