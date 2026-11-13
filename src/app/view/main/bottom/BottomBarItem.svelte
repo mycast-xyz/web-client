@@ -3,6 +3,8 @@
   import { OptionService } from '../../../service/OptionService';
 
   export let icon: string;
+  export let href: string | undefined = undefined;
+  export let label = '';
 
   const dispatch = createEventDispatcher();
   let rightAlign = false;
@@ -13,10 +15,16 @@
 </script>
 
 <div class="root">
+  {#if href}
+    <a class="download" {href} aria-label={label} title={label}>
+      <img class="icon" src={icon} alt="" />
+    </a>
+  {:else}
   <!-- svelte-ignore a11y-missing-attribute -->
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <img class="icon" src={icon} on:click={() => dispatch('iconclick')} />
+  {/if}
 
   <div class="detail" class:right-align={rightAlign}>
     <slot />
@@ -34,6 +42,16 @@
     margin: 0;
     width: $menu-icon-size - 5px;
     height: $menu-icon-size;
+
+    .download {
+      display: block;
+
+      &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+        .icon { opacity: 1; }
+      }
+    }
 
     .icon {
       width: $menu-icon-size - 10px;

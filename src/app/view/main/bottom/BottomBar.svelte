@@ -10,6 +10,7 @@
   import ContentHistoryItem from './ContentHistoryItem.svelte';
   import HappyNewYearEventItem from './HappyNewYearEventItem.svelte';
   import RandomPhotoItem from './RandomPhotoItem.svelte';
+  import BottomBarItem from './BottomBarItem.svelte';
 
   let enableExprimentSetting: boolean = false;
   let rightAlign: boolean = false;
@@ -39,7 +40,12 @@
   {#if enableExprimentSetting === true }
     <RandomPhotoItem />
   {/if}
-  
+  <BottomBarItem
+    icon="/assets/image/main/main-logo-60.png"
+    label="MyCast Windows 앱 다운로드"
+    href="https://github.com/Kandelion/mycast-windows-releases/releases/download/v1.0.19/MyCast.Windows-win-Setup.exe"
+  />
+
   <HappyNewYearEventItem />
 </div>
 
