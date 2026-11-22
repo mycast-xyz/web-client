@@ -147,10 +147,23 @@
 
 <style>
   .attach {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    width: 28px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1;
     background: none;
     color: inherit;
     border: 0;
     cursor: pointer;
+  }
+  .attach:hover:not(:disabled) {
+    color: var(--primary-activeground-color);
   }
   .video-upload {
     position: absolute;

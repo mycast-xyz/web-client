@@ -1,4 +1,5 @@
 <script lang="ts">
+  import '../../static/global.css';
   import VideoAttachment from '../../src/app/view/chat/VideoAttachment.svelte';
   import UploadedVideoPack from '../../src/app/view/chat/pack/video/UploadedVideoPack.svelte';
   import { SessionService } from '../../src/app/service/SessionService';

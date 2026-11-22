@@ -271,7 +271,10 @@
     }
 
     & > .sticker-section {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      vertical-align: top;
+      height: 30px;
       &.right {
         float: right;
       }
