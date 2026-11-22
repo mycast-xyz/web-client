@@ -30,6 +30,8 @@
   import TwitchVideoPack from '../pack/video/TwitchVideoPack.svelte';
   import ReactionList from './reaction/ChatReactionListView.svelte';
   import ReplyList from './reply/ChatReplyListView.svelte';
+  import UploadedVideoPack from '../pack/video/UploadedVideoPack.svelte';
+  import { uploadedVideoUrl } from '../../../model/chat/UploadedVideo';
 
   export let message: ChatMessage;
   let menuActive: boolean = false;
@@ -66,6 +68,7 @@
   ];
 
   $: pack = getComponent(message.type);
+  $: uploadedVideo = uploadedVideoUrl(message.type, message.body);
   $: reactions = message.reactions;
   $: replies = message.replies;
   $: timestamp = convertTimeToString(new Date(message.timestamp).getTime());
@@ -183,7 +186,9 @@
   on:touchend={handleTouchEnd}
 >
   <div class="body">
-    {#if pack}
+    {#if uploadedVideo}
+      <UploadedVideoPack url={uploadedVideo} />
+    {:else if pack}
       <svelte:component this={pack} body={message.body} />
     {:else}
       {message.type}

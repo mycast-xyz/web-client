@@ -14,6 +14,7 @@
   import { ChatReplyService } from '../../service/ChatReplyService';
   import { get } from 'svelte/store';
   import EmojiSearchResultView from './emoji/EmojiSearchResultView.svelte';
+  import VideoAttachment from './VideoAttachment.svelte';
 
   const clipboardManager = new ClipboardManager();
   const chatHistories = new ChatHistoryManager();
@@ -195,6 +196,7 @@
     </div>
 
     <div class="sticker-section right">
+      <VideoAttachment connected={isConnected} />
       <div class:hide={isConnected}>
         <i class="fas fa-exclamation-triangle" />
       </div>
