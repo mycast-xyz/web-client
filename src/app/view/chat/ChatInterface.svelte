@@ -253,12 +253,11 @@
       user-select: none;
 
       i {
-        padding: 8px 6px;
+        padding: 0;
+        margin: 0;
         font-size: 14px;
-        /* margin: -3px; */
-        display: inline-block;
-        /* position: relative; */
-        overflow: hidden;
+        line-height: 1;
+        display: block;
       }
 
       &.hide {
@@ -275,6 +274,24 @@
       align-items: center;
       vertical-align: top;
       height: 30px;
+      & > div:not(.hide) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 30px;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+      }
+      :global(.svg-inline--fa) {
+        display: block;
+        height: 14px;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        vertical-align: 0;
+      }
       &.right {
         float: right;
       }
