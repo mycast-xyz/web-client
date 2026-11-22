@@ -196,7 +196,6 @@
     </div>
 
     <div class="sticker-section right">
-      <VideoAttachment connected={isConnected} />
       <div class:hide={isConnected}>
         <i class="fas fa-exclamation-triangle" />
       </div>
@@ -206,6 +205,7 @@
       <div on:click={(_) => imageInput.click()}>
         <i class="fas fa-file-image" />
       </div>
+      <VideoAttachment connected={isConnected} />
     </div>
   </div>
   <input
