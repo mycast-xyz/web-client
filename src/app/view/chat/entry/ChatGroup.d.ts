@@ -5,7 +5,9 @@ export type ChatGroup = {
   nickname: string;
   icon: string;
   senderType: ChatEntryPropType;
+  senderId?: string;
+  owner?: { hash: string; nickname: string; icon: string };
   messages: ChatMessage[];
 };
 
-export type ChatEntryPropType = 'PC' | 'MOBILE' | 'BOT';
+export type ChatEntryPropType = 'PC' | 'MOBILE' | 'BOT' | 'USER_BOT';

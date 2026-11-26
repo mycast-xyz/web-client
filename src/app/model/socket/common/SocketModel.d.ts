@@ -125,6 +125,9 @@ type SocketCurrentLinkClip = {
 type SocketApplyMyStatusCommand = BaseSocketCommand<'applyMyStatus', null, SocketMyStatus>;
 
 type SocketCurrentChat = {
+  senderKind?: 'user-bot';
+  senderId?: string;
+  owner?: { hash: string; nickname: string; icon: string };
   hash: string;
   icon: string;
   iconBorderColor: string;

@@ -80,6 +80,8 @@ class GroupedChatServiceInit {
       lastChatGroup.icon === chat.sender.icon &&
       lastChatGroup.nickname === chat.sender.nickname &&
       lastChatGroup.senderType === chat.sender.type
+      && (chat.sender.type !== 'USER_BOT' || (lastChatGroup.senderId === chat.sender.id &&
+          lastChatGroup.owner?.hash === chat.sender.owner?.hash && lastChatGroup.owner?.nickname === chat.sender.owner?.nickname))
     ) {
       last = lastChatGroup;
     } else {
@@ -88,6 +90,8 @@ class GroupedChatServiceInit {
         icon: chat.sender.icon,
         nickname: chat.sender.nickname,
         senderType: chat.sender.type,
+        senderId: chat.sender.id,
+        owner: chat.sender.owner,
         messages: []
       };
       prev.push(last);

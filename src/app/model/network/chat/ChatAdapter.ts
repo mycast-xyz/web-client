@@ -19,6 +19,9 @@ export class ChatAdapter {
   }
 
   #createChatSender(socketChat: SocketCurrentChat): ChatSender {
+    if (socketChat.senderKind === 'user-bot' && socketChat.senderId && socketChat.owner?.hash) {
+      return new ChatSender(socketChat.icon, socketChat.nickname, 'USER_BOT', socketChat.senderId, socketChat.owner);
+    }
     const senderType = socketChat.isMobile ? 'MOBILE' : socketChat.level === 100 ? 'BOT' : 'PC';
     return new ChatSender(socketChat.icon, socketChat.nickname, senderType);
   }
