@@ -17,7 +17,11 @@
 <div class="chat-entry">
   <div class="icon-section">
     <div class="icon">
-      <ChatEntryIcon src={prop.icon} />
+      {#if prop.senderType === 'USER_BOT' && !prop.icon}
+        <div class="user-bot-avatar" aria-label="기본 프로필"><i class="fas fa-user-circle" /></div>
+      {:else}
+        <ChatEntryIcon src={prop.icon} />
+      {/if}
     </div>
   </div>
   <div class="message-section">
@@ -27,10 +31,13 @@
         <span class="type">
           {#if prop.senderType === 'MOBILE'}
             <i class="fas fa-mobile" />
-          {:else if prop.senderType === 'BOT'}
+          {:else if prop.senderType === 'BOT' || prop.senderType === 'USER_BOT'}
             <i class="fas fa-bug" />
           {/if}
         </span>
+        {#if prop.senderType === 'USER_BOT' && prop.owner}
+          <span class="owner" title={'소유자: ' + prop.owner.nickname}>소유자: {prop.owner.nickname}</span>
+        {/if}
       </div>
     </div>
     {#each messages as message}
@@ -42,6 +49,9 @@
 </div>
 
 <style lang="scss">
+  .user-bot-avatar { width:50px; height:50px; display:flex; align-items:center; justify-content:center; opacity:.65; }
+  .user-bot-avatar i { font-size:36px; }
+  .owner { margin-left: 6px; font-size: 12px; font-weight: normal; opacity: .75; }
   .chat-entry {
     position: relative;
     display: flex;

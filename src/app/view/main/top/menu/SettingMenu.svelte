@@ -10,6 +10,8 @@
   import SettingSwitch from './SettingSwitch.svelte';
   import UserSettingMenuItem from './UserSettingMenuItem.svelte';
   import { Feature } from '../../../../service/FeatureService';
+  import UserBotSettings from '../../../userbot/UserBotSettings.svelte';
+  let userBotsVisible = false;
 
   let platformId = 'local';
   let darkMode = false;
@@ -34,6 +36,7 @@
 
 <div class="setting-list">
   <UserSettingMenuItem />
+  <DefaultMenuItem name="내 봇" icon="fas fa-bug" menuClick={() => userBotsVisible = true} />
   <DefaultMenuItem menuClick={() => openModal('stream')} name="방송 설정" icon="fas fa-podcast">
     <SettingMenuPlatformIcon slot="extra" {platformId} />
   </DefaultMenuItem>
@@ -78,6 +81,7 @@
     <h4>로그아웃</h4>
   </div>
 </div>
+{#if userBotsVisible}<UserBotSettings close={() => userBotsVisible = false} />{/if}
 
 <style lang="scss">
   .setting-list {
